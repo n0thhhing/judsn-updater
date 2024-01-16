@@ -23,7 +23,7 @@
 0x507E610 -- infammo 
 0x18D4480 -- teamkill[1] [both set to false] 
 0x18D5890 -- teamkill[2] 
-0x4D62B74 -- god[1] [all set to -> C0035FD6]
+0x4D62B74 -- god[1] 22.7.2 [all set to -> C0035FD6]
 0x45A88B4 -- god[2] 
 0x58B480C -- god[3] 
 0x58B3F7C -- god[4] 

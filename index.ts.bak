@@ -45,15 +45,15 @@ async function main() {
       const patternElapsedTime: number = performance.now() - patternStartTime;
 
       if (match && match[1] !== null) {
-        const oldType: string | null = await oldFile.findMethodType(
+        const oldType = await oldFile.findMethodType(
           offsetInfo.offsets[names.indexOf(names[index])],
         );
         const newType: string | null = await newFile.findMethodType(match[1]);
-        newOffsets.push({
-          offset: match[1],
-          name: names[index],
-          type_status: oldType === newType ? "Passed" : "Failed",
-        });
+newOffsets.push({
+  offset: match[1],
+  name: names[index],
+  type_status: oldType === newType ? "Passed" : "Failed",
+});
       } else {
         console.error("Pattern match failed or result is null");
       }
@@ -64,7 +64,7 @@ async function main() {
     }
 
     const totalElapsedTime: number = performance.now() - totalStartTime;
-    const averageTime: number = totalElapsedTime / regexPatterns.length;
+const averageTime: number = totalElapsedTime / regexPatterns.length;
     console.log(newOffsets);
     console.log(
       chalk.grey(

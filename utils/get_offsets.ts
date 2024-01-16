@@ -10,10 +10,9 @@ interface FileOffsets {
   entries: OffsetEntry[];
 }
 
-// Function to read and parse the file
 async function getOffsets(filePath: string): Promise<FileOffsets> {
-  const fileContent = await Bun.file(filePath).text();
-  const lines = fileContent.split("\n");
+  const fileContent: string = await Bun.file(filePath).text();
+  const lines: string[] = fileContent.split("\n");
 
   const offsets: string[] = [];
   const names: string[] = [];
@@ -24,10 +23,11 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
       continue;
     }
 
-    const match = line.match(/^(0x[0-9A-Fa-f]+) -- (.+)$/);
+    const match: RegExpMatchArray | null = line.match(
+      /^(0x[0-9A-Fa-f]+) -- (.+)$/,
+    );
     if (match) {
-      const offset = match[1];
-      const name = match[2];
+      const [_, offset, name] = match;
 
       offsets.push(offset);
       names.push(name);
@@ -43,4 +43,4 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
   return { offsets, names, entries };
 }
 
-export { getOffsets };
+export { getOffsets, FileOffsets };
