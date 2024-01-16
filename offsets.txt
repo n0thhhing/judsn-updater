@@ -1,0 +1,75 @@
+0x45ED4A0 -- clan parts 23.7.2  {1 below "internal int get_UpgradeTime() { }"}
+0x45EDF8C -- clan parts second offset 23.7.2  {1 below "public int get_NextUpPower() { }"}
+0x45ED198 -- clan energy 23.7.2  {just search "internal int get_Energy() { }"} -
+0x26968F8 -- free lottery 23.7.2  {search "= "C"" and make sure its case matched, then the offsets the first int in that class}
+0x33767F8 -- &lottocurrency 23.1.2  {search "internal GameEventItemType get_Type() { }" and its the int 3 below it(get_count)}
+0x2D83EC4 -- &Collectibles 23.7.2  {search "[Obsolete("legacy parameter")]" and the offsets 14 below(hint* its the bottom of a group of 2 int's and has a void int below)}
+0x3E1F8DC -- &freechestcount 23.7.2  { search for the feild "public virtual List<GameEventItemContainer> " and the offset is the first int from the bottom of the class}
+0x226C96C -- gem clicker 23.7.2  {search for a method "List<AlmanachMigrationSettings> " and the bool is 6 below and has a void two above it}
+0x28B4170 -- &taskClicker 23.7.2  {search "private readonly GameTaskActionSettings <" 11 classes down, has toString at bottom of class 18 up with void 2 below
+0x2160228 -- &pixelClicker 23.7.2  {search "PixelPassCurrencyPromotionUI" and the class is 3 above and the offset is 11 up from the bottom of that class(hint* its the 2nd bool from bottom)}
+0x52CA59C -- &blackMarketClicker 23.7.2  {search "internal int CellId; //" and the class is 3 above with the offset 3 down(hint* its the first bool)}
+0x2A048E4 -- &gadgetUnlocker 23.7.2  {search "internal static Dictionary<GadgetCategory," and its the one with a bool above it(you want the bool)}
+0x289DB14 -- &%fmodule 23.7.2 {search for "internal List<ModulePointWithProbability> " that has a module chest feild with it and go 1 class up and the float offset is 8 below the class}
+0x37D463C -- &MaxModules search ", ModuleData.ModuleRarity " and its two below it, two above list
+0x37D4ED0 -- &MaxModules  {[1] search "internal ModuleData.ModuleRarity Rarity; // " and the offsets 11 up from the bottom of the class above(hint* theres a list 2 below it)} {[2] its 3 below the previous offset(one below the list)} {[3] search "private Lazy<ModuleData>", and the int is 6 below methods with a moduledata above it} 3 below this ^^
+0x289D964 -- &MaxModules 23.7.2 search for internal List<ModulePointWithProbability> feild with multiple other feilds, go one class up and its the first int down
+0x289E0C4 -- &NoPartsModules 23.7.2  {search "internal List<ModulePointWithProbability> " witha module chest above, then go 1 class up and the int is 23 below methods with a bool 2 below it}
+0x2E9FB90 -- &noGadgetCooldown 23.7.2  {[1], search "private static Action<float, bool>" and its slot5}
+0x2E9FC0C -- &noGadgetCooldown 23.7.2  {[2], 2 below previous(slot 7)}
+0x207CE18 -- &xpl 23.7.2 {search  "internal ExperienceController." and its the feilds one, and the int is 9 below methods(a void is below)}
+0x47F24C0 -- &lobbybundles 23.7.2  {1 class above "LobbyItemPlayerInfo" and the bool is 15 below methods and has a long above it}
+0x51B7188 -- &fire rate 23.7.2  {search "internal static List<FilterMaps>" and its the one with an int below(not a float) and then the float is 6 below and is the second too first float]
+0x507E610 -- &infammo 23.7.2  {1 class above "SpeedModifier = 4;" and its the top the group of bools(float above)}
+0x18D4480 -- &teamkill[1] [both set to false] 23.7.2  {its 4 below "	internal static SceneInfo "(the one without a long method string above it)}
+0x18D5890 -- &teamkill[2] 23.7.2  {9 below this ^^^^}
+0x4D62B74 -- &god[1] 22.7.2 [all set to -> C0035FD6]  {search "public void SyncGadgetReflectorCoeff() { }" then search "Vector3"(hint* its the longer method)}
+0x45A88B4 -- &god[2] 23.7.2  {4 classes above "private List<PlayerBotInstance>" and its the second float up from the bottom}
+0x58B480C -- &god[3] 23.7.2  {search "internal CapeAnimationController", then "private void OnTriggerEnter(Collider "
+0x58B3F7C -- &god[4] 23.7.2  {first search the same as above ^^^, then "OnControllerColliderHit(ControllerColliderHit"}
+0x31727D0 -- &arenascore 23.7.2  search public "AnimatorOverrideController gliderAnimator; // " and go two classes down, and ints 7 up from the bottom with a void above it
+0x5680B1C -- &GetFreeCheckpointsCount 23.7.1  {GetFreeCheckpointsCount}
+0x2698F84 -- &rarity 23.7.2  {the offsets 1 below "internal virtual ItemRarity get_Rarity() { }"}
+0x2698ED0 -- also works for rarity
+0x2735CC8 -- Rewards Multiplier In a Game (99x MAX)  search for the class "DoubleRewardConnectScene" then go one class up, then the int is 1 above the first "Nullable<DateTime> "
+0x24ED2C4 -- Unlimited Super Clan Chest,  search "Range = 3;" and then go 3 classes up and the int is 9 from the top with a static above and below
+0x24EDA14 -- Clan Chest Open Price[1]  8 below previous offset(to extention) 
+0x24EE6EC -- Clan Chest Open Price[2]  int is 3 above prevoius with static above
+0x24EE7B0 -- Super Clan Chest Points Modifier  go to the extension below clan chest price[1]
+0x273C698 -- Egg Reward Modificator[1]  search class EggsMigrationView and then go one class up, then go to the top and search "internal List<EggIncubatorProgress> " and the int is one below
+0x273EE40 -- Egg Reward Modificator[2] its 9 up from the previous offsets class with an item rarity above it
+0x29BA158 -- [1]Give all wears/armors/graffiti require parts  search “ItemEquipParams” and its the one with - offset and the go one class up and the bool is 4 from the bottom with a string 2 below it
+0x29B9F20 -- [2]10 above this^^, make sure the argument has an int in it, ex: internal int 一丕丄且世丏丄不下 (int 万丆万上丌上丒专上) { }
+0x568A5B4 -- campaign  Search “private Dictionary<int, ChooseBoxItemOnClick>” and the bool is 7 down with a string above it
+0x51CD458 -- guns search  = "vipInSeconds"; then search OnDestroy() { } go 13 up wirh a void below and static above
+0x2D8404C -- guns search "	internal List<ModulePointWithProbability> " and it has more than one feilds with it, go 4 classes down and the bool is 5 from the bottom with an equals below it
+0x51CD458 -- royal  search "[IteratorStateMachine(typeof(BalanceController." with a void above(not bool) then go up until you find a on destroy, and the bool is 12 above it with a static above and a void below (int arg below
+0x3C27100 -- royal  search for the feild "internal static Dictionary<CategoryNames, string>" then the bool is 30 down, make sure its the bottom 丅且丞丕丑丗丙世丞(CategoryNames 丛七丑丘丑丐一丗七, ItemRecord 业业丕丂丒万专且三, bool 丙东不丞丏丕丛丏七 = True) { }
+0x3C2DA78 -- wep skins  search "public string weaponViewedId;" and go 1 class down and the bool is 23 up from the bottom with a list item record above
+0x2AF38DC -- wep skins  search for "internal static Dictionary<string, Dictionary<string, int>> " where theres only one of that method with that in that class and has a internal static Dictionary<string, int>  below it and the int is two above it 
+0x3C1B3E8 -- just armor  Search “	internal static readonly Dictionary<CategoryNames, string” and its the one where it has the same field above it, then search “(GameplayLoopType” and the bool is 8 above with a int being 4 above it
+0x207CD58 -- set custom level 23.7.2  search "internal ExperienceController" feild and the int is 7 below methods witha a void above
+0x37F083C -- Show all Deleted/Exclusive Gadgets[1] 23.7.2 edit both to true  go one class up from " string leftWearItem, string rightWearItem) { }" and the bool is 5 from the bottom
+0x40F6A2C -- Show all Deleted/Exclusive Gadgets[2]  search , PropertiesArmoryItemContainer" and make sure its the 17th one and has a false string in the argument, and the bool is 2 above
+0x2EC55DC -- emperor 23.7.2  go one class up from "rewardCurrencySingleCountLabel" and the int is one down from methods
+0x2735C04 -- inf 2x rew  search "class DoubleRewardConnectScene" and go one class up and the bool is 9 from the bottom with a date time above
+0x2151640 -- max pass[temp ]" search "public List<int> removeAdsIndexes; // " 4 Nullable<long> down then 9 down int between two bools
+0x2151910 -- premium pass  one above this ^^ 
+0x215BCDC -- reset pass  its the 2nd date time in the same class as this^^
+0x2740318 -- pet egg cd  search public class Nest : MonoBehaviour and thr long is 14 down
+0x5A14614 -- mobs per wave  first int down from public sealed class ZombieCreator
+0x2A048E4 -- clan gadgets  one above "	internal static Dictionary<GadgetCategory, List<string>> "
+0x37F00CC -- unlock unreleased royal and hats  search "public int currentLevel; //" with multiple feilds and the bool is 6 below methods with an itemrecord x 2 above
+0x2AF38DC -- wear parts [401F80D2C0035FD6 ] search "internal static List.* \{ get; \}\n\s+internal static Dictionary<string, Dictionary<string, " with a regex and go 10 down from methods
+0x386A9F0 -- wear [true]  go to "internal bool .*\(.*.\s+Nullable<.*>\s+.*\)\s+\{ }\n\n\s+// RVA: .*\n\s+internal"
+0x37F083C -- unlock hidden/exclusive gadgets [true] use "isClansOpened;" to find class 5th offset from bottom up, bool, \(string itemId\) \{ \}\n\n\s+// RVA.*\n\s+internal bool
+0x40FD8BC -- unlock hidden/exclusive gadgets 2  [true] use "HandlePropertiesHideShow(PropertiesHideSHow" to find, Is in same Class 17 offsets down from it, bool
+0x216095C -- gift pass offers 1  search "PixelPassLoadingTipsController" and go 2 classes down and the bools 16 down with a string above // RVA.*\n.*internal string .*\(\) \{ }\n\n.*// RVA: (.*) O.*\n.*internal bool.*\(\) \{ }\n\n.*\n.*internal bool.*\(\) \{ }\n\n.*\n.*internal int
+0x21609D0 -- gift pass offers 2  1 below this ^^
+0x2160C1C -- gift pass offers 3  9 below this^^
+0x5336B20 -- clan wear  [false] use "BadNetworkBlinkingController" to find class. it is a small class but below is the class for clan Armors. 3rd offset from bottom up, bool, 
+0x20DF720 -- collectibles v2 [true] combined with vd3  search "internal DateTime StartBuyProxyDate" and go 3 classes down and the bool is 20 up with an int below it 
+0x3C1B3E8 -- unreleased royal [false] done
+0x37F0F2C -- unreleased royal [true] done
+0x26968F8 -- armory price[not weps] done
+

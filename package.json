@@ -1,0 +1,14 @@
+{
+  "name": "judsn_updater",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0"
+  },
+   "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
