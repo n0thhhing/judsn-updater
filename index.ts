@@ -48,8 +48,7 @@ async function main() {
       const match: OffsetMatch | null = pattern.exec(
         await newFile.content,
       ) as OffsetMatch | null;
-      const patternElapsedTime: number = performance.now() - patternStartTime;
-
+      
       if (match && match[1] !== null) {
         const oldType: string | null = await oldFile.findMethodType(
           offsetInfo.offsets[names.indexOf(names[index])],
