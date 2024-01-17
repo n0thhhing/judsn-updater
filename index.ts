@@ -35,6 +35,10 @@ async function main() {
       /\[CompilerGenerated\]\n.*\n\s+internal static void \S+\(Action<string> \S+.*\n\n\s+\/\/ RVA: 0x2.*\n\s+internal static GameOb.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // gadget unlocker
       /internal ModuleData\.ModuleType \S+\(\).*\n\n\s+\/\/ RVA: 0x2.*\n\s+internal ModuleData\.ModuleCategory \S+\(\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // module %
       /internal void \.ctor\(int \S+ ModuleData.ModuleRarity .*\n\n.*\n\s+internal bool.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // max modules
+      /internal void .ctor\(int \S+ ModuleData.*\n\n.*\n.*\n\n.*\n.*\n\n.*\n.*\n\n.*\n.*\n\n\s+\/\/ RVA: (0x3[A-F0-9]+).*\n\s+internal bool/g, // max modules
+      /internal ModuleData \S+\(\).*\n\n\s+\/\/ RVA: 0x2.*\n\s+internal ModuleData.ModuleType \S+\(\).*\n\n.*\n\s+internal ModuleData.ModuleCategory.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // max modules
+      /internal int \S+\(\).*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int \S+\(int \S+\).*\n\n.*\n\s+internal int \S+\(int \S+\).*\n\n.*\n\s+internal bool \S+\(\).*\n\n.*\n\s+internal override string/g, // no parts modules
+      /\s+internal static void \S+\(Action<float, bool> \S+.*\n\n\s+\/\/ RVA: 0x2.*\n\s+internal virtual string.*\n\n.*\n.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // no gadget cooldown
     ];
 
     const newOffsets: OffsetInfo[] = [];
