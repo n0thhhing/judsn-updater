@@ -20,9 +20,9 @@ class ClassUtils {
 
   public async getContent(): Promise<CsContent> {
     try {
-      const startTime = performance.now();
-      const content = await Bun.file(this.path).text();
-      const elapsedTime = performance.now() - startTime;
+      const startTime: number = performance.now();
+      const content: CsContent = await Bun.file(this.path).text();
+      const elapsedTime: number = performance.now() - startTime;
       console.log(
         chalk.grey(
           `readDumpFile(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
@@ -37,14 +37,16 @@ class ClassUtils {
 
   public async findMethodType(offset: string): Promise<string | null> {
     try {
-      const regexPattern = new RegExp(
+      const regexPattern: RegExp = new RegExp(
         `\/\/ RVA: (${offset}).*\n(.*)(EventHandler<[^>]+>|Action<[^>]+>|Tuple<[^>]+>|Comparison<[^>]+>|ConcurrentDictionary<[^>]+>|ObservableCollection<[^>]+>|Stack<[^>]+>|LinkedList<[^>]+>|KeyedCollection<[^>]+>|Lazy<[^>]+>|ConcurrentQueue<[^>]+>|ConcurrentStack<[^>]+>|ConcurrentBag<[^>]+>|ICollection<[^>]+>|List<[^>]+>|TupleList<[^>]+>|Task<[^>]+>|UniTask<[^>]+>|Nullable<[^>]+>|KeyValuePair<[^>]+>|HashSet<[^>]+>|Dictionary<[^>]+>|IEqualityComparer<[^>]+>|IEnumerable<[^>]+>|ValueTuple<[^>]+>|IReadOnlyList<[^>]+>|IList<[^>]+>|Queue<[^>]+>|Func<[^>]+>|LobbyItemsBundle|CategoryNames|void|bool|byte|char|decimal|double|float|int|long|Vector3|object|string|ItemRarity|IEnumerator|LobbyItemsBundleIntPtr|UIntPtr|DBNull|EventHandler|EventArgs|Exception|EventHandler<TEventArgs>|Nullable|CancellationTokenSource|Random|Math|Console|DateTimeFormatInfo|Stopwatch|Guid.NewGuid\(\)|CultureInfo|File|DirectoryInfo|Stream|StreamReader|StreamWriter|StringBuilder|Regex|XmlDocument|XmlNode|XmlNodeList|XDocument|XElement|XAttribute|Uri|Version|Attribute|IDisposable|ICloneable|IEquatable|IComparable|IFormattable)+.*\\(`,
         "g",
       );
 
-      const match = regexPattern.exec(await this.content);
+      const match: RegExpExecArray | null = regexPattern.exec(
+        await this.content,
+      );
       if (match && match[1] !== null) {
-        const returnType = match[2] + match[3];
+        const returnType: string = match[2] + match[3];
         return returnType.trim() || "problems happened";
       } else {
         console.error("Offset match failed or result is null");
