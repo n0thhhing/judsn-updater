@@ -12,8 +12,8 @@ The script is designed to update offsets in judsn
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/your-username/judsn-offset-updater.git
-    cd judsn-offset-updater
+    git clone https://github.com/n0thhhing/judsn-updater
+    cd judsn-updater
     ```
 
 2. Install dependencies:

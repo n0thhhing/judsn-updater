@@ -40,6 +40,11 @@ async function main() {
       /internal int \S+\(\).*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int \S+\(int \S+\).*\n\n.*\n\s+internal int \S+\(int \S+\).*\n\n.*\n\s+internal bool \S+\(\).*\n\n.*\n\s+internal override string/g, // no parts modules
       /\s+internal static void \S+\(Action<float, bool> \S+.*\n\n\s+\/\/ RVA: 0x2.*\n\s+internal virtual string.*\n\n.*\n.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // no gadget cooldown
       /\s+internal static void \S+\(Action<float, bool> \S+.*\n\n\s+\/\/ RVA: 0x2.*\n\s+internal virtual string.*\n\n.*\n.*\n\n\s+\/\/ RVA: 0x[A-F0-9]+.*\n.*\n\n.*\/.*\n.*\n\n.*\n.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal virtual float/g, // no gadget cooldown
+      /\s+internal static int\[.*\n\n\s+\[.*\]\n.*\n\s+internal static void.*\(Action.*\n\n\s+\[\S+\]\n.*\n\s+internal static void \S+\(Action.*\n\n.*\n\s+internal static void.*\n\n.*\n\s+internal static int.*\n\n\s+\/\/ RVA: 0x[A-F0-9]+.*\n.*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+)/, // xp
+      /public bool.*\n\n.*\n\s+public long \S+\(\).*\n\n\s+.*\n\s+public long \S+\(\).*\n\n\s+.*\n\s+public long \S+\(\).*\n\n\s+\/\/ RVA: (0x4[A-F0-9]+).*\n\s+public bool.*\n\n.*\n\s+public bool/g, // lobby bundles
+      /internal static int \S+\(int.*\n\n\s+\/\/ RVA: 0x5[A-F0-9]+.*\n\s+internal static float \S+\(int.*\n\n.*\n\s+internal static int.*\n\n.*\n\s+internal static int.*\n\n.*\n\s+internal static float.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // fire rate
+      /internal static bool \S+\(\).*\n\n.*\n\s+internal static float \S+\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+\(\).*/g, // inf ammo
+      /internal static SceneInfo \S+\(\S+ \S+\).*\n\n.*\n\s+internal static int.*bool.*\n\n.*\n.*\n\n.*\n.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // team kill
     ];
 
     const newOffsets: OffsetInfo[] = [];
@@ -48,7 +53,7 @@ async function main() {
       const match: OffsetMatch | null = pattern.exec(
         await newFile.content,
       ) as OffsetMatch | null;
-      
+
       if (match && match[1] !== null) {
         const oldType: string | null = await oldFile.findMethodType(
           offsetInfo.offsets[names.indexOf(names[index])],
@@ -70,11 +75,10 @@ async function main() {
 
     const totalElapsedTime: number = performance.now() - totalStartTime;
     const averageTime: number = totalElapsedTime / regexPatterns.length;
-    console.log(newOffsets);
+    console.log(newOffsets, { count: newOffsets.length });
     console.log(
       chalk.grey(
-        `Average execution time: ${chalk.blue(averageTime.toFixed(3))}ms\n`,
-        `Total execution time: ${chalk.blue(totalElapsedTime.toFixed(3))}ms`,
+        `Average execution time: ${chalk.blue(averageTime.toFixed(3))}ms\nTotal execution time: ${chalk.blue(totalElapsedTime.toFixed(3))}ms`,
       ),
     );
   } catch (error) {
