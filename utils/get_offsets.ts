@@ -43,4 +43,4 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
   return { offsets, names, entries };
 }
 
-export { getOffsets, FileOffsets };
+export { getOffsets, type FileOffsets };

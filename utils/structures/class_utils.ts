@@ -1,7 +1,7 @@
 import chalk from "chalk";
 
 type FilePath = string;
-type CsContent = string;
+type CsContent = string | Promise<string>;
 
 interface OffsetMatch extends RegExpExecArray {
   1: string; // Offset
@@ -18,7 +18,7 @@ class ClassUtils {
     this.content = this.getContent();
   }
 
-  public async getContent(): Promise<CsContent> {
+  public async getContent(): Promise<string> {
     try {
       const startTime: number = performance.now();
       const content: CsContent = await Bun.file(this.path).text();
@@ -38,8 +38,8 @@ class ClassUtils {
   public async findMethodType(offset: string): Promise<string | null> {
     try {
       const regexPattern: RegExp = new RegExp(
-        `\/\/ RVA: (${offset}).*\n(.*)(EventHandler<[^>]+>|Action<[^>]+>|Tuple<[^>]+>|Comparison<[^>]+>|ConcurrentDictionary<[^>]+>|ObservableCollection<[^>]+>|Stack<[^>]+>|LinkedList<[^>]+>|KeyedCollection<[^>]+>|Lazy<[^>]+>|ConcurrentQueue<[^>]+>|ConcurrentStack<[^>]+>|ConcurrentBag<[^>]+>|ICollection<[^>]+>|List<[^>]+>|TupleList<[^>]+>|Task<[^>]+>|UniTask<[^>]+>|Nullable<[^>]+>|KeyValuePair<[^>]+>|HashSet<[^>]+>|Dictionary<[^>]+>|IEqualityComparer<[^>]+>|IEnumerable<[^>]+>|ValueTuple<[^>]+>|IReadOnlyList<[^>]+>|IList<[^>]+>|Queue<[^>]+>|Func<[^>]+>|LobbyItemsBundle|CategoryNames|void|bool|byte|char|decimal|double|float|int|long|Vector3|object|string|ItemRarity|IEnumerator|LobbyItemsBundleIntPtr|UIntPtr|DBNull|EventHandler|EventArgs|Exception|EventHandler<TEventArgs>|Nullable|CancellationTokenSource|Random|Math|Console|DateTimeFormatInfo|Stopwatch|Guid.NewGuid\(\)|CultureInfo|File|DirectoryInfo|Stream|StreamReader|StreamWriter|StringBuilder|Regex|XmlDocument|XmlNode|XmlNodeList|XDocument|XElement|XAttribute|Uri|Version|Attribute|IDisposable|ICloneable|IEquatable|IComparable|IFormattable)+.*\\(`,
-        "g",
+        `\/\/ RVA: (${offset}).*\n(.*)(EventHandler<[^>]+>|Action<[^>]+>|Tuple<[^>]+>|Comparison<[^>]+>|ConcurrentDictionary<[^>]+>|ObservableCollection<[^>]+>|Stack<[^>]+>|LinkedList<[^>]+>|KeyedCollection<[^>]+>|Lazy<[^>]+>|ConcurrentQueue<[^>]+>|ConcurrentStack<[^>]+>|ConcurrentBag<[^>]+>|ICollection<[^>]+>|List<[^>]+>|TupleList<[^>]+>|Task<[^>]+>|UniTask<[^>]+>|Nullable<[^>]+>|KeyValuePair<[^>]+>|HashSet<[^>]+>|Dictionary<[^>]+>|IEqualityComparer<[^>]+>|IEnumerable<[^>]+>|ValueTuple<[^>]+>|IReadOnlyList<[^>]+>|IList<[^>]+>|Queue<[^>]+>|Func<[^>]+>|ItemRarity|LobbyItemsBundle|CategoryNames|void|bool|byte|char|decimal|double|float|int|long|Vector3|object|string|ItemRarity|IEnumerator|LobbyItemsBundleIntPtr|UIntPtr|DBNull|EventHandler|EventArgs|Exception|EventHandler<TEventArgs>|Nullable|CancellationTokenSource|Random|Math|Console|DateTimeFormatInfo|Stopwatch|Guid.NewGuid\(\)|CultureInfo|File|DirectoryInfo|Stream|StreamReader|StreamWriter|StringBuilder|Regex|XmlDocument|XmlNode|XmlNodeList|XDocument|XElement|XAttribute|Uri|Version|Attribute|IDisposable|ICloneable|IEquatable|IComparable|IFormattable)+.*\\(`,
+        "g"
       );
 
       const match: RegExpExecArray | null = regexPattern.exec(
@@ -59,4 +59,4 @@ class ClassUtils {
   }
 }
 
-export { ClassUtils, OffsetMatch };
+export { ClassUtils, type OffsetMatch };

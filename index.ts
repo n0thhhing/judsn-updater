@@ -52,8 +52,8 @@ async function main() {
       /\/\/ RVA: (0x[A-F0-9]+).*\n\s+private void OnController.*\n\n.*\n\s+private void OnDestroy\(\).*\n\n\s+\/\/ RVA: 0x5[A-F0-9]+.*\n\s+private void OnTriggerEnter\(/g, // god
       /internal static void \S+\(int \S+\).*\n\n\s+\/\/ RVA: (0x3[A-F0-9]+).*\n\s+internal static int \S+\(\).*\n\n.*\n\s+internal static void \S+\(int \S+\).*\n\n.*\n\s+internal static int \S+\(\).*\n\n.*\n\s+internal static void \S+\(int \S+\).*\n\n.*\s+internal static int.*\n\n.*\n\s+public void \.ctor/g, // arena score
       /\/\/ RVA: (0x[A-F0-9]+).*\n\s+public int GetFreeCheckpointsCount\(\)/g, // free checkpoint count
-      /\/\/ RVA: (0x[A-F0-9]+).*\s+internal virtual itemRarity get_Rarity.*\n\n\s+\/\/ RVA: 0x[A-F0-9]+/g, //, rarity
-      /\/\/ RVA: 0x[A-F0-9]+.*\s+internal virtual itemRarity get_Rarity.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // rarity
+      /\/\/ RVA: 0x[A-F0-9]+.*\s+internal virtual ItemRarity get_Rarity.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // rarity
+      /\/\/ RVA: (0x[A-F0-9]+).*\s+internal virtual ItemRarity get_Rarity.*\n\n\s+\/\/ RVA: 0x[A-F0-9]+/g, //, rarity
     ];
 
     const newOffsets: OffsetInfo[] = [];
