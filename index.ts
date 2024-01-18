@@ -59,6 +59,7 @@ async function main() {
       /\[Extension\]\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int \S+\(\S+ \S+, \S+ \S+ \S+ \S+\).*\n\n\s+\[/g, // clan chests
       /internal static \S+ \S+\(\S+ \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int \S+\(\S+ \S+\, \S+ \S+\).*\n\n.*\n\s+internal static int.*\n\n.*\n\s+internal static string/g, // clan
       /\[Extension\]\n\s+\/\/ RVA: 0x[A-F0-9]+.*\n\s+internal static int \S+\(\S+ \S+, \S+ \S+ \S+ \S+\).*\n\n\s+\[.*\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // clan super chest points
+      //g
     ];
 
     const newOffsets: OffsetInfo[] = [];
