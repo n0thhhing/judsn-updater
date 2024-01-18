@@ -29,8 +29,8 @@
 0x58B3F7C -- god[4]
 0x31727D0 -- arenascore
 0x5680B1C -- GetFreeCheckpointsCount
-0x2698F84 -- rarity
-0x2698ED0 -- also works for rarity
+0x2698F84 -- rarity [1]
+0x2698ED0 -- rarity [2]
 0x2735CC8 -- Rewards Multiplier In a Game (99x MAX)
 0x24ED2C4 -- Unlimited Super Clan Chest,
 0x24EDA14 -- Clan Chest Open Price[1]
