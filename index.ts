@@ -54,6 +54,11 @@ async function main() {
       /\/\/ RVA: (0x[A-F0-9]+).*\n\s+public int GetFreeCheckpointsCount\(\)/g, // free checkpoint count
       /\/\/ RVA: 0x[A-F0-9]+.*\s+internal virtual ItemRarity get_Rarity.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // rarity
       /\/\/ RVA: (0x[A-F0-9]+).*\s+internal virtual ItemRarity get_Rarity.*\n\n\s+\/\/ RVA: 0x[A-F0-9]+/g, //, rarity
+      /\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int \S+\(\S+ \S+\).*\n\n.*\n\s+private void \S+\(Nullable/g, // rewards multiplier
+      /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int \S+\(\).*\n\n.*\n\s+internal static \S+ \S+\(\S+ \S+, \S+ \S+\).*\n\n.*\s+internal static ValueTuple<.*>/g, // super chests
+      /\[Extension\]\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int \S+\(\S+ \S+, \S+ \S+ \S+ \S+\).*\n\n\s+\[/g, // clan chests
+      /internal static \S+ \S+\(\S+ \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int \S+\(\S+ \S+\, \S+ \S+\).*\n\n.*\n\s+internal static int.*\n\n.*\n\s+internal static string/g, // clan
+      /\[Extension\]\n\s+\/\/ RVA: 0x[A-F0-9]+.*\n\s+internal static int \S+\(\S+ \S+, \S+ \S+ \S+ \S+\).*\n\n\s+\[.*\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // clan super chest points
     ];
 
     const newOffsets: OffsetInfo[] = [];
