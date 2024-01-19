@@ -136,11 +136,10 @@ async function main() {
     writeOffsets(output_file, newOffsets)
     console.log(
       chalk.grey(
-        `Average execution time: ${chalk.blue(
+        `Average regex.exec time: ${chalk.blue(
           averageTime.toFixed(3),
         )}ms\nTotal execution time: ${chalk.blue(
           (Bun.nanoseconds() / 1_000_000).toFixed(3),
-          // totalElapsedTime.toFixed(3),
         )}ms`,
       ),
     )
