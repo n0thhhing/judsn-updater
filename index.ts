@@ -89,6 +89,12 @@ async function main() {
       /internal static bool \S+CategoryNames \S+.*\n\n\s+\/\/ RVA: 0x3[A-F0-9]+.*\s+internal static bool \S+CategoryNames \S+.*\n\n.*\n\s+internal static bool \S+CategoryNames.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+CategoryNames.*\n\n.*\n\s+internal static bool/g, // wear true
       /0x.*\n\s+internal string \S+\(\).*\n\n.*0x.*\n\s+internal string \S+\(\).*\n\n.*0x.*\n\s+internal string \S+\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool.*\n\n.*\n\s+internal bool.*\n\n.*\n\s+internal int/g, // gift pass
       /internal string \S+\(\).*\n\n.*\n\s+internal bool \S+\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool .*\n\n.*\n\s+internal int/g, // gift pass
+      /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool.*\n\n.*\n\s+internal StorePromotionConfig \S+\(\).*\n\n.*\n\s+internal void .ctor/g, // gift pass
+      /internal void \S+List<WeaponSounds\.\S+\> \S+.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(\).*\n\n/g, // clan wear
+      /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+private void \.ctor/g, // collectibles v2
+      /internal static bool \S+CategoryNames \S+.*\n\n\s+\/\/ RVA: 0x3[A-F0-9]+.*\s+internal static bool \S+CategoryNames \S+.*\n\n.*\n\s+internal static bool \S+CategoryNames.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+CategoryNames.*\n\n.*\n\s+internal static bool/g, // unreleased royal
+      /public void \.ctor\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(ItemRecord x\).*\n\n.*\n\s+internal bool \S+\(\S+ x.*\n\n.*\n\s+internal bool/g, // unrelleased royal
+      /internal void .ctor\(int \S+ string \S+\).*\n\n.*\n\s+internal void \.ctor.*\n\n.*\n\s+internal void .ctor\(string \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g //armory price
     ];
 
     const newOffsets: OffsetInfo[] = [];
