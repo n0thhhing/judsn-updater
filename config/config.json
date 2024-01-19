@@ -1,6 +1,7 @@
 {
+  "log_offsets": false,
   "old_dump": "dump/old.cs",
   "new_dump": "dump/new.cs",
   "output_file": "dist/out.txt",
-  "offset_file": "offsets.txt"
+  "offset_file": "./offsets.txt"
 }

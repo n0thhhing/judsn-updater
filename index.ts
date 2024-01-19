@@ -1,20 +1,27 @@
-import { old_dump, new_dump, offset_file } from "./config/config.json";
-import { getOffsets } from "./utils/get_offsets";
-import { ClassUtils } from "./utils/structures/class_utils";
+import { getOffsets } from './utils/get_offsets'
+import { ClassUtils } from './utils/structures/class_utils'
+import { writeOffsets } from './utils/write_offsets'
 import {
   type OffsetInfo,
   type FileOffsets,
   type OffsetMatch,
-} from "./utils/types";
-import chalk from "chalk";
+} from './utils/types'
+import {
+  old_dump,
+  new_dump,
+  offset_file,
+  output_file,
+  log_offsets,
+} from './config/config.json'
+import chalk from 'chalk'
 
 async function main() {
   try {
-    const oldFile: ClassUtils = new ClassUtils(old_dump);
-    const newFile: ClassUtils = new ClassUtils(new_dump);
-    const offsetInfo: FileOffsets = await getOffsets(offset_file);
-    const names: string[] = offsetInfo.names;
-    const totalStartTime: number = performance.now();
+    const totalStartTime: number = performance.now()
+    const oldFile: ClassUtils = new ClassUtils(old_dump)
+    const newFile: ClassUtils = new ClassUtils(new_dump)
+    const offsetInfo: FileOffsets = await getOffsets(offset_file)
+    const names: string[] = offsetInfo.names
 
     const regexPatterns: RegExp[] = [
       /\/\/ RVA: (0x4[0-9A-F]+).*\n\s+internal int \S+\(int \S+\).*\n\n\s+\/\/ RVA.*\n\s+internal float get_Health/, // clan parts
@@ -90,50 +97,56 @@ async function main() {
       /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+private void \.ctor/g, // collectibles v2
       /internal static bool \S+CategoryNames \S+.*\n\n\s+\/\/ RVA: 0x3[A-F0-9]+.*\s+internal static bool \S+CategoryNames \S+.*\n\n.*\n\s+internal static bool \S+CategoryNames.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+CategoryNames.*\n\n.*\n\s+internal static bool/g, // unreleased royal
       /public void \.ctor\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(ItemRecord x\).*\n\n.*\n\s+internal bool \S+\(\S+ x.*\n\n.*\n\s+internal bool/g, // unrelleased royal
-      /internal void .ctor\(int \S+ string \S+\).*\n\n.*\n\s+internal void \.ctor.*\n\n.*\n\s+internal void .ctor\(string \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g //armory price
-    ];
+      /internal void .ctor\(int \S+ string \S+\).*\n\n.*\n\s+internal void \.ctor.*\n\n.*\n\s+internal void .ctor\(string \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, //armory price
+    ]
 
-    const newOffsets: OffsetInfo[] = [];
+    const newOffsets: OffsetInfo[] = []
 
     const pushOffset = async (pattern: RegExp, index: number) => {
       const match: OffsetMatch | null = pattern.exec(
-        await newFile.content
-      ) as OffsetMatch | null;
+        await newFile.content,
+      ) as OffsetMatch | null
 
       if (match && match[1] !== null) {
         const oldType: string | null = await oldFile.findMethodType(
-          offsetInfo.offsets[names.indexOf(names[index])]
-        );
-        const newType: string | null = await newFile.findMethodType(match[1]);
+          offsetInfo.offsets[names.indexOf(names[index])],
+        )
+        const newType: string | null = await newFile.findMethodType(match[1])
         newOffsets.push({
           offset: match[1],
           name: names[index],
-          type_status: oldType === newType ? "Passed" : "Failed",
-        });
+          type_status: oldType === newType ? 'Passed' : 'Failed',
+        })
       } else {
-        console.error("Pattern match failed or result is null");
+        newOffsets.push({
+          offset: 'Failed, please update the RegExp',
+          name: names[index],
+          type_status: 'failed',
+        })
       }
-    };
-
-    for (let i = 0; i < regexPatterns.length; i++) {
-      await pushOffset(regexPatterns[i], i);
     }
 
-    const totalElapsedTime: number = performance.now() - totalStartTime;
-    const averageTime: number = totalElapsedTime / regexPatterns.length;
-    console.log(newOffsets, { count: newOffsets.length });
+    for (let i = 0; i < regexPatterns.length; i++) {
+      await pushOffset(regexPatterns[i], i)
+    }
+
+    const totalElapsedTime: number = performance.now() - totalStartTime
+    const averageTime: number = totalElapsedTime / regexPatterns.length
+    if (log_offsets) console.log(newOffsets, { count: newOffsets.length })
+    writeOffsets(output_file, newOffsets)
     console.log(
       chalk.grey(
         `Average execution time: ${chalk.blue(
-          averageTime.toFixed(3)
+          averageTime.toFixed(3),
         )}ms\nTotal execution time: ${chalk.blue(
-          totalElapsedTime.toFixed(3)
-        )}ms`
-      )
-    );
+          (Bun.nanoseconds() / 1_000_000).toFixed(3),
+          // totalElapsedTime.toFixed(3),
+        )}ms`,
+      ),
+    )
   } catch (error) {
-    console.error("An error occurred:", error);
+    console.error('An error occurred:', error)
   }
 }
 
-await main();
+await main()
