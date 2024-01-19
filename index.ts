@@ -1,16 +1,12 @@
-import {
-  ClassUtils,
-  type OffsetMatch,
-} from "./utils/structures/class_utils.ts";
 import { old_dump, new_dump, offset_file } from "./config/config.json";
-import { getOffsets, type FileOffsets } from "./utils/get_offsets";
+import { getOffsets } from "./utils/get_offsets";
+import { ClassUtils } from "./utils/structures/class_utils";
+import {
+  type OffsetInfo,
+  type FileOffsets,
+  type OffsetMatch,
+} from "./utils/types";
 import chalk from "chalk";
-
-interface OffsetInfo {
-  offset: string;
-  name: string;
-  type_status: string;
-}
 
 async function main() {
   try {

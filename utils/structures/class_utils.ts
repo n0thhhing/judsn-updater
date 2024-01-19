@@ -1,17 +1,12 @@
+import { type classUtil } from "../types"
 import chalk from "chalk";
 
 type FilePath = string;
 type CsContent = string | Promise<string>;
 
-interface OffsetMatch extends RegExpExecArray {
-  1: string; // Offset
-  2: string; // Matched content before EventHandler/Action/Tuple/etc.
-  3: string; // Matched content after EventHandler/Action/Tuple/etc.
-}
-
-class ClassUtils {
+class ClassUtils implements classUtil {
   public path: FilePath;
-  public content: CsContent;
+  public readonly content: CsContent;
 
   constructor(csPath: FilePath) {
     this.path = csPath;
@@ -25,8 +20,8 @@ class ClassUtils {
       const elapsedTime: number = performance.now() - startTime;
       console.log(
         chalk.grey(
-          `readDumpFile(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
-        ),
+          `readDumpFile(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`
+        )
       );
       return content;
     } catch (error: any) {
@@ -43,7 +38,7 @@ class ClassUtils {
       );
 
       const match: RegExpExecArray | null = regexPattern.exec(
-        await this.content,
+        await this.content
       );
       if (match && match[1] !== null) {
         const returnType: string = match[2] + match[3];
@@ -59,4 +54,4 @@ class ClassUtils {
   }
 }
 
-export { ClassUtils, type OffsetMatch };
+export { ClassUtils };

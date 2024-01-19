@@ -1,14 +1,5 @@
-interface OffsetEntry {
-  offset: string;
-  name: string;
-  description: string;
-}
+import { type FileOffsets, type OffsetEntry } from "./types";
 
-interface FileOffsets {
-  offsets: string[];
-  names: string[];
-  entries: OffsetEntry[];
-}
 
 async function getOffsets(filePath: string): Promise<FileOffsets> {
   const fileContent: string = await Bun.file(filePath).text();
@@ -43,4 +34,4 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
   return { offsets, names, entries };
 }
 
-export { getOffsets, type FileOffsets };
+export { getOffsets };
