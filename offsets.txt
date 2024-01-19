@@ -51,6 +51,8 @@
 0x207CD58 -- set custom level
 0x37F083C -- Show all Deleted/Exclusive Gadgets [1]
 0x40F6A2C -- Show all Deleted/Exclusive Gadgets [2]
+0x37F083C -- unlock hidden/exclusive gadgets [true]
+0x40FD8BC -- unlock hidden/exclusive gadgets 2
 0x2EC55DC -- emperor
 0x2735C04 -- inf 2x rew
 0x2151640 -- max pass[temp]
@@ -61,9 +63,7 @@
 0x2A048E4 -- clan gadgets
 0x37F00CC -- unlock unreleased royal and hats
 0x2AF38DC -- wear parts [401F80D2C0035FD6]
-0x386A9F0 -- wear [true]
-0x37F083C -- unlock hidden/exclusive gadgets [true]
-0x40FD8BC -- unlock hidden/exclusive gadgets 2
+0x3C1B3E8 -- wear [true]
 0x216095C -- gift pass offers [1]
 0x21609D0 -- gift pass offers [2]
 0x2160C1C -- gift pass offers [3]
