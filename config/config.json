@@ -1,7 +1,11 @@
 {
+  "update_offsets": true,
+  "update_feilds": true,
   "log_offsets": false,
   "old_dump": "dump/old.cs",
   "new_dump": "dump/new.cs",
-  "output_file": "dist/out.txt",
-  "offset_file": "./offsets.txt"
+  "offset_output": "dist/offsets.txt",
+  "feild_output": "dist/feilds.txt",
+  "offset_file": "materials/offsets.txt",
+  "feild_file": "materials/feilds.txt"
 }
