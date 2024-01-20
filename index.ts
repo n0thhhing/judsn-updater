@@ -28,8 +28,11 @@ import {
 
 async function main() {
   try {
-    const oldFile: ClassUtils | null = update_offsets ? new ClassUtils(old_dump) : null;
-    const newFile: ClassUtils | null = update_offsets || update_feilds ? new ClassUtils(new_dump): null ;
+    const oldFile: ClassUtils | null = update_offsets
+      ? new ClassUtils(old_dump)
+      : null;
+    const newFile: ClassUtils | null =
+      update_offsets || update_feilds ? new ClassUtils(new_dump) : null;
     const offsetInfo: FileOffsets = await getOffsets(offset_file);
     const feildInfo: FileOffsets = await getOffsets(feild_file);
     const feildNames: string[] = feildInfo.names;
@@ -38,7 +41,7 @@ async function main() {
     const newOffsets: OffsetInfo[] = [];
     const newFeilds: FeildInfo[] = [];
 
-    const newContent: FileContent = newFile ?  await newFile.content : "";
+    const newContent: FileContent = newFile ? await newFile.content : '';
 
     const pushFeild = async (pattern: RegExp, index: number): Promise<void> => {
       const match = pattern.exec(newContent) as FeildMatch | null;
@@ -55,39 +58,45 @@ async function main() {
     ): Promise<void> => {
       const match = pattern.exec(newContent) as OffsetMatch | null;
 
-      const oldType: OffsetType | null = oldFile ? await oldFile.findMethodType(
-        offsetInfo.offsets[offsetNames.indexOf(offsetNames[index])],
-      ) : null;
-      const newType: OffsetType = newFile ? await newFile.findMethodType(
-        match ? match[1] : '',
-      ) : null;
+      const oldType: OffsetType | null = oldFile
+        ? await oldFile.findMethodType(
+            offsetInfo.offsets[offsetNames.indexOf(offsetNames[index])],
+          )
+        : null;
+      const newType: OffsetType = newFile
+        ? await newFile.findMethodType(match ? match[1] : '')
+        : null;
 
       newOffsets.push({
         offset: match ? match[1] : 'Failed, please update the RegExp',
         name: offsetNames[index],
-        type_status: oldType && newType && (oldType === newType) ? 'Passed' : 'Failed',
+        type_status:
+          oldType && newType && oldType === newType ? 'Passed' : 'Failed',
       });
     };
 
-    for (let i = 0; i < regexPatterns.length; i++) {
-      await pushOffset(regexPatterns[i], i);
-    }
+    if (update_offsets)
+      for (let i = 0; i < regexPatterns.length; i++) {
+        await pushOffset(regexPatterns[i], i);
+      };
 
     const totalElapsedTime: time = Bun.nanoseconds() / 1_000_000;
     const averageTime: time = totalElapsedTime / regexPatterns.length;
 
-    if (log_offsets && update_offsets) console.log(newOffsets, { count: newOffsets.length });
+    if (log_offsets && update_offsets)
+      console.log(newOffsets, { count: newOffsets.length });
     writeOffsets(offset_output, newOffsets);
 
-    if (update_offsets) console.log(
-      chalk.grey(
-        `Average regex.exec time: ${chalk.blue(
-          averageTime.toFixed(3),
-        )}ms\nTotal execution time: ${chalk.blue(
-          (Bun.nanoseconds() / 1_000_000).toFixed(3),
-        )}ms`,
-      ),
-    );
+    if (update_offsets)
+      console.log(
+        chalk.grey(
+          `Average regex.exec time: ${chalk.blue(
+            averageTime.toFixed(3),
+          )}ms\nTotal execution time: ${chalk.blue(
+            (Bun.nanoseconds() / 1_000_000).toFixed(3),
+          )}ms`,
+        ),
+      );
   } catch (error) {
     console.error('An error occurred:', error);
   }
