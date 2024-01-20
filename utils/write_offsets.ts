@@ -4,7 +4,6 @@ import chalk from 'chalk';
 async function writeOffsets(
   filePath: string,
   info: OffsetInfo[],
-  //updateType: string
 ): Promise<void> {
   const startTime: number = performance.now();
 

@@ -46,18 +46,35 @@ interface OffsetEntry {
   description: string;
 }
 
-interface ClassUtil {
+interface ClassUtils {
   getContent(): Promise<string>;
   findMethodType(offset: string): Promise<string | null>;
 }
 
+interface PushFieldInfo {
+  newContent: FileContent;
+  FieldNames: string[];
+  newFields: OffsetInfo[];
+}
+
+interface PushOffsetInfo {
+  oldFile: ClassUtils | null;
+  newFile: ClassUtils | null;
+  offsetInfo?: FileOffsets;
+  newContent: FileContent;
+  offsetNames?: string[];
+  newOffsets: OffsetInfo[];
+}
+
 export {
+  PushOffsetInfo,
+  PushFieldInfo,
   OffsetInfo,
   FileOffsets,
   OffsetMatch,
   FieldMatch,
   OffsetEntry,
-  ClassUtil,
+  ClassUtils,
   FileContent,
   OffsetType,
   Time,

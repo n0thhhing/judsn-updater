@@ -17,6 +17,8 @@ import type {
   OffsetType,
   Time,
   UpdaterConfig,
+  PushOffsetInfo,
+  PushFieldInfo,
 } from './utils/types';
 
 const {
@@ -36,11 +38,7 @@ const {
 async function pushField(
   pattern: RegExp,
   index: number,
-  fileInfo: {
-    newContent: FileContent;
-    FieldNames: string[];
-    newFields: OffsetInfo[];
-  },
+  fileInfo: PushFieldInfo,
 ): Promise<void> {
   try {
     const match = pattern.exec(fileInfo.newContent) as FieldMatch | null;
@@ -62,14 +60,7 @@ async function pushField(
 async function pushOffset(
   pattern: RegExp,
   index: number,
-  fileInfo: {
-    oldFile: ClassUtils | null;
-    newFile: ClassUtils | null;
-    offsetInfo?: FileOffsets;
-    newContent: FileContent;
-    offsetNames?: string[];
-    newOffsets: OffsetInfo[];
-  },
+  fileInfo: PushOffsetInfo,
 ): Promise<void> {
   const { oldFile, newFile, offsetInfo, newContent, offsetNames, newOffsets } =
     fileInfo;
@@ -118,16 +109,18 @@ async function main() {
 
     if (update_offsets && offsetInfo && offsetNames) {
       const startTime: Time = performance.now();
-      for (const [index, pattern] of OffsetPatterns.entries()) {
-        await pushOffset(pattern, index, {
-          oldFile,
-          newFile,
-          offsetInfo,
-          newContent,
-          offsetNames,
-          newOffsets,
-        });
-      }
+      await Promise.all(
+        OffsetPatterns.map(async (pattern, index) =>
+          pushOffset(pattern, index, {
+            oldFile,
+            newFile,
+            offsetInfo,
+            newContent,
+            offsetNames,
+            newOffsets,
+          }),
+        ),
+      );
       const totalElapsedTime: Time = performance.now() - startTime;
       const averageTime: Time = totalElapsedTime / OffsetPatterns.length;
 
@@ -144,13 +137,15 @@ async function main() {
 
     if (update_fields && fieldInfo) {
       const startTime: Time = performance.now();
-      for (const [index, pattern] of FieldPatterns.entries()) {
-        await pushField(pattern, index, {
-          newContent,
-          FieldNames: fieldNames,
-          newFields,
-        });
-      }
+      await Promise.all(
+        FieldPatterns.map(async (pattern, index) =>
+          pushField(pattern, index, {
+            newContent,
+            FieldNames: fieldNames,
+            newFields,
+          }),
+        ),
+      );
       const endTime: Time = performance.now() - startTime;
       const averageTime: Time = endTime / FieldPatterns.length;
 

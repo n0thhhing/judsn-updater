@@ -1,5 +1,6 @@
-import { type classUtil } from '../types';
+import type { ClassUtils as classUtil } from '../types';
 import chalk from 'chalk';
+import * as fs from 'fs';
 
 type FilePath = string;
 type CsContent = string | Promise<string>;
@@ -16,13 +17,33 @@ class ClassUtils implements classUtil {
   public async getContent(): Promise<string> {
     try {
       const startTime: number = performance.now();
-      const content: CsContent = await Bun.file(this.path).text();
+
+      const contentPromise: Promise<string> = new Promise((resolve, reject) => {
+        const stream = fs.createReadStream(this.path, { encoding: 'utf8' });
+        let data = '';
+
+        stream.on('data', (chunk) => {
+          data += chunk;
+        });
+
+        stream.on('end', () => {
+          resolve(data);
+        });
+
+        stream.on('error', (error) => {
+          reject(error);
+        });
+      });
+
+      const content: CsContent = await contentPromise;
+
       const elapsedTime: number = performance.now() - startTime;
       console.log(
         chalk.grey(
           `readDumpFile(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
         ),
       );
+
       return content;
     } catch (error: any) {
       console.error('Error reading file:', error);
