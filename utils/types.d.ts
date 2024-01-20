@@ -1,16 +1,27 @@
 type FileContent = string;
 type OffsetType = string | null;
-type time = number;
+type Time = number;
+
+interface configPaths {
+  old_dump: string;
+  new_dump: string;
+  offset_file: string;
+  field_file: string;
+  offset_output: string;
+  field_output: string;
+}
+
+interface UpdaterConfig {
+  log_offsets: boolean;
+  update_offsets: boolean;
+  update_fields: boolean;
+  paths: configPaths;
+}
 
 interface OffsetInfo {
   offset: string;
   name: string;
-  type_status: string;
-}
-
-interface FeildInfo {
-  feildOffset: string;
-  name: string;
+  typeStatus?: string;
 }
 
 interface FileOffsets {
@@ -19,7 +30,7 @@ interface FileOffsets {
   entries: OffsetEntry[];
 }
 
-interface FeildMatch extends RegExpExecArray {
+interface FieldMatch extends RegExpExecArray {
   1: string; // offset
 }
 
@@ -35,20 +46,20 @@ interface OffsetEntry {
   description: string;
 }
 
-interface classUtil {
+interface ClassUtil {
   getContent(): Promise<string>;
   findMethodType(offset: string): Promise<string | null>;
 }
 
 export {
-  type OffsetInfo,
-  type FileOffsets,
-  type OffsetMatch,
-  type FeildMatch,
-  type OffsetEntry,
-  type classUtil,
-  type FeildInfo,
-  type FileContent,
-  type OffsetType,
-  type time,
+  OffsetInfo,
+  FileOffsets,
+  OffsetMatch,
+  FieldMatch,
+  OffsetEntry,
+  ClassUtil,
+  FileContent,
+  OffsetType,
+  Time,
+  UpdaterConfig,
 };

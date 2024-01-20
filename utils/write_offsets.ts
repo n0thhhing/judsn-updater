@@ -4,6 +4,7 @@ import chalk from 'chalk';
 async function writeOffsets(
   filePath: string,
   info: OffsetInfo[],
+  //updateType: string
 ): Promise<void> {
   const startTime: number = performance.now();
 
@@ -15,7 +16,7 @@ async function writeOffsets(
   const elapsedTime: number = performance.now() - startTime;
   console.log(
     chalk.grey(
-      `writeOffaets(${filePath}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
+      `writeOffsets(${filePath}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
     ),
   );
   Bun.write(Bun.file(filePath), lines.join('\n'));

@@ -1,4 +1,4 @@
-const regexPatterns: RegExp[] = [
+const OffsetPatterns: RegExp[] = [
   /\/\/ RVA: (0x4[0-9A-F]+).*\n\s+internal int \S+\(int \S+\).*\n\n\s+\/\/ RVA.*\n\s+internal float get_Health/, // clan parts
   /\/\/ RVA: (0x4[0-9A-F]+).*\n\s+public int \S+\(int \S+\).*\n\n.*\n\s+public int \S+.*\n\n.*\n\s+public void \.ctor/, // clan parts
   /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal int get_Energy/, // clan energy
@@ -75,8 +75,105 @@ const regexPatterns: RegExp[] = [
   /internal void .ctor\(int \S+ string \S+\).*\n\n.*\n\s+internal void \.ctor.*\n\n.*\n\s+internal void .ctor\(string \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, //armory price
 ];
 
-const feildPatterns: RegExp[] = [
-  //g
+const FieldPatterns: RegExp[] = [
+  /public bool railgun; \/\/ (0x\S+)/g, // railgun
+  /public bool railgunStopAtWall; \/\/ (0x\S+)/g, // railgun
+  /public bool isDash; \/\/ (0x\S+)/g, // dash
+  /public float dashDecaySpeed; \/\/ (0x\S+)/g, // dash
+  /public float chargeTime; \/\/ (0x\S+)/g, // charge
+  /public bool bulletExplode; \/\/ (0x\S+)/g, // explode
+  /private float recoilCoeff; \/\/ (0x\S+)/g, // recoil
+  /public bool ignoreBarrier; \/\/ (0x\S+)/g, // reflect
+  /public bool ignoreSlyWolf; \/\/ (0x\S+)/g, // reflect
+  /public bool ignoreReflector; \/\/ (0x\S+)/g, // reflect
+  /public bool isShotGun; \/\/ (0x\S+)/g, // shotgun
+  /public bool isMeleeGravitationForce; \/\/ (0x\S+)/g, // range
+  /public bool bazooka; \/\/ (0x\S+)/g, // bazooka
+  /public bool grenadeLauncher; \/\/ (0x\S+)/g, // grenade
+  /public bool fanRocketShoot; \/\/ (0x\S+)/g, // fan
+  /public bool isGhost; \/\/ (0x\S+)/g, // ghost
+  /public bool isFrostSword; \/\/ (0x\S+)/g, // kill all
+  /public float frostDamageMultiplier; \/\/ (0x\S+)/g, // kill all
+  /public float frostRadius; \/\/ (0x\S+)/g, // kill all
+  /public bool isRoundMelee; \/\/ (0x\S+)/g, // round melee
+  /public bool useAngleForRoundMelee; \/\/ (0x\S+)/g, // round melee
+  /public float radiusRoundMelee; \/\/ (0x\S+)/g, // round melee
+  /public float invisibleAfterRespawnTime; \/\/ (0x\S+)/g, // inf score
+  /public bool buffPointsRevengeDesigner; \/\/ (0x\S+)/g, // inf score
+  /public int criticalHitChance; \/\/ (0x\S+)/g, // critical
+  /public bool isInvisibleAfterKill; \/\/ (0x\S+)/g, // invisible
+  /public bool invisWhenCharged; \/\/ (0x\S+)/g, // invisible
+  /public float frostSwordnTime; \/\/ (0x\S+)/g, // invisible
+  /public bool isInvisibleAfterKill; \/\/ (0x\S+)/g, // invisible
+  /public bool isInvisibleReload; \/\/ (0x\S+)/g, // invisible
+  /public float invisibleAfterKillTime; \/\/ (0x\S+)/g, // invisible
+  /public bool isFastAfterKill; \/\/ (0x\S+)/g, // fast
+  /public float timeFastAfterKill; \/\/ (0x\S+)/g, // fast
+  /public float fastMultiplier; \/\/ (0x\S+)/g, // fast
+  /public float shotgunOverDamageCoef; \/\/ (0x\S+)/g, // dmg
+  /public bool isSectorsAOE; \/\/ (0x\S+)/g, // dmg
+  /public float sectorsAOEAngleFront; \/\/ (0x\S+)/g, // dmg
+  /public float sectorsAOEAngleBack; \/\/ (0x\S+)/g, // dmg
+  /public float sectorsAOEDamageMultiplierFront; \/\/ (0x\S+)/g, // dmg
+  /public bool isDamageReflection; \/\/ (0x\S+)/g, // godm
+  /public bool isDamageHeal; \/\/ (0x\S+)/g, // godm
+  /public bool isDamageAndArmorHeal; \/\/ (0x\S+)/g, // godm
+  /public float damageHealMultiplier; \/\/ (0x\S+)/g, // godm
+  /public bool isArmorRegeneration; \/\/ (0x\S+)/g, // godm
+  /public float armorRegenerationPercent; \/\/ (0x\S+)/g, // godm
+  /public float armorRegenerationTime; \/\/ (0x\S+)/g, // godm
+  /public bool healer; \/\/ (0x\S+)/g, // godm
+  /internal bool healingArea; \/\/ (0x\S+)/g, // godm
+  /internal bool healingHimSelf; \/\/ (0x\S+)/g, // godm
+  /internal float radiusHealing; \/\/ (0x\S+)/g, // godm
+  /public bool isCoinDrop; \/\/ (0x\S+)/g, // coin
+  /public float coinDropChance; \/\/ (0x\S+)/g, // coin
+  /public bool enemyMarker; \/\/ (0x\S+)/g, // ray
+  /public bool enemyMarkerWhenAiming; \/\/ (0x\S+)/g, // ray
+  /public bool enemyMarkerWhenShot; \/\/ (0x\S+)/g, // ray
+  /public int enemyMarkId; \/\/ (0x\S+)/g, // ray
+  /public bool zoomXray; \/\/ (0x\S+)/g, // ray
+  /public bool isZooming; \/\/ (0x\S+)/g, // ray
+  /public bool isDoubleJump; \/\/ (0x\S+)/g, // double jump
+  /public bool polymorpher; \/\/ (0x\S+)/g, // poly
+  /public float polymorphDuarationTime; \/\/ (0x\S+)/g, // poly
+  /public float sectorsAOERadiusSectorsAoE; \/\/ (0x\S+)/g, // poly???
+  /public float polymorphMaxHealth; \/\/ (0x\S+)/g, // poly
+  /public bool harpoon; \/\/ (0x\S+)/g, // poly???
+  /public float harpoonMaxDistance; \/\/ (0x\S+)/g, // poly
+  /public float harpoonDecaySpeed; \/\/ (0x\S+)/g, // poly
+  /public bool isHeadMagnifier; \/\/ (0x\S+)/g, // big head
+  /public float headMagnifierTime; \/\/ (0x\S+)/g, // big head
+  /public bool isPoisoning; \/\/ (0x\S+)/g, // poison
+  /public float poisonDamageMultiplier; \/\/ (0x\S+)/g, // poison
+  /private float poisonTime; \/\/ (0x\S+)/g, // poison
+  /public bool isBlindEffect; \/\/ (0x\S+)/g, // blind
+  /public float isBlindEffectTime; \/\/ (0x\S+)/g, // blind
+  /public bool fireImmunity; \/\/ (0x\S+)/g, // effect immunity
+  /public bool bleedingImmunity; \/\/ (0x\S+)/g, // effect immunity
+  /public bool toxicImmunity; \/\/ (0x\S+)/g, // effect immunity
+  /public bool isKilledTargetExplode; \/\/ (0x\S+)/g, // explode die
+  /public float killedTargetExplosionDamageMultiplier; \/\/ (0x\S+)/g, // explode die
+  /public float killedTargetExplosionRadiusDamage; \/\/ (0x\S+)/g, // explode die
+  /public float killedTargetExplosionRadiusDamageSelf; \/\/ (0x\S+)/g, // explode die
+  /public bool isCharm; \/\/ (0x\S+)/g, // charm
+  /public float charmTime; \/\/ (0x\S+)/g, // charm
+  /public bool isWeaknessEffect; \/\/ (0x\S+)/g, // weak
+  /public float weaknessEffectTime; \/\/ (0x\S+)/g, // weak
+  /public bool isElectricShock; \/\/ (0x\S+)/g, // shock
+  /public float electricShockCoeff; \/\/ (0x\S+)/g, // shock
+  /public float electricShockTime; \/\/ (0x\S+)/g, // shock
+  /public bool isSlowdown; \/\/ (0x\S+)/g, // slow
+  /public float slowdownCoeff; \/\/ (0x\S+)/g, // slow
+  /public float slowdownTime; \/\/ (0x\S+)/g, // slow
+  /public bool isSlowdownStack; \/\/ (0x\S+)/g, // slow
+  /public bool isCursing; \/\/ (0x\S+)/g, // curse
+  /public float curseTime; \/\/ (0x\S+)/g, // curse
+  /public float curseDamageMultiplier; \/\/ (0x\S+)/g, // curse
+  /public bool jumpDisabler; \/\/ (0x\S+)/g, // disable jump
+  /public float jumpDisableTime; \/\/ (0x\S+)/g, // disable jump
+  /public bool isGadgetDisabler; \/\/ (0x\S+)/g, // gadget
+  /public float gadgetDisableTime; \/\/ (0x\S+)/g, // gadget
 ];
 
-export { regexPatterns, feildPatterns };
+export { OffsetPatterns, FieldPatterns };
