@@ -6,6 +6,6 @@
   "new_dump": "dump/new.cs",
   "offset_output": "dist/offsets.txt",
   "feild_output": "dist/feilds.txt",
-  "offset_file": "materials/offsets.txt",
-  "feild_file": "materials/feilds.txt"
+  "offset_file": "data/offsets.txt",
+  "feild_file": "data/feilds.txt"
 }

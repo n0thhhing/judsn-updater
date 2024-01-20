@@ -1,3 +1,7 @@
+type FileContent = string;
+type OffsetType = string | null;
+type time = number;
+
 interface OffsetInfo {
   offset: string;
   name: string;
@@ -44,4 +48,7 @@ export {
   type OffsetEntry,
   type classUtil,
   type FeildInfo,
+  type FileContent,
+  type OffsetType,
+  type time,
 };
