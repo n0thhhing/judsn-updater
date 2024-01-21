@@ -1,10 +1,6 @@
 import fs from 'fs';
 import chalk from 'chalk';
-import type { SymbolTable } from 'typescript';
-
-type FilePath = string;
-type Data = string | Promise<string>;
-type MethodSigniture = string;
+import type { FilePath, MethodSigniture, Data } from '../types';
 
 class SignitureUtils {
   public path: FilePath;

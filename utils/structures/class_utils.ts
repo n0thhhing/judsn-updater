@@ -1,9 +1,6 @@
-import type { ClassUtils as classUtil } from '../types';
+import type { ClassUtils as classUtil, FilePath, CsContent } from '../types';
 import chalk from 'chalk';
 import * as fs from 'fs';
-
-type FilePath = string;
-type CsContent = string | Promise<string>;
 
 class ClassUtils implements classUtil {
   public path: FilePath;

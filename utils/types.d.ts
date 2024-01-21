@@ -1,6 +1,10 @@
 type FileContent = string;
 type OffsetType = string | null;
 type Time = number;
+type FilePath = string;
+type Data = string | Promise<string>;
+type MethodSigniture = string;
+type CsContent = string | Promise<string>;
 
 interface configPaths {
   old_dump: string;
@@ -79,4 +83,8 @@ export {
   OffsetType,
   Time,
   UpdaterConfig,
+  FilePath,
+  MethodSigniture,
+  Data,
+  CsContent,
 };
