@@ -177,3 +177,7 @@ out
 # vscode
 
 .vscode/
+
+# tests
+test.ts
+test.js
