@@ -1,90 +1,25 @@
 import chalk from 'chalk';
-import config from './config/config.json';
+
+import type { OffsetInfo, FileOffsets, FileContent, Time } from './utils/types';
+
 import {
   getOffsets,
   ClassUtils,
   writeOffsets,
   OffsetPatterns,
   FieldPatterns,
-} from './utils';
-
-import type {
-  OffsetInfo,
-  FileOffsets,
-  OffsetMatch,
-  FieldMatch,
-  FileContent,
-  OffsetType,
-  Time,
-  UpdaterConfig,
-  PushOffsetInfo,
-  PushFieldInfo,
-} from './utils/types';
-
-const {
+  pushOffset,
+  pushField,
   update_offsets,
   update_fields,
   log_offsets,
-  paths: {
-    old_dump,
-    new_dump,
-    offset_file,
-    field_file,
-    field_output,
-    offset_output,
-  },
-}: UpdaterConfig = config;
-
-async function pushField(
-  pattern: RegExp,
-  index: number,
-  fileInfo: PushFieldInfo,
-): Promise<void> {
-  try {
-    const match = pattern.exec(fileInfo.newContent) as FieldMatch | null;
-
-    if (!match) {
-      console.error(`No match found for pattern at index ${index}`);
-      return;
-    }
-
-    fileInfo.newFields.push({
-      offset: match[1] || 'Failed, please update the RegExp',
-      name: fileInfo.FieldNames[index],
-    });
-  } catch (error) {
-    console.error('An error occurred in pushField:', error);
-  }
-}
-
-async function pushOffset(
-  pattern: RegExp,
-  index: number,
-  fileInfo: PushOffsetInfo,
-): Promise<void> {
-  const { oldFile, newFile, offsetInfo, newContent, offsetNames, newOffsets } =
-    fileInfo;
-
-  if (update_offsets && offsetInfo && offsetNames) {
-    const match = pattern.exec(newContent) as OffsetMatch | null;
-
-    const oldType: OffsetType | null = oldFile
-      ? await oldFile.findMethodType(
-          offsetInfo.offsets[offsetNames.indexOf(offsetNames[index])],
-        )
-      : null;
-    const newType: OffsetType = newFile
-      ? await newFile.findMethodType(match ? match[1] : '')
-      : null;
-
-    newOffsets.push({
-      offset: match ? match[1] : 'Failed, please update the RegExp',
-      name: offsetNames[index],
-      typeStatus:
-        oldType && newType && oldType === newType ? 'Passed' : 'Failed',
-    });
-  }
-}
+  old_dump,
+  new_dump,
+  offset_file,
+  field_file,
+  field_output,
+  offset_output,
+} from './utils';
 
 async function main() {
   try {
