@@ -1,5 +1,3 @@
-// TODO: implemet regex for Signiture
-
 const OffsetPatterns: RegExp[] = [
   /\/\/ RVA: (0x4[0-9A-F]+).*\n\s+internal int \S+\(int \S+\).*\n\n\s+\/\/ RVA.*\n\s+internal float get_Health/, // clan parts
   /\/\/ RVA: (0x4[0-9A-F]+).*\n\s+public int \S+\(int \S+\).*\n\n.*\n\s+public int \S+.*\n\n.*\n\s+public void \.ctor/, // clan parts
@@ -178,4 +176,8 @@ const FieldPatterns: RegExp[] = [
   /public float gadgetDisableTime; \/\/ (0x\S+)/g, // gadget
 ];
 
-export { OffsetPatterns, FieldPatterns };
+const SignitureRegex: RegExp[] = [
+  //g
+];
+
+export { OffsetPatterns, FieldPatterns, SignitureRegex };
