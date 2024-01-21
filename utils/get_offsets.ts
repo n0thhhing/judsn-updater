@@ -1,4 +1,4 @@
-import { type FileOffsets, type OffsetEntry } from './types';
+import type { FileOffsets, OffsetEntry, Offset } from './types';
 import chalk from 'chalk';
 
 async function getOffsets(filePath: string): Promise<FileOffsets> {
@@ -6,7 +6,7 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
   const fileContent: string = await Bun.file(filePath).text();
   const lines: string[] = fileContent.split('\n');
 
-  const offsets: string[] = [];
+  const offsets: Offset[] = [];
   const names: string[] = [];
   const entries: OffsetEntry[] = [];
 

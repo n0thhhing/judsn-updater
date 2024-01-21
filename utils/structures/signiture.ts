@@ -1,8 +1,14 @@
 import fs from 'fs';
 import chalk from 'chalk';
-import type { FilePath, MethodSigniture, Data } from '../types';
+import type {
+  FilePath,
+  MethodSigniture,
+  Data,
+  SignitureUtils as SignitureUtil,
+  Offset,
+} from '../types';
 
-class SignitureUtils {
+class SignitureUtils implements SignitureUtil {
   public path: FilePath;
   public readonly content: Data;
 
@@ -48,7 +54,7 @@ class SignitureUtils {
     }
   }
 
-  async getSignature(offset: string | number): Promise<MethodSigniture | null> {
+  public async getSignature(offset: Offset): Promise<MethodSigniture | null> {
     const start = performance.now();
     try {
       const idx =
@@ -69,7 +75,9 @@ class SignitureUtils {
     }
   }
 
-  async getSigOffset(Signiture: MethodSigniture): Promise<string | null> {
+  public async getSigOffset(
+    Signiture: MethodSigniture,
+  ): Promise<string | null> {
     const dataContent: Data = await this.content;
     const regex: RegExp = new RegExp(
       `([0-9]+).*\\n.*\\n.*"Signature": "${Signiture.replace(/\(/g, '\\(')

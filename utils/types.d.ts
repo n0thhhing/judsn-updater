@@ -5,6 +5,7 @@ type FilePath = string;
 type Data = string | Promise<string>;
 type MethodSigniture = string;
 type CsContent = string | Promise<string>;
+type Offset = string | number
 
 interface configPaths {
   old_dump: string;
@@ -23,13 +24,13 @@ interface UpdaterConfig {
 }
 
 interface OffsetInfo {
-  offset: string;
+  offset: Offset;
   name: string;
   typeStatus?: string;
 }
 
 interface FileOffsets {
-  offsets: string[];
+  offsets: Offset[];
   names: string[];
   entries: OffsetEntry[];
 }
@@ -45,14 +46,9 @@ interface OffsetMatch extends RegExpExecArray {
 }
 
 interface OffsetEntry {
-  offset: string;
+  offset: Offset;
   name: string;
   description: string;
-}
-
-interface ClassUtils {
-  getContent(): Promise<string>;
-  findMethodType(offset: string): Promise<string | null>;
 }
 
 interface PushFieldInfo {
@@ -68,6 +64,17 @@ interface PushOffsetInfo {
   newContent: FileContent;
   offsetNames?: string[];
   newOffsets: OffsetInfo[];
+}
+
+interface ClassUtils {
+  getContent(): Promise<string>;
+  findMethodType(offset: Offset): Promise<string | null>;
+}
+
+interface SignitureUtils {
+  getContent(): Promise<string>;
+  getSignature(offset: Offset): Promise<MethodSigniture | null>;
+  getSigOffset(Signiture: MethodSigniture): Promise<string | null>;
 }
 
 export {
@@ -87,4 +94,6 @@ export {
   MethodSigniture,
   Data,
   CsContent,
+  SignitureUtils,
+  Offset,
 };
