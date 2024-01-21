@@ -3,11 +3,11 @@
   "update_fields": true,
   "log_offsets": false,
   "paths": {
-    "old_dump": "dump/old.cs",
-    "new_dump": "dump/new.cs",
+    "old_dump": "datasets/dump/old.cs",
+    "new_dump": "datasets/dump/new.cs",
     "offset_output": "dist/offsets.txt",
     "field_output": "dist/fields.txt",
-    "offset_file": "data/offsets.txt",
-    "field_file": "data/fields.txt"
+    "offset_file": "datasets/offsets/offsets.txt",
+    "field_file": "datasets/offsets/fields.txt"
   }
 }
