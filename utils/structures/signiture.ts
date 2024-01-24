@@ -99,37 +99,42 @@ class SignatureUtils implements SignatureUtil {
       return null;
     }
   }
-  public async getSigOffset(
+
+public async getSigOffset(
     signature: MethodSignature,
     previousSignature?: MethodSignature,
     signatures?: MethodSignature[],
   ): Promise<string | null> {
     const dataContent: Data = await this.content;
-    const escapedSignature = signature.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const escapedPreviousSignature = previousSignature
-      ? previousSignature.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-      : '';
+    const sigArray =
+      signatures?.map(
+        (sig) =>
+          `,\n      "TypeSignature": "\\S+"\n    \\},\n    \\{\n      "Address": [0-9]+,\n      "Name": "\\S+",\n      "Signature": "${sig.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            '\\$&',
+          )}"`,
+      ) || [];
 
-    const processSignature = async (sig: MethodSignature) => {
-      const escapedSig = sig.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return `,\n      "TypeSignature": "\\S+"\n    \\},\n    \\{\n      "Address": [0-9]+,\n      "Name": "\\S+",\n      "Signature": "${escapedSig}"`;
-    };
-
-    const signaturesPromises = (signatures || []).map((sig) =>
-      processSignature(sig),
+    const outSignatures = sigArray.join('');
+    const regex = new RegExp(
+      `${
+        previousSignature
+          ? `"Signature": "${previousSignature.replace(
+              /[.*+?^${}()|[\]\\]/g,
+              '\\$&',
+            )}",\n      "TypeSignature": "\\S+"\n    \\},\n    \\{\n      "Address": `
+          : ''
+      }([0-9]+),\n      "Name": ".*",\\n      "Signature": "${signature.replace(
+        /[.*+?^${}()|[\]\\]/g,
+        '\\$&',
+      )}"${outSignatures}`,
+      'g',
     );
-    const sigArray = await Promise.all(signaturesPromises);
-
-    const regexPattern = `${previousSignature ? `"Signature": "${escapedPreviousSignature}",\\s*"TypeSignature": "\\S+"\\s*},\\s*{\\s*"Address": ` : ''}([0-9]+),\\s*"Name": "\\S+",\\s*"Signature": "${escapedSignature}"${sigArray.join('')}`;
-
-    const regex = new RegExp(regexPattern);
     const match = regex.exec(dataContent);
 
-    if (match) {
-      return `0x${(+match[1]).toString(16).toUpperCase()}`;
-    }
-
-    return null;
+    return match
+      ? `0x${parseInt(match[1], 10).toString(16).toUpperCase()}`
+      : null;
   }
 }
 export { SignatureUtils };
