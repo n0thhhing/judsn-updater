@@ -176,6 +176,13 @@ const FieldPatterns: RegExp[] = [
   /public float gadgetDisableTime; \/\/ (0x\S+)/g, // gadget
 ];
 
+const ect = [
+  /*
+  public string StorageId; // 0x660
+  public GameObject[] noFillObjects; // 0x638
+  private float recoilCoeff; // 0xC0
+*/
+];
 const SignitureRegex: RegExp[] = [
   //g
 ];

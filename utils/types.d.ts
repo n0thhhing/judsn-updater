@@ -3,9 +3,10 @@ type OffsetType = string | null;
 type Time = number;
 type FilePath = string;
 type Data = string | Promise<string>;
-type MethodSigniture = string;
+type MethodSignature = string;
 type CsContent = string | Promise<string>;
-type Offset = string | number
+type Offset = string | number;
+type Index = number;
 
 interface configPaths {
   old_dump: string;
@@ -71,10 +72,14 @@ interface ClassUtils {
   findMethodType(offset: Offset): Promise<string | null>;
 }
 
-interface SignitureUtils {
+interface SignatureUtils {
   getContent(): Promise<string>;
-  getSignature(offset: Offset): Promise<MethodSigniture | null>;
-  getSigOffset(Signiture: MethodSigniture): Promise<string | null>;
+  getSignature(offset: Offset, amount: number = 0): Promise<object | null>;
+  getSigOffset(
+    signiture: MethodSigniture,
+    prevousSig?: MethodSignature,
+    signatures: MethodSignature[],
+  ): Promise<string | null>;
 }
 
 export {
@@ -91,9 +96,10 @@ export {
   Time,
   UpdaterConfig,
   FilePath,
-  MethodSigniture,
+  MethodSignature,
   Data,
   CsContent,
-  SignitureUtils,
+  SignatureUtils,
   Offset,
+  Index,
 };

@@ -42,7 +42,7 @@ class ClassUtils implements classUtil {
       const elapsedTime: number = performance.now() - startTime;
       console.log(
         chalk.grey(
-          `readDumpFile(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
+          `getContent(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
         ),
       );
 

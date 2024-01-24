@@ -1,14 +1,16 @@
 import fs from 'fs';
 import chalk from 'chalk';
+import { performance } from 'perf_hooks';
+
 import type {
   FilePath,
-  MethodSigniture,
+  MethodSignature,
   Data,
-  SignitureUtils as SignitureUtil,
+  SignatureUtils as SignatureUtil,
   Offset,
 } from '../types';
 
-class SignitureUtils implements SignitureUtil {
+class SignatureUtils implements SignatureUtil {
   public path: FilePath;
   public readonly content: Data;
 
@@ -17,58 +19,74 @@ class SignitureUtils implements SignitureUtil {
     this.content = this.getContent();
   }
 
-  public async getContent(): Promise<string> {
-    try {
-      const startTime: number = performance.now();
+  public getContent(): Promise<string> {
+    const startTime = performance.now();
 
-      const contentPromise: Promise<string> = new Promise((resolve, reject) => {
-        const stream = fs.createReadStream(this.path, { encoding: 'utf8' });
-        let data = '';
+    return new Promise((resolve, reject) => {
+      const stream = fs.createReadStream(this.path, { encoding: 'utf8' });
+      let data = '';
 
-        stream.on('data', (chunk: any) => {
-          data += chunk;
-        });
-
-        stream.on('end', () => {
-          resolve(data);
-        });
-
-        stream.on('error', (error: any) => {
-          reject(error);
-        });
+      stream.on('data', (chunk: any) => {
+        data += chunk;
       });
 
-      const content: Data = await contentPromise;
+      stream.on('end', () => {
+        const elapsedTime = performance.now() - startTime;
 
-      const elapsedTime: number = performance.now() - startTime;
-      console.log(
-        chalk.grey(
-          `readDumpFile(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
-        ),
-      );
+        console.log(
+          chalk.grey(
+            `getContent(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
+          ),
+        );
 
-      return content;
-    } catch (error: any) {
-      console.error('Error reading file:', error);
-      return 'failed';
-    }
+        resolve(data);
+      });
+
+      stream.on('error', (error: any) => {
+        reject(error);
+      });
+    });
   }
 
-  public async getSignature(offset: Offset): Promise<MethodSigniture | null> {
-    const start = performance.now();
+  public async getSignature(
+    offset: Offset,
+    amount: number = 0,
+  ): Promise<object | null> {
     try {
+      const regexArray: string[] = [];
+
+      for (let i = 0; i < amount; i++) {
+        regexArray.push(
+          `,\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+\\{\n\\s+"Address": [0-9]+,\n\\s+"Name": "\\S+",\n\\s+"Signature": "(.*)"`,
+        );
+      }
+
+      const regexStr = regexArray.length > 0 ? regexArray.join('') : '';
+
       const idx =
         offset !== null && typeof offset === 'number'
           ? offset.toString()
-          : parseInt(offset).toString();
-
+          : offset?.toString() || '';
       const content = await this.content;
+      const regex = new RegExp(
+        `"Signature": "(.*)",\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+{\n\\s+"Address": ${idx},\n\\s+"Name": "\\S+",\n\\s+"Signature": "(.*)"${regexStr}`,
+      );
 
-      const regex = new RegExp(`${idx}.*\\n.*\\n.*"Signature": "(.*)"`, 'g');
       const match = regex.exec(content);
-      const signature = match ? match[1] : null;
+      const signatures: string[] = [];
+      for (let i = 3; i < regexArray.length + 3; i++) {
+        if (match) {
+          signatures.push(match[i]);
+        }
+      }
 
-      return signature;
+      return match
+        ? {
+            sig1: match[1],
+            signature: match[2],
+            signatures,
+          }
+        : null;
     } catch (error) {
       console.error(error);
       return null;
@@ -76,24 +94,42 @@ class SignitureUtils implements SignitureUtil {
   }
 
   public async getSigOffset(
-    Signiture: MethodSigniture,
+    signature: MethodSignature,
+    prevousSig?: MethodSignature,
+    signatures?: MethodSignature[],
   ): Promise<string | null> {
     const dataContent: Data = await this.content;
-    const regex: RegExp = new RegExp(
-      `([0-9]+).*\\n.*\\n.*"Signature": "${Signiture.replace(/\(/g, '\\(')
-        .replace(/\*/g, '\\*')
-        .replace(/\)/g, '\\)')
-        .replace(/\./g, '\\.')}"`,
+    let sigArray: string[] = [];
+    if (signatures)
+      for (let i = 0; signatures && i < signatures.length; i++) {
+        sigArray.push(
+          `,\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+\\{\n\\s+"Address": [0-9]+,\n\\s+"Name": "\\S+",\n\\s+"Signature": "${signatures[
+            i
+          ].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`,
+        );
+      }
+
+    const outsignatures = sigArray.length > 0 ? sigArray.join('') : '';
+    const regex = new RegExp(
+      `${
+        prevousSig
+          ? `"Signature": "${prevousSig.replace(
+              /[.*+?^${}()|[\]\\]/g,
+              '\\$&',
+            )}",\n\\s+"TypeSignature": "\\S+\"\n\\s+\\},\n\\s+\\{\n\\s+"Address": `
+          : ''
+      }([0-9]+),\n\\s+"Name": ".*",\\n\\s+"Signature": "${signature.replace(
+        /[.*+?^${}()|[\]\\]/g,
+        '\\$&',
+      )}"${outsignatures}`,
       'g',
     );
     const match = regex.exec(dataContent);
-    if (match && match[1]) {
-      const newOffset = match[1];
-      return `0x${parseInt(newOffset).toString(16).toUpperCase()}`;
-    } else {
-      return null;
-    }
+
+    return match
+      ? `0x${parseInt(match[1], 10).toString(16).toUpperCase()}`
+      : null;
   }
 }
 
-export { SignitureUtils };
+export { SignatureUtils };

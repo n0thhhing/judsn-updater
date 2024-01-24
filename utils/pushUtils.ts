@@ -5,11 +5,12 @@ import type {
   PushFieldInfo,
   PushOffsetInfo,
   OffsetMatch,
+  Index,
 } from './types';
 
 async function pushField(
   pattern: RegExp,
-  index: number,
+  index: Index,
   fileInfo: PushFieldInfo,
 ): Promise<void> {
   try {
@@ -31,7 +32,7 @@ async function pushField(
 
 async function pushOffset(
   pattern: RegExp,
-  index: number,
+  index: Index,
   fileInfo: PushOffsetInfo,
 ): Promise<void> {
   const { oldFile, newFile, offsetInfo, newContent, offsetNames, newOffsets } =
