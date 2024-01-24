@@ -19,33 +19,41 @@ class SignatureUtils implements SignatureUtil {
     this.content = this.getContent();
   }
 
-  public getContent(): Promise<string> {
-    const startTime = performance.now();
+  public async getContent(): Promise<string> {
+    try {
+      const startTime: number = performance.now();
 
-    return new Promise((resolve, reject) => {
-      const stream = fs.createReadStream(this.path, { encoding: 'utf8' });
-      let data = '';
+      const contentPromise: Promise<string> = new Promise((resolve, reject) => {
+        const stream = fs.createReadStream(this.path, { encoding: 'utf8' });
+        let data = '';
 
-      stream.on('data', (chunk: any) => {
-        data += chunk;
+        stream.on('data', (chunk) => {
+          data += chunk;
+        });
+
+        stream.on('end', () => {
+          resolve(data);
+        });
+
+        stream.on('error', (error) => {
+          reject(error);
+        });
       });
 
-      stream.on('end', () => {
-        const elapsedTime = performance.now() - startTime;
+      const content: Data = await contentPromise;
 
-        console.log(
-          chalk.grey(
-            `getContent(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
-          ),
-        );
+      const elapsedTime: number = performance.now() - startTime;
+      console.log(
+        chalk.grey(
+          `getContent(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
+        ),
+      );
 
-        resolve(data);
-      });
-
-      stream.on('error', (error: any) => {
-        reject(error);
-      });
-    });
+      return content;
+    } catch (error: any) {
+      console.error('Error reading file:', error);
+      return 'failed';
+    }
   }
 
   public async getSignature(
@@ -53,32 +61,24 @@ class SignatureUtils implements SignatureUtil {
     amount: number = 0,
   ): Promise<object | null> {
     try {
-      const regexArray: string[] = [];
+      const regexArray = Array.from(
+        { length: amount },
+        () =>
+          `,\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+\\{\n\\s+"Address": [0-9]+,\n\\s+"Name": "\\S+",\n\\s+"Signature": "(.+)"`,
+      );
 
-      for (let i = 0; i < amount; i++) {
-        regexArray.push(
-          `,\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+\\{\n\\s+"Address": [0-9]+,\n\\s+"Name": "\\S+",\n\\s+"Signature": "(.*)"`,
-        );
-      }
-
-      const regexStr = regexArray.length > 0 ? regexArray.join('') : '';
-
+      const regexStr = regexArray.join('');
       const idx =
         offset !== null && typeof offset === 'number'
           ? offset.toString()
           : offset?.toString() || '';
       const content = await this.content;
       const regex = new RegExp(
-        `"Signature": "(.*)",\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+{\n\\s+"Address": ${idx},\n\\s+"Name": "\\S+",\n\\s+"Signature": "(.*)"${regexStr}`,
+        `"Signature": "(.*)",\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+{\n\\s+"Address": ${idx},\n\\s+"Name": "\\S+",\n\\s+"Signature": "(.*)"${regexStr}`,
       );
 
       const match = regex.exec(content);
-      const signatures: string[] = [];
-      for (let i = 3; i < regexArray.length + 3; i++) {
-        if (match) {
-          signatures.push(match[i]);
-        }
-      }
+      const signatures = match ? match.slice(3) : [];
 
       return match
         ? {
@@ -95,33 +95,32 @@ class SignatureUtils implements SignatureUtil {
 
   public async getSigOffset(
     signature: MethodSignature,
-    prevousSig?: MethodSignature,
+    previousSig?: MethodSignature,
     signatures?: MethodSignature[],
   ): Promise<string | null> {
     const dataContent: Data = await this.content;
-    let sigArray: string[] = [];
-    if (signatures)
-      for (let i = 0; signatures && i < signatures.length; i++) {
-        sigArray.push(
-          `,\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+\\{\n\\s+"Address": [0-9]+,\n\\s+"Name": "\\S+",\n\\s+"Signature": "${signatures[
-            i
-          ].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`,
-        );
-      }
+    const sigArray =
+      signatures?.map(
+        (sig) =>
+          `,\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+\\{\n\\s+"Address": [0-9]+,\n\\s+"Name": "\\S+",\n\\s+"Signature": "${sig.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            '\\$&',
+          )}"`,
+      ) || [];
 
-    const outsignatures = sigArray.length > 0 ? sigArray.join('') : '';
+    const outSignatures = sigArray.join('');
     const regex = new RegExp(
       `${
-        prevousSig
-          ? `"Signature": "${prevousSig.replace(
+        previousSig
+          ? `"Signature": "${previousSig.replace(
               /[.*+?^${}()|[\]\\]/g,
               '\\$&',
-            )}",\n\\s+"TypeSignature": "\\S+\"\n\\s+\\},\n\\s+\\{\n\\s+"Address": `
+            )}",\n\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+\\{\n\\s+"Address": `
           : ''
       }([0-9]+),\n\\s+"Name": ".*",\\n\\s+"Signature": "${signature.replace(
         /[.*+?^${}()|[\]\\]/g,
         '\\$&',
-      )}"${outsignatures}`,
+      )}"${outSignatures}`,
       'g',
     );
     const match = regex.exec(dataContent);
@@ -131,5 +130,4 @@ class SignatureUtils implements SignatureUtil {
       : null;
   }
 }
-
 export { SignatureUtils };
