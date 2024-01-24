@@ -7,6 +7,8 @@ type MethodSignature = string;
 type CsContent = string | Promise<string>;
 type Offset = string | number;
 type Index = number;
+type Count = number;
+type ReturnedSignature = object | null;
 
 interface configPaths {
   old_dump: string;
@@ -102,4 +104,5 @@ export {
   SignatureUtils,
   Offset,
   Index,
+  Count,
 };
