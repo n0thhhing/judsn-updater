@@ -1,10 +1,6 @@
 import fs from 'fs';
 import chalk from 'chalk';
 import { performance } from 'perf_hooks';
-import * as fs from 'fs';
-
-// Cache file path
-const cacheFilePath = __dirname + '/cache.json';
 
 import type {
   FilePath,
@@ -20,12 +16,9 @@ import type {
 class SignatureUtils implements SignatureUtil {
   public path: FilePath;
   public readonly content: Data;
-  private cache: Record<string, string> = {};
-  
   constructor(csPath: FilePath) {
     this.path = csPath;
     this.content = this.getContent();
-    this.loadCache();
   }
 
   public async getContent(): Promise<string> {
@@ -62,7 +55,7 @@ class SignatureUtils implements SignatureUtil {
 
       return content;
     } catch (error: any) {
-      console.error('Error reading file:', error);
+      console.error('Error reading fs:', error);
       return 'failed';
     }
   }
@@ -106,67 +99,37 @@ class SignatureUtils implements SignatureUtil {
       return null;
     }
   }
-
-private loadCache() {
-    try {
-      const cachedData = fs.readFileSync(cacheFilePath, 'utf-8');
-      this.cache = JSON.parse(cachedData);
-    } catch (error) {
-      // Ignore errors, assume cache doesn't exist or is corrupted
-    }
-  }
-
-  private saveCache() {
-    fs.writeFileSync(cacheFilePath, JSON.stringify(this.cache), 'utf-8');
-  }
-
   public async getSigOffset(
     signature: MethodSignature,
     previousSignature?: MethodSignature,
     signatures?: MethodSignature[],
   ): Promise<string | null> {
-    const cacheKey = JSON.stringify({ signature, previousSignature, signatures });
-
-    // Check if result is cached
-    if (this.cache.hasOwnProperty(cacheKey)) {
-      return this.cache[cacheKey];
-    }
-
     const dataContent: Data = await this.content;
     const escapedSignature = signature.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const escapedPreviousSignature = previousSignature
       ? previousSignature.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
       : '';
 
-    const sigArray =
-      signatures?.map(
-        (sig) =>
-          `,\n      "TypeSignature": "\\S+"\n    \\},\n    \\{\n      "Address": [0-9]+,\n      "Name": "\\S+",\n      "Signature": "${sig.replace(
-            /[.*+?^${}()|[\]\\]/g,
-            '\\$&',
-          )}"`,
-      ) || [];
+    const processSignature = async (sig: MethodSignature) => {
+      const escapedSig = sig.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return `,\n      "TypeSignature": "\\S+"\n    \\},\n    \\{\n      "Address": [0-9]+,\n      "Name": "\\S+",\n      "Signature": "${escapedSig}"`;
+    };
 
-    const outSignatures = sigArray.join('');
-    const regexPattern = `${
-      previousSignature
-        ? `"Signature": "${escapedPreviousSignature}",\n      "TypeSignature": "\\S+"\n    \\},\n    \\{\n      "Address": `
-        : ''
-    }([0-9]+),\n      "Name": ".*",\\n      "Signature": "${escapedSignature}"${outSignatures}`;
+    const signaturesPromises = (signatures || []).map((sig) =>
+      processSignature(sig),
+    );
+    const sigArray = await Promise.all(signaturesPromises);
 
-    const regex = new RegExp(regexPattern, 'g');
+    const regexPattern = `${previousSignature ? `"Signature": "${escapedPreviousSignature}",\\s*"TypeSignature": "\\S+"\\s*},\\s*{\\s*"Address": ` : ''}([0-9]+),\\s*"Name": "\\S+",\\s*"Signature": "${escapedSignature}"${sigArray.join('')}`;
+
+    const regex = new RegExp(regexPattern);
     const match = regex.exec(dataContent);
 
-    const result = match
-      ? `0x${parseInt(match[1], 10).toString(16).toUpperCase()}`
-      : null;
+    if (match) {
+      return `0x${(+match[1]).toString(16).toUpperCase()}`;
+    }
 
-    // Cache the result
-    this.cache[cacheKey] = result;
-    // Save the cache to file
-    this.saveCache();
-
-    return result;
+    return null;
   }
 }
 export { SignatureUtils };
