@@ -26,7 +26,7 @@ The script is designed to update offsets in judsn
 
 1. Open the `config.json` file in the `config` directory and configure the necessary parameters (`old_dump`, `new_dump`, `offset_file`).
 
-2. Put the offsets in the offsets.txt file and put your cs files in the specified dump paths yoy defined in config.json
+2. Put the offsets in the offsets.txt file and put your cs files in the specified dump paths you defined in config.json
 
 3. Run the script:
 
@@ -40,10 +40,10 @@ The script is designed to update offsets in judsn
 
 The main script (`index.ts`) uses TypeScript and includes the following features:
 
-- Reads the content of a specified file (`new_dump`) asynchronously.
+- Reads the content of a specified file (`new_dump`).
 - Retrieves offset information using a utility function from `get_offsets.ts`.
 - Uses regular expressions to extract offsets from the file content.
-- Logs the updated offsets.
+- Logs the updated offsets if "log_offsets" is true.
 
 ## Troubleshooting
 
@@ -53,5 +53,4 @@ Feel free to customize and expand upon this script based on your specific requir
 
 ---
 
-**Note:** Ensure that you have Bun installed
-
+**Note:** Ensure that you have Bun installed or this will not work

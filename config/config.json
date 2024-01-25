@@ -1,8 +1,10 @@
 {
   "update_offsets": true,
-  "update_fields": true,
+  "update_fields": false,
   "log_offsets": false,
+  "output_signature": false,
   "paths": {
+    "regex_out": "dist/regex.txt",
     "old_dump": "datasets/dump/old.cs",
     "new_dump": "datasets/dump/new.cs",
     "offset_output": "dist/offsets.txt",

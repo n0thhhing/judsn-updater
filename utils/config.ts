@@ -5,7 +5,9 @@ const {
   update_offsets,
   update_fields,
   log_offsets,
+  output_signature,
   paths: {
+    regex_out,
     old_dump,
     new_dump,
     offset_file,
@@ -26,4 +28,6 @@ export {
   field_file,
   field_output,
   offset_output,
+  regex_out,
+  output_signature,
 };

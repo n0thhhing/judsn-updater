@@ -1,12 +1,12 @@
-import { update_offsets } from './';
-import type {
+import {
+  update_offsets,
   FieldMatch,
   OffsetType,
   PushFieldInfo,
   PushOffsetInfo,
   OffsetMatch,
   Index,
-} from './types';
+} from './';
 
 async function pushField(
   pattern: RegExp,
@@ -35,8 +35,15 @@ async function pushOffset(
   index: Index,
   fileInfo: PushOffsetInfo,
 ): Promise<void> {
-  const { oldFile, newFile, offsetInfo, newContent, offsetNames, newOffsets } =
-    fileInfo;
+  const {
+    oldFile,
+    newFile,
+    signatures,
+    offsetInfo,
+    newContent,
+    offsetNames,
+    newOffsets,
+  } = fileInfo;
 
   if (update_offsets && offsetInfo && offsetNames) {
     const match = pattern.exec(newContent) as OffsetMatch | null;
@@ -49,7 +56,6 @@ async function pushOffset(
     const newType: OffsetType = newFile
       ? await newFile.findMethodType(match ? match[1] : '')
       : null;
-
     newOffsets.push({
       offset: match ? match[1] : 'Failed, please update the RegExp',
       name: offsetNames[index],

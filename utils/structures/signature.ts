@@ -60,12 +60,14 @@ class SignatureUtils implements SignatureUtil {
     }
   }
 
+  async findPatterns(patterns: RegExp[] | RegExp) {}
+
   public async getSignature(
     offset: Offset,
     amount: Count = 0,
   ): Promise<ReturnedSignature> {
     try {
-      const regexArray: object = Array.from(
+      const regexArray = Array.from(
         { length: amount },
         () =>
           `,\n      "TypeSignature": "\\S+"\n    \\},\n    \\{\n      "Address": [0-9]+,\n      "Name": "\\S+",\n      +"Signature": "(.+)"`,
@@ -80,9 +82,6 @@ class SignatureUtils implements SignatureUtil {
       const regex: RegExp = new RegExp(
         `"Signature": "(.*)",\n      "TypeSignature": "\\S+"\n    \\},\n\\s+{\n      "Address": ${idx},\n      "Name": "\\S+",\n      "Signature": "(.*)"${regexStr}`,
       );
-      /*const regex: RegExp = new RegExp(
-        `"Signature": "(.*)",\\s+"TypeSignature": "\\S+"\n\\s+\\},\n\\s+{\n\\s+"Address": ${idx},\n\\s+"Name": "\\S+",\n\\s+"Signature": "(.*)"${regexStr}`,
-      );*/
 
       const match = regex.exec(content);
       const signatures = match ? match.slice(3) : [];
@@ -100,7 +99,7 @@ class SignatureUtils implements SignatureUtil {
     }
   }
 
-public async getSigOffset(
+  public async getSigOffset(
     signature: MethodSignature,
     previousSignature?: MethodSignature,
     signatures?: MethodSignature[],
@@ -133,7 +132,10 @@ public async getSigOffset(
     const match = regex.exec(dataContent);
 
     return match
-      ? `0x${parseInt(match[1], 10).toString(16).toUpperCase()}`
+      ? {
+          newOffset: `0x${parseInt(match[1], 10).toString(16).toUpperCase()}`,
+          regex,
+        }
       : null;
   }
 }

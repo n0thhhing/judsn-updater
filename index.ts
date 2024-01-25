@@ -1,5 +1,4 @@
 import chalk from 'chalk';
-
 import type { OffsetInfo, FileOffsets, FileContent, Time } from './utils/types';
 
 import {
@@ -8,6 +7,7 @@ import {
   writeOffsets,
   OffsetPatterns,
   FieldPatterns,
+  SigniturePatterns,
   pushOffset,
   pushField,
   update_offsets,
@@ -19,6 +19,7 @@ import {
   field_file,
   field_output,
   offset_output,
+  SignatureUtils,
 } from './utils';
 
 async function main() {
