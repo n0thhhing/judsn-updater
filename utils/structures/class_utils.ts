@@ -1,5 +1,5 @@
 import type {
-  ClassUtils as classUtil,
+  ClassUtil,
   FilePath,
   CsContent,
   Offset,
@@ -7,7 +7,7 @@ import type {
 import chalk from 'chalk';
 import * as fs from 'fs';
 
-class ClassUtils implements classUtil {
+class ClassUtils implements ClassUtil {
   public path: FilePath;
   public readonly content: CsContent;
 

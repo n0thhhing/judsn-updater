@@ -18,3 +18,27 @@ export {
   regex_out,
   output_signature,
 } from './config';
+
+export type {
+  PushOffsetInfo,
+  PushFieldInfo,
+  OffsetInfo,
+  FileOffsets,
+  OffsetMatch,
+  FieldMatch,
+  OffsetEntry,
+  ClassUtil,
+  FileContent,
+  OffsetType,
+  Time,
+  UpdaterConfig,
+  FilePath,
+  MethodSignature,
+  Data,
+  CsContent,
+  SignatureUtil,
+  ReturnedSignature,
+  Offset,
+  Index,
+  Count,
+} from './types.d';

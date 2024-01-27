@@ -11,6 +11,7 @@ type Count = number;
 type ReturnedSignature = object | null;
 
 interface configPaths {
+  regex_out: string;
   old_dump: string;
   new_dump: string;
   offset_file: string;
@@ -23,6 +24,7 @@ interface UpdaterConfig {
   log_offsets: boolean;
   update_offsets: boolean;
   update_fields: boolean;
+  output_signature: boolean;
   paths: configPaths;
 }
 
@@ -69,12 +71,12 @@ interface PushOffsetInfo {
   newOffsets: OffsetInfo[];
 }
 
-interface ClassUtils {
+interface ClassUtil {
   getContent(): Promise<string>;
   findMethodType(offset: Offset): Promise<string | null>;
 }
 
-interface SignatureUtils {
+interface SignatureUtil {
   getContent(): Promise<string>;
   getSignature(offset: Offset, amount: number = 0): Promise<object | null>;
   getSigOffset(
@@ -92,7 +94,7 @@ export {
   OffsetMatch,
   FieldMatch,
   OffsetEntry,
-  ClassUtils,
+  ClassUtil,
   FileContent,
   OffsetType,
   Time,
@@ -101,7 +103,7 @@ export {
   MethodSignature,
   Data,
   CsContent,
-  SignatureUtils,
+  SignatureUtil,
   ReturnedSignature,
   Offset,
   Index,

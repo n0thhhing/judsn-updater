@@ -1,11 +1,11 @@
 import {
   update_offsets,
-  FieldMatch,
-  OffsetType,
-  PushFieldInfo,
-  PushOffsetInfo,
-  OffsetMatch,
-  Index,
+  type FieldMatch,
+  type OffsetType,
+  type PushFieldInfo,
+  type PushOffsetInfo,
+  type OffsetMatch,
+  type Index,
 } from './';
 
 async function pushField(
@@ -35,15 +35,8 @@ async function pushOffset(
   index: Index,
   fileInfo: PushOffsetInfo,
 ): Promise<void> {
-  const {
-    oldFile,
-    newFile,
-    signatures,
-    offsetInfo,
-    newContent,
-    offsetNames,
-    newOffsets,
-  } = fileInfo;
+  const { oldFile, newFile, offsetInfo, newContent, offsetNames, newOffsets } =
+    fileInfo;
 
   if (update_offsets && offsetInfo && offsetNames) {
     const match = pattern.exec(newContent) as OffsetMatch | null;

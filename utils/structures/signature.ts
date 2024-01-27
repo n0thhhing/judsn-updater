@@ -6,7 +6,7 @@ import type {
   FilePath,
   MethodSignature,
   Data,
-  SignatureUtils as SignatureUtil,
+  SignatureUtil,
   Offset,
   Count,
   ReturnedSignature,
