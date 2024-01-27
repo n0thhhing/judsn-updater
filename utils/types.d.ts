@@ -81,7 +81,7 @@ interface SignatureUtils {
     signiture: MethodSigniture,
     prevousSig?: MethodSignature,
     signatures: MethodSignature[],
-  ): Promise<string | null>;
+  ): Promise<object | null>;
 }
 
 export {
@@ -102,6 +102,7 @@ export {
   Data,
   CsContent,
   SignatureUtils,
+  ReturnedSignature,
   Offset,
   Index,
   Count,

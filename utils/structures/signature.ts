@@ -124,7 +124,7 @@ async getName(offset: string | number): Promise<string | null> {
     signature: MethodSignature,
     previousSignature?: MethodSignature,
     signatures?: MethodSignature[],
-  ): Promise<string | null> {
+  ): Promise<object | null> {
     const dataContent: Data = await this.content;
     const sigArray =
       signatures?.map(

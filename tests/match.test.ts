@@ -2,7 +2,7 @@ import { SigniturePatterns, SignatureUtils } from '../utils';
 import fs from 'fs/promises';
 import { expect, test } from 'bun:test';
 
-const readOffsetsFromFile = async (filePath) =>
+const readOffsetsFromFile = async (filePath: string) =>
   (await fs.readFile(filePath, 'utf8'))
     .split('\n')
     .map((line) => parseInt(line.split(' -- ')[0]));
