@@ -60,7 +60,22 @@ class SignatureUtils implements SignatureUtil {
     }
   }
 
-  async findPatterns(patterns: RegExp[] | RegExp) {}
+  async findPatterns(patterns: RegExp[] | RegExp): Promise<string> {
+    const contentToTest: string = await this.content;
+
+    const getMatches = (pattern: RegExp) => {
+      const matches = contentToTest.match(pattern) || [];
+      return matches.map((match) => match[1]); // Assuming you want the first capturing group [1]
+    };
+
+    const results: string[] = Array.isArray(patterns)
+      ? patterns.flatMap(getMatches)
+      : getMatches(patterns);
+
+    const totalMatches: number = results.length;
+
+    return `0x${totalMatches.toString(16)}`;
+  }
 
   public async getSignature(
     offset: Offset,
@@ -97,6 +112,12 @@ class SignatureUtils implements SignatureUtil {
       console.error(error);
       return null;
     }
+  }
+  
+async getName(offset: string | number): Promise<string | null> {
+    offset = typeof offset === "number" ? offset.toString() : parseInt(offset).toString()
+    const match = new RegExp(`"Address": ${offset},\n\\s+"Name": "(.*)"`, "g").exec(await this.content)
+    return match && match[1] ? match[1] : null
   }
 
   public async getSigOffset(

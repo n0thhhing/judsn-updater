@@ -4,6 +4,7 @@ export { writeOffsets } from './write_offsets';
 export { OffsetPatterns, FieldPatterns, SigniturePatterns } from './patterns';
 export { pushOffset, pushField } from './push_utils';
 export { SignatureUtils } from './structures/signature.ts';
+export { writeRegex } from './write_regex';
 export {
   update_offsets,
   update_fields,
