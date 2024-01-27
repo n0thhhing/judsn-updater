@@ -10,6 +10,21 @@ type Index = number;
 type Count = number;
 type ReturnedSignature = object | null;
 
+interface ClassUtil {
+  getContent(): Promise<string>;
+  findMethodType(offset: Offset): Promise<string | null>;
+}
+
+interface SignatureUtil {
+  getContent(): Promise<string>;
+  getSignature(offset: Offset, amount: number = 0): Promise<object | null>;
+  getSigOffset(
+    signiture: MethodSignature,
+    prevousSig?: MethodSignature,
+    signatures: MethodSignature[],
+  ): Promise<object | null>;
+}
+
 interface configPaths {
   regex_out: string;
   old_dump: string;
@@ -34,6 +49,12 @@ interface OffsetInfo {
   typeStatus?: string;
 }
 
+interface OffsetEntry {
+  offset: Offset;
+  name: string;
+  description: string;
+}
+
 interface FileOffsets {
   offsets: Offset[];
   names: string[];
@@ -50,12 +71,6 @@ interface OffsetMatch extends RegExpExecArray {
   3: string; // Matched content after EventHandler/Action/Tuple/etc.
 }
 
-interface OffsetEntry {
-  offset: Offset;
-  name: string;
-  description: string;
-}
-
 interface PushFieldInfo {
   newContent: FileContent;
   FieldNames: string[];
@@ -63,49 +78,34 @@ interface PushFieldInfo {
 }
 
 interface PushOffsetInfo {
-  oldFile: ClassUtils | null;
-  newFile: ClassUtils | null;
+  oldFile: ClassUtil | null;
+  newFile: ClassUtil | null;
   offsetInfo?: FileOffsets;
   newContent: FileContent;
   offsetNames?: string[];
   newOffsets: OffsetInfo[];
 }
 
-interface ClassUtil {
-  getContent(): Promise<string>;
-  findMethodType(offset: Offset): Promise<string | null>;
-}
-
-interface SignatureUtil {
-  getContent(): Promise<string>;
-  getSignature(offset: Offset, amount: number = 0): Promise<object | null>;
-  getSigOffset(
-    signiture: MethodSigniture,
-    prevousSig?: MethodSignature,
-    signatures: MethodSignature[],
-  ): Promise<object | null>;
-}
-
 export {
-  PushOffsetInfo,
-  PushFieldInfo,
-  OffsetInfo,
-  FileOffsets,
-  OffsetMatch,
-  FieldMatch,
-  OffsetEntry,
   ClassUtil,
+  Count,
+  CsContent,
+  Data,
+  FieldMatch,
   FileContent,
+  FileOffsets,
+  FilePath,
+  Index,
+  MethodSignature,
+  Offset,
+  OffsetEntry,
+  OffsetInfo,
+  OffsetMatch,
   OffsetType,
+  PushFieldInfo,
+  PushOffsetInfo,
+  ReturnedSignature,
+  SignatureUtil,
   Time,
   UpdaterConfig,
-  FilePath,
-  MethodSignature,
-  Data,
-  CsContent,
-  SignatureUtil,
-  ReturnedSignature,
-  Offset,
-  Index,
-  Count,
 };

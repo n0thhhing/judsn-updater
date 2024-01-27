@@ -1,5 +1,5 @@
-import type { UpdaterConfig } from './types';
 import config from '../config/config.json';
+import type { UpdaterConfig } from './types';
 
 const {
   update_offsets,
@@ -19,15 +19,15 @@ const {
 
 export {
   config,
-  update_offsets,
-  update_fields,
-  log_offsets,
-  old_dump,
-  new_dump,
-  offset_file,
   field_file,
   field_output,
+  log_offsets,
+  new_dump,
+  offset_file,
   offset_output,
-  regex_out,
+  old_dump,
   output_signature,
+  regex_out,
+  update_fields,
+  update_offsets,
 };

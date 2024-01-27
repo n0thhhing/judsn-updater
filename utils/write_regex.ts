@@ -1,10 +1,10 @@
-async function writeRegex(regexArray: RegExp[], filePath: string) {
-  let lines = 'const SigniturePatterns: RegExp[] = [';
-  for (const regex of regexArray) {
-    lines += `\n${regex},`;
-  }
-  lines += '\n]';
-  return await Bun.write(filePath, lines);
+import * as fs from 'fs';
+
+function writeRegex(regexArray: RegExp[], filePath: string): void {
+  fs.writeFileSync(
+    filePath,
+    `const SigniturePatterns: RegExp[] = [\n${regexArray.map((regex) => `${regex},`).join('\n')}\n];`,
+  );
 }
 
 export { writeRegex };

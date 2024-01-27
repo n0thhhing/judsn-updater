@@ -1,5 +1,5 @@
-import type { FileOffsets, OffsetEntry, Offset } from './types';
 import chalk from 'chalk';
+import type { FileOffsets, Offset, OffsetEntry } from './types';
 
 async function getOffsets(filePath: string): Promise<FileOffsets> {
   const startTime: number = performance.now();
@@ -16,10 +16,11 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
     }
 
     const match: RegExpMatchArray | null = line.match(
-      /^(0x[0-9A-Fa-f]+) -- (.+)$/,
+      /^(0x[\dA-Fa-f]+) -- (.+)$/,
     );
+
     if (match) {
-      const [_, offset, name] = match;
+      const [, offset, name] = match;
 
       offsets.push(offset);
       names.push(name);
@@ -33,11 +34,13 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
   }
 
   const elapsedTime: number = performance.now() - startTime;
+
   console.log(
     chalk.grey(
       `getOffsets(${filePath}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
     ),
   );
+
   return { offsets, names, entries };
 }
 

@@ -1,6 +1,6 @@
-import { SigniturePatterns, SignatureUtils } from '../utils';
-import fs from 'fs/promises';
 import { expect, test } from 'bun:test';
+import fs from 'fs/promises';
+import { SignatureUtils, SigniturePatterns } from '../utils';
 
 const readOffsetsFromFile = async (filePath: string) =>
   (await fs.readFile(filePath, 'utf8'))
@@ -20,10 +20,11 @@ try {
       const pattern = SigniturePatterns[i];
       const [oldOffset, newOffset] = await Promise.all([
         `0x${oldOffsets[i].toString(16).toUpperCase()}`,
-        `0x${parseInt(pattern.exec(await sig.content)[1], 10)
+        `0x${parseInt(pattern.exec(await sig.content)[1])
           .toString(16)
           .toUpperCase()}`,
       ]);
+
       const [signatureName, expectedOffset] = await Promise.all([
         sig.getName(newOffset),
         `0x${offsets[i].toString(16).toUpperCase()}`,

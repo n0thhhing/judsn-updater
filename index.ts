@@ -7,7 +7,6 @@ import {
   writeOffsets,
   OffsetPatterns,
   FieldPatterns,
-  SigniturePatterns,
   pushOffset,
   pushField,
   update_offsets,
@@ -19,22 +18,19 @@ import {
   field_file,
   field_output,
   offset_output,
-  SignatureUtils,
 } from './utils';
 
 async function main() {
   try {
-    const oldFile: ClassUtils | null = update_offsets
-      ? new ClassUtils(old_dump)
-      : null;
+    const oldFile: ClassUtils | null = update_offsets ? new ClassUtils(old_dump) : null;
+
     const newFile: ClassUtils | null =
       update_offsets || update_fields ? new ClassUtils(new_dump) : null;
-    const offsetInfo: FileOffsets | undefined = update_offsets
-      ? await getOffsets(offset_file)
-      : undefined;
-    const fieldInfo: FileOffsets | undefined = update_fields
-      ? await getOffsets(field_file)
-      : undefined;
+
+    const offsetInfo: FileOffsets | undefined = update_offsets ? await getOffsets(offset_file) : undefined;
+
+    const fieldInfo: FileOffsets | undefined = update_fields ? await getOffsets(field_file) : undefined;
+
     const fieldNames: string[] = fieldInfo?.names || [];
     const offsetNames: string[] = offsetInfo?.names || [];
 
@@ -45,54 +41,58 @@ async function main() {
 
     if (update_offsets && offsetInfo && offsetNames) {
       const startTime: Time = performance.now();
+
       await Promise.all(
-        OffsetPatterns.map(async (pattern, index) =>
-          pushOffset(pattern, index, {
-            oldFile,
-            newFile,
-            offsetInfo,
-            newContent,
-            offsetNames,
-            newOffsets,
-          }),
-        ),
+        OffsetPatterns.map(async(pattern, index) => pushOffset(pattern, index, {
+          oldFile,
+          newFile,
+          offsetInfo,
+          newContent,
+          offsetNames,
+          newOffsets,
+        }),),
       );
+
       const totalElapsedTime: Time = performance.now() - startTime;
       const averageTime: Time = totalElapsedTime / OffsetPatterns.length;
 
       console.log(
         chalk.grey(`Total offsets updated: ${chalk.green(newOffsets.length)}`),
       );
+
       console.log(
         chalk.grey(
           `Average offset exec time: ${chalk.blue(averageTime.toFixed(3))}ms`,
         ),
       );
+
       writeOffsets(offset_output, newOffsets);
     }
 
     if (update_fields && fieldInfo) {
       const startTime: Time = performance.now();
+
       await Promise.all(
-        FieldPatterns.map(async (pattern, index) =>
-          pushField(pattern, index, {
-            newContent,
-            FieldNames: fieldNames,
-            newFields,
-          }),
-        ),
+        FieldPatterns.map(async(pattern, index) => pushField(pattern, index, {
+          newContent,
+          FieldNames: fieldNames,
+          newFields,
+        }),),
       );
+
       const endTime: Time = performance.now() - startTime;
       const averageTime: Time = endTime / FieldPatterns.length;
 
       console.log(
         chalk.grey(`Total fields updated: ${chalk.green(newFields.length)}`),
       );
+
       console.log(
         chalk.grey(
           `Average field exec time: ${chalk.blue(averageTime.toFixed(3))}ms`,
         ),
       );
+
       writeOffsets(field_output, newFields);
     }
 

@@ -9,6 +9,7 @@ import * as fs from 'fs';
 
 class ClassUtils implements ClassUtil {
   public path: FilePath;
+
   public readonly content: CsContent;
 
   constructor(csPath: FilePath) {
@@ -32,7 +33,7 @@ class ClassUtils implements ClassUtil {
           resolve(data);
         });
 
-        stream.on('error', (error) => {
+        stream.on('error', (error: Error) => {
           reject(error);
         });
       });
@@ -40,6 +41,7 @@ class ClassUtils implements ClassUtil {
       const content: CsContent = await contentPromise;
 
       const elapsedTime: number = performance.now() - startTime;
+
       console.log(
         chalk.grey(
           `getContent(${this.path}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
@@ -47,8 +49,9 @@ class ClassUtils implements ClassUtil {
       );
 
       return content;
-    } catch (error: any) {
+    } catch (error: Error) {
       console.error('Error reading file:', error);
+
       return 'failed';
     }
   }
@@ -63,15 +66,19 @@ class ClassUtils implements ClassUtil {
       const match: RegExpExecArray | null = regexPattern.exec(
         await this.content,
       );
+
       if (match && match[1] !== null) {
         const returnType: string = match[2] + match[3];
+
         return returnType.trim() || 'problems happened';
-      } else {
-        console.error('Offset match failed or result is null');
-        return null;
       }
-    } catch (error: any) {
+
+      console.error('Offset match failed or result is null');
+
+      return null;
+    } catch (error: Error) {
       console.error('Error reading the file:', error);
+
       return null;
     }
   }

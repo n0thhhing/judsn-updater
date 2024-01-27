@@ -178,12 +178,6 @@ out
 
 .vscode/
 
-# tests
-test.ts
-test.js
-_test_.json
-bench.test.ts
-
 # bak
 *bak
 backup/

@@ -1,11 +1,11 @@
 import {
   update_offsets,
   type FieldMatch,
+  type Index,
+  type OffsetMatch,
   type OffsetType,
   type PushFieldInfo,
   type PushOffsetInfo,
-  type OffsetMatch,
-  type Index,
 } from './';
 
 async function pushField(
@@ -18,6 +18,7 @@ async function pushField(
 
     if (!match) {
       console.error(`No match found for pattern at index ${index}`);
+
       return;
     }
 
@@ -46,9 +47,11 @@ async function pushOffset(
           offsetInfo.offsets[offsetNames.indexOf(offsetNames[index])],
         )
       : null;
+
     const newType: OffsetType = newFile
       ? await newFile.findMethodType(match ? match[1] : '')
       : null;
+
     newOffsets.push({
       offset: match ? match[1] : 'Failed, please update the RegExp',
       name: offsetNames[index],
@@ -58,4 +61,4 @@ async function pushOffset(
   }
 }
 
-export { pushOffset, pushField };
+export { pushField, pushOffset };
