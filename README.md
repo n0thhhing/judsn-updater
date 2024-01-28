@@ -7,6 +7,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<body>
+
 <style>
 .logo {
   border-radius: 50%;
@@ -16,7 +18,7 @@
   translate: 5px;
 }
 </style>
-<body>
+
 # offset updater
 
 The script is designed to update offsets for judsn, the bun framework was used to develop & test everything
