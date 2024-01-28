@@ -42,7 +42,15 @@ The script is designed to update offsets in judsn
 
 For special cases like Termux, see:
 
-<a href="docs/TERMUX.md"><button style="background-color: #008CBA; color: white; padding: 8px 12px; border: none; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin: 4px 2px; cursor: pointer;">TERMUX.md</button></a>
+<br>
+<br>
+
+[<kbd> <br> termux <br> </kbd>][KBD]
+
+</div>
+
+<br>
+<br>
 
 ## Script Overview
 
@@ -62,3 +70,8 @@ Feel free to customize and expand upon this script based on your specific requir
 ---
 
 **Note:** Ensure that you have Bun installed or this will not work
+
+<!---------------------------------------------------------------------------->
+
+[KBD]: docs/TERMUX.md
+[#]: #
