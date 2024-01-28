@@ -47,7 +47,6 @@ For special cases like Termux, see:
 </div>
 <br>
 <br>
-
 ## Script Overview
 
 The main script (`index.ts`) uses TypeScript and includes the following features:
