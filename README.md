@@ -1,4 +1,16 @@
-# Offset Updater <img src="assets/logo.svg" alt="Bun" width="40" style="border-radius:50%; margin-right: 10px;"/>
+<!-- markdownlint-capture -->
+<!-- markdownlint-disable -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+
+# Offset Updater <img src="assets/logo.svg" alt="Bun" width="40" class="logo"/>
 
 The script is designed to update offsets for judsn, the bun framework was used to develop & test everything
 
@@ -60,7 +72,5 @@ Feel free to customize and expand upon this script based on your specific requir
 
 **Note:** Ensure that you have Bun installed or this will not work
 
-<!---------------------------------------------------------------------------->
-
-[KBD]: docs/TERMUX.md
-[#]: #
+</body>
+</html>
