@@ -48,5 +48,5 @@ Now, your environment is properly configured for executing scripts from this rep
 
 <!---------------------------------------------------------------------------->
 
-[KBD]: ../README.md
+[KBD]: ../
 [#]: #
