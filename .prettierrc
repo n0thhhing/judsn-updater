@@ -9,6 +9,12 @@
   "singleQuote": true,
     "overrides": [
     {
+      files: '*.svg',
+      options: {
+        parser: 'html',
+      },
+    },
+    {
       "files": ".*rc",
       "options": {
         "parser": "json"
