@@ -2,7 +2,7 @@
 <br>
 <br>
 
-[![Button Shield]][Shield]
+[<kbd> <br> termux <br> </kbd>][KBD]
 
 </div>
 
@@ -12,7 +12,5 @@
 
 <!---------------------------------------------------------------------------->
 
-[Button Shield]: https://img.shields.io/badge/Shield_Buttons-37a779?style=for-the-badge
-
-[Shield]: docs/TERMUX.md
+[KBD]: docs/TERMUX.md
 [#]: #
