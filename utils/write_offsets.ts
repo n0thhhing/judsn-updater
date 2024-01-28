@@ -1,11 +1,11 @@
 import chalk from 'chalk';
-import { type OffsetInfo } from './types';
+import type { FilePath, OffsetInfo, Time } from './types';
 
 async function writeOffsets(
-  filePath: string,
+  filePath: FilePath,
   info: OffsetInfo[],
 ): Promise<void> {
-  const startTime: number = performance.now();
+  const startTime: Time = performance.now();
 
   const lines: string[] = [];
 
@@ -15,7 +15,7 @@ async function writeOffsets(
     lines.push(line);
   }
 
-  const elapsedTime: number = performance.now() - startTime;
+  const elapsedTime: Time = performance.now() - startTime;
 
   console.log(
     chalk.grey(

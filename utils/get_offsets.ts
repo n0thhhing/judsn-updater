@@ -1,8 +1,8 @@
 import chalk from 'chalk';
-import type { FileOffsets, Offset, OffsetEntry } from './types';
+import type { FileOffsets, FilePath, Offset, OffsetEntry, Time } from './';
 
-async function getOffsets(filePath: string): Promise<FileOffsets> {
-  const startTime: number = performance.now();
+async function getOffsets(filePath: FilePath): Promise<FileOffsets> {
+  const startTime: Time = performance.now();
   const fileContent: string = await Bun.file(filePath).text();
   const lines: string[] = fileContent.split('\n');
 
@@ -20,7 +20,7 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
     );
 
     if (match) {
-      const [, offset, name] = match;
+      const [, offset, name]: string[] = match;
 
       offsets.push(offset);
       names.push(name);
@@ -33,7 +33,7 @@ async function getOffsets(filePath: string): Promise<FileOffsets> {
     }
   }
 
-  const elapsedTime: number = performance.now() - startTime;
+  const elapsedTime: Time = performance.now() - startTime;
 
   console.log(
     chalk.grey(

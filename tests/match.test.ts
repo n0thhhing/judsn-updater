@@ -1,6 +1,11 @@
 import { expect, test } from 'bun:test';
 import fs from 'fs/promises';
-import { SignatureUtils, SigniturePatterns } from '../utils';
+import {
+  SignatureUtils,
+  SigniturePatterns,
+  type Offset,
+  type OffsetPattern,
+} from '../utils';
 
 const readOffsetsFromFile = async (filePath: string) =>
   (await fs.readFile(filePath, 'utf8'))
@@ -8,30 +13,35 @@ const readOffsetsFromFile = async (filePath: string) =>
     .map((line) => parseInt(line.split(' -- ')[0]));
 
 try {
-  const [offsets, oldOffsets] = await Promise.all([
+  const [offsets, oldOffsets]: number[][] = await Promise.all([
     readOffsetsFromFile('./dist/offsets.txt'),
     readOffsetsFromFile('./datasets/offsets/offsets.txt'),
   ]);
 
-  const sig = new SignatureUtils('./datasets/dump/data.json');
+  const sig: SignatureUtils = new SignatureUtils('./datasets/dump/data.json');
 
   for (let i = 0; i < SigniturePatterns.length; i++) {
     test(`offset ${i}`, async () => {
-      const pattern = SigniturePatterns[i];
-      const [oldOffset, newOffset] = await Promise.all([
-        `0x${oldOffsets[i].toString(16).toUpperCase()}`,
-        `0x${parseInt(pattern.exec(await sig.content)[1])
-          .toString(16)
-          .toUpperCase()}`,
-      ]);
+      const pattern: OffsetPattern = SigniturePatterns[i];
+      const [oldOffset, match]: (RegExpExecArray | string | null)[] =
+        await Promise.all([
+          `0x${oldOffsets[i].toString(16).toUpperCase()}`,
+          pattern.exec(await sig.content),
+        ]);
 
-      const [signatureName, expectedOffset] = await Promise.all([
-        sig.getName(newOffset),
-        `0x${offsets[i].toString(16).toUpperCase()}`,
-      ]);
+      const newOffset: Offset = `0x${parseInt(
+        match && match[1] ? match[1] : '0',
+      )
+        .toString(16)
+        .toUpperCase()}`;
+      const [signatureName, expectedOffset]: (string | null)[] =
+        await Promise.all([
+          sig.getName(newOffset),
+          `0x${offsets[i].toString(16).toUpperCase()}`,
+        ]);
 
       console.log({ oldOffset, newOffset, signatureName });
-      expect(newOffset).toMatch(expectedOffset);
+      expect(newOffset).toMatch(expectedOffset ? expectedOffset : '');
     });
   }
 } catch (error) {

@@ -9,20 +9,29 @@ type Offset = string | number;
 type Index = number;
 type Count = number;
 type ReturnedSignature = object | null;
+type OffsetPattern = RegExp;
+type SignatureName = string;
+type Signature = string;
 
 interface ClassUtil {
-  getContent(): Promise<string>;
-  findMethodType(offset: Offset): Promise<string | null>;
+  getContent(): Promise<CsContent>;
+  findMethodType(offset: Offset): Promise<OffsetType>;
 }
 
 interface SignatureUtil {
-  getContent(): Promise<string>;
+  getContent(): Promise<Data>;
   getSignature(offset: Offset, amount: number = 0): Promise<object | null>;
+  getName(offset: Offset): Promise<SignatureName | null>;
   getSigOffset(
     signiture: MethodSignature,
     prevousSig?: MethodSignature,
     signatures: MethodSignature[],
-  ): Promise<object | null>;
+  ): Promise<SignatureOutput | null>;
+}
+
+interface SignatureOutput {
+  newOffset: Offset;
+  regex: OffsetPattern;
 }
 
 interface configPaths {
@@ -101,10 +110,14 @@ export {
   OffsetEntry,
   OffsetInfo,
   OffsetMatch,
+  OffsetPattern,
   OffsetType,
   PushFieldInfo,
   PushOffsetInfo,
   ReturnedSignature,
+  Signature,
+  SignatureName,
+  SignatureOutput,
   SignatureUtil,
   Time,
   UpdaterConfig,

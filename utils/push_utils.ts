@@ -3,18 +3,21 @@ import {
   type FieldMatch,
   type Index,
   type OffsetMatch,
+  type OffsetPattern,
   type OffsetType,
   type PushFieldInfo,
   type PushOffsetInfo,
 } from './';
 
 async function pushField(
-  pattern: RegExp,
+  pattern: OffsetPattern,
   index: Index,
   fileInfo: PushFieldInfo,
 ): Promise<void> {
   try {
-    const match = pattern.exec(fileInfo.newContent) as FieldMatch | null;
+    const match: RegExpExecArray | null = pattern.exec(
+      fileInfo.newContent,
+    ) as FieldMatch | null;
 
     if (!match) {
       console.error(`No match found for pattern at index ${index}`);
@@ -26,21 +29,29 @@ async function pushField(
       offset: match[1] || 'Failed, please update the RegExp',
       name: fileInfo.FieldNames[index],
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('An error occurred in pushField:', error);
   }
 }
 
 async function pushOffset(
-  pattern: RegExp,
+  pattern: OffsetPattern,
   index: Index,
   fileInfo: PushOffsetInfo,
 ): Promise<void> {
-  const { oldFile, newFile, offsetInfo, newContent, offsetNames, newOffsets } =
-    fileInfo;
+  const {
+    oldFile,
+    newFile,
+    offsetInfo,
+    newContent,
+    offsetNames,
+    newOffsets,
+  }: PushOffsetInfo = fileInfo;
 
   if (update_offsets && offsetInfo && offsetNames) {
-    const match = pattern.exec(newContent) as OffsetMatch | null;
+    const match: RegExpExecArray | null = pattern.exec(
+      newContent,
+    ) as OffsetMatch | null;
 
     const oldType: OffsetType | null = oldFile
       ? await oldFile.findMethodType(
