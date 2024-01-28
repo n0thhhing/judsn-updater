@@ -1,24 +1,5 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
-<!DOCTYPE html>
-<html leng="eng">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-<style>
-.logo {
-  border-radius: 50%;
-  vertical-align: -5px;
-  height: 25px;
-   width: 25px;
-  translate: 5px;
-}
-</style>
-
 # offset updater
 
 The script is designed to update offsets for judsn, the bun framework was used to develop & test everything
@@ -31,18 +12,18 @@ The script is designed to update offsets for judsn, the bun framework was used t
 
 1. Clone this repository:
 
-    ```bash
-    git clone https://github.com/n0thhhing/judsn-updater
-    cd judsn-updater
-    ```
+   ```bash
+   git clone https://github.com/n0thhhing/judsn-updater
+   cd judsn-updater
+   ```
 
 2. Install dependencies:
 
-    ```bash
-    bun install
-    ```
+   ```bash
+   bun install
+   ```
 
-### Installing Bun [<img src="assets/logo.svg" alt="Offset Updater" class="logo"/>](https://bun.sh/docs)
+### Installing Bun [<img src="assets/logo.svg" alt="Offset Updater" class="logo" style="border-radius: 50%; vertical-align: -5px; height: 25px; width: 25px; translate: 5px;"/>](https://bun.sh/docs)
 
 - The simplest way to install is found in the official [<kbd>`bun.sh docs`</kbd>](https://bun.sh/docs/installation).
 
@@ -56,9 +37,9 @@ The script is designed to update offsets for judsn, the bun framework was used t
 
 3. Run the script:
 
-    ```bash
-    bun run index.js
-    ```
+   ```bash
+   bun run index.js
+   ```
 
 4. The script will update the offsets and log the results.
 
@@ -76,6 +57,3 @@ Feel free to customize and expand upon this based on your specific requirements.
 ---
 
 **Note:** Ensure that you have Bun installed or this will not work
-
-</body>
-</html>
