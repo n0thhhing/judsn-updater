@@ -1,8 +1,20 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
-# <img src="../assets/wordmark.svg" alt="Bun" width="75" height="35" style="translate: -4px; vertical-align: -3px;"/>on Termux  <img src="../assets/Termux.svg" alt="Bun on Termux" width="30" height="30" style="border-radius: 20px; padding: 10px; vertical-align: -30; translate: 25px"/>
+<style>
+  .termux {
+    border-radius: 20px;
+    padding: 10px;
+    vertical-align: -30;
+    translate: 25px;
+    width: 30px;
+    height: 30px;
+  }
+</style>
+
+# <img src="../assets/wordmark.svg" alt="Bun" width="75" height="35" style="translate: -4px; vertical-align: -3px;"/>on Termux <img src="../assets/Termux.svg" alt="Bun on Termux" class="termux"/>
 
 Installing Bun on Termux might seem unconventional due to its x64 architecture challenges, but there are effective workarounds. Follow these steps for a successful installation:
+
 ```bash
 # Install proot-distro for managing Linux distributions
 pkg update && pkg install proot-distro -y
@@ -13,7 +25,9 @@ proot-distro install debian && proot-distro login debian
 # Install bun using the official script
 curl -fsSL https://bun.sh/install | bash
 ```
+
 After the installation, there's an additional step to make bun usable because of a file system issue. Add the following to your shell configuration file (e.g., `~/.bashrc`):
+
 ```bash
 # Open your preferred text editor to edit the bash configuration
 vim ~/.bashrc  # You can use any text editor you prefer
@@ -31,10 +45,13 @@ bun_function() {
     fi
 }
 ```
+
 Then your ready to use bun freely, to verify installation use:
+
 ```bash
 bun --version
 ```
+
 For further use outside this repo, see [<kbd>docs</kbd>](https://bun.sh/docs)
 
 Now, your environment is properly configured for executing scripts from this repository.
@@ -43,12 +60,10 @@ Now, your environment is properly configured for executing scripts from this rep
 <br>
 
 [<kbd> <br> Go Back <br> </kbd>][KBD]
+
 </div>
 
 <br>
 <br>
 
-<!---------------------------------------------------------------------------->
-
 [KBD]: ../README.md
-[#]: #

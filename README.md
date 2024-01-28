@@ -1,23 +1,23 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
-<!DOCTYPE html>
 
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="assets/style.css">
-</head>
-<body>
+<style>
+.logo {
+  border-radius: 50%;
+  vertical-align: -5px;
+  height: 25px;
+   width: 25px;
+  translate: 5px;
+}
+</style>
 
-# Offset Updater <img src="assets/logo.svg" alt="Bun" width="40" class="logo"/>
+# offset updater
 
 The script is designed to update offsets for judsn, the bun framework was used to develop & test everything
 
 ## Prerequisites
 
-- Bun installed
-- Required dependencies installed (`chalk`)
+- Required dependencies installed (`chalk`, `typescript`, `Bun`)
 
 ## Installation
 
@@ -34,6 +34,12 @@ The script is designed to update offsets for judsn, the bun framework was used t
     bun install
     ```
 
+### Installing Bun [<img src="assets/logo.svg" alt="Offset Updater" class="logo"/>](https://bun.sh/docs)
+
+- The simplest way to install is found in the official [<kbd>`bun.sh docs`</kbd>](https://bun.sh/docs/installation).
+
+- For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>`TERMUX.md`</kbd>](docs/TERMUX.md)</span>
+
 ## Usage
 
 1. Open the `config.json` file in the `config` directory and configure the necessary parameters (`old_dump`, `new_dump`, `offset_file`).
@@ -48,29 +54,17 @@ The script is designed to update offsets for judsn, the bun framework was used t
 
 4. The script will update the offsets and log the results.
 
-## Installing bun
-
-- The most simple way to install is using curl or wget, see [<kbd>docs</kbd>](https://bun.sh/docs/installation) for more information.
-- For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>TERMUX.md</kbd>](docs/TERMUX.md)</span>
-
-## Script Overview
-
-The main script (`index.ts`) uses TypeScript and includes the following features:
-
-- Reads the content of a specified file (`new_dump`).
-- Retrieves offset information using a utility function from `get_offsets.ts`.
-- Uses regular expressions to extract offsets from the file content.
-- Logs the updated offsets if "log_offsets" is true.
-
 ## Troubleshooting
 
-In case of errors or unexpected behavior, check the error messages logged in the console.
+In case of errors or unexpected behavior, check the error messages logged in the console or submit an issue.
 
-Feel free to customize and expand upon this script based on your specific requirements.
+Feel free to customize and expand upon this based on your specific requirements.
+
+## Extras
+
+- [<kbd>`bench.test.ts`</kbd>](tests/bench.test.ts) - for updating offsets other than the judsn one (you can update any offset)
+- [<kbd>`match.test.ts`</kbd>](tests/match.test.ts) - a slighly faster updater for judsn
 
 ---
 
 **Note:** Ensure that you have Bun installed or this will not work
-
-</body>
-</html>
