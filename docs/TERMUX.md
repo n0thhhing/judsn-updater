@@ -11,7 +11,7 @@
   }
 </style>
 
-# <img src="../assets/wordmark.svg" alt="Bun" width="75" height="35" style="translate: -4px; vertical-align: -3px;"/>on Termux <img src="../assets/Termux.svg" alt="Bun on Termux" class="termux"/>
+# <img src="../assets/wordmark.svg" alt="Bun" width="75" height="35" style="translate: -4px; vertical-align: -3px;"/>on Termux <img src="../assets/Termux.svg" alt="Bun on Termux" class="termux" style="border-radius: 20px; padding: 10px; vertical-align: -30; translate: 25px; width: 30px; height: 30px;"/>
 
 Installing Bun on Termux might seem unconventional due to its x64 architecture challenges, but there are effective workarounds. Follow these steps for a successful installation:
 

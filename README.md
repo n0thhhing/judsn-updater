@@ -1,5 +1,6 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
+
 # offset updater
 
 The script is designed to update offsets for judsn, the bun framework was used to develop & test everything
