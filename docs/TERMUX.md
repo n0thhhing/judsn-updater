@@ -33,7 +33,7 @@ Then your ready to use bun freely, to verify installation use:
 ```bash
 bun --version
 ```
-For further use outside this repo, see [<kbd>docs</kbd>](https://bun.sh/docs/installation)
+For further use outside this repo, see [<kbd>docs</kbd>](https://bun.sh/docs)
 
 Now, your environment is properly configured for executing scripts from this repository.
 
@@ -48,5 +48,5 @@ Now, your environment is properly configured for executing scripts from this rep
 
 <!---------------------------------------------------------------------------->
 
-[KBD]: ../README.md
+[KBD]: ../
 [#]: #
