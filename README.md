@@ -39,8 +39,7 @@ The script is designed to update offsets in judsn
 ## Installing bun
 
 - The most simple way to install is using curl or wget, see [<kbd>docs</kbd>](https://bun.sh/docs/installation) for more information.
-- For special cases like Termux, see:
-<span style="margin-right: 5px;">[<kbd>TERMUX.md</kbd>](docs/TERMUX.md)</span>
+- For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>TERMUX.md</kbd>](docs/TERMUX.md)</span>
 
 ## Script Overview
 
