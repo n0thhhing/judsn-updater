@@ -38,37 +38,11 @@ The script is designed to update offsets in judsn
 
 ## Installing bun
 
-- The most simple way to install is using curl or wget, see <a href="https://bun.sh/docs/installation" class="btn btn-primary">Installation Docs</a> for more information.
+- The most simple way to install is using curl or wget, see [docs](https://bun.sh/docs/installation) for more information.
 
-- For special cases like Termux, see: <a href="docs/TERMUX.md" class="btn btn-secondary">Termux Installation</a>
+For special cases like Termux, see:
 
-<style>
-  /* Button Styles */
-  .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    margin-right: 10px; /* Add margin to separate buttons */
-  }
-
-  /* Primary Button */
-  .btn-primary {
-    background-color: #3498db;
-    color: #fff;
-  }
-
-  /* Secondary Button */
-  .btn-secondary {
-    background-color: #2ecc71;
-    color: #fff;
-  }
-</style>
-
+<a href="docs/TERMUX.md"><button style="background-color: #008CBA; color: white; padding: 8px 12px; border: none; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin: 4px 2px; cursor: pointer;">TERMUX.md</button></a>
 
 ## Script Overview
 
