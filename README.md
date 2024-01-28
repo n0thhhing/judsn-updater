@@ -41,12 +41,9 @@ The script is designed to update offsets in judsn
 - The most simple way to install is using curl or wget, see [docs](https://bun.sh/docs/installation) for more information.
 
 For special cases like Termux, see:
-<br>
-<br>
-[<kbd> <br> termux <br> </kbd>][KBD]
-</div>
-<br>
-<br>
+<br><br>
+[<kbd>termux</kbd>](docs/TERMUX.md)
+
 ## Script Overview
 
 The main script (`index.ts`) uses TypeScript and includes the following features:
