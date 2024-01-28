@@ -26,9 +26,9 @@ The script is designed to update offsets for judsn, the bun framework was used t
 
 ### Installing Bun [<img src="assets/logo.svg" alt="Offset Updater" class="logo" style="border-radius: 50%; vertical-align: -5px; height: 25px; width: 25px; translate: 5px;"/>](https://bun.sh/docs)
 
-- The simplest way to install is found in the official [<kbd>`bun.sh docs`</kbd>](https://bun.sh/docs/installation).
+- The simplest way to install is found in the official [<kbd>`docs` <img src="assets/icon.svg" alt="Bun on Termux" class="termux" style="vertical-align: -5px; width: 20px; height: 20px;"/></kbd>](https://bun.sh/docs/installation)
 
-- For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>`TERMUX.md`</kbd>](docs/TERMUX.md)</span>
+- For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>`TERMUX.md` </kbd>](docs/TERMUX.md)</span>
 
 ## Usage
 
