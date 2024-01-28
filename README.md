@@ -1,4 +1,4 @@
-# Judsn Offset Updater <img src="assets/logo.svg" alt="Bun" width="40" style="border-radius:50%; margin-right: 10px;"/>
+# Offset Updater <img src="assets/logo.svg" alt="Bun" width="40" style="border-radius:50%; margin-right: 10px;"/>
 
 The script is designed to update offsets for judsn
 
