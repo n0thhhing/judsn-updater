@@ -1,4 +1,4 @@
-# Bun on Termux <img src="../assets/Termux.png" alt="Bun on Termux" style="border-radius: 8px; vertical-align: middle;" width="40"/> 
+# Bun on Termux <div style="display: inline-block; background: url('../assets/Termux.png') center/cover; width: 40px; height: 40px; border-radius: 8px; margin-right: 10px;"></div>
 
 Installing Bun on Termux might seem unconventional due to its x64 architecture challenges, but there are effective workarounds. Follow these steps for a successful installation:
 ```bash
