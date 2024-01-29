@@ -24,7 +24,7 @@ The script is designed to update offsets for judsn, the bun framework was used t
    bun install
    ```
 
-### Installing Bun [<img src="./assets/logo.svg" alt="Bun" class="logo" style="border-radius: 50%; vertical-align: -5px; height: 25px; width: 25px; translate: 5px;"/>](https://bun.sh/docs)
+### Installing Bun [<img src="assets/logo.svg" alt="Bun" class="logo" style="border-radius: 50%; vertical-align: -5px; height: 25px; width: 25px; translate: 5px;"/>](https://bun.sh/docs)
 
 - The simplest way to install is found in the official [<kbd>`docs`</kbd>](https://bun.sh/docs/installation)
 
