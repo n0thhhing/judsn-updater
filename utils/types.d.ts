@@ -8,7 +8,7 @@ type CsContent = string | Promise<string>;
 type Offset = string | number;
 type Index = number;
 type Count = number;
-type ReturnedSignature = object | null;
+type ReturnedSignature = EvaluatedSignatures | null;
 type OffsetPattern = RegExp;
 type SignatureName = string;
 type Signature = string;
@@ -27,6 +27,12 @@ interface SignatureUtil {
     prevousSig?: MethodSignature,
     signatures: MethodSignature[],
   ): Promise<SignatureOutput | null>;
+}
+
+interface EvaluatedSignatures {
+  sig1: string;
+  signature: string;
+  signatures: string[];
 }
 
 interface SignatureOutput {
@@ -80,6 +86,15 @@ interface OffsetMatch extends RegExpExecArray {
   3: string; // Matched content after EventHandler/Action/Tuple/etc.
 }
 
+interface PushSignatureOffsetInfo {
+  oldFile: ClassUtil | null;
+  newFile: ClassUtil | null;
+  signatureContent: Data;
+  offsetInfo?: FileOffsets;
+  offsetNames?: string[] | null;
+  newOffsets: OffsetInfo[];
+}
+
 interface PushFieldInfo {
   newContent: FileContent;
   FieldNames: string[];
@@ -114,6 +129,7 @@ export {
   OffsetType,
   PushFieldInfo,
   PushOffsetInfo,
+  PushSignatureOffsetInfo,
   ReturnedSignature,
   Signature,
   SignatureName,

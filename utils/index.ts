@@ -38,6 +38,7 @@ export type {
   OffsetType,
   PushFieldInfo,
   PushOffsetInfo,
+  PushSignatureOffsetInfo,
   ReturnedSignature,
   Signature,
   SignatureName,

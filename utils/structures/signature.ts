@@ -35,7 +35,7 @@ class SignatureUtils implements SignatureUtil {
           encoding: 'utf8',
         });
 
-        let data: string= '';
+        let data: string = '';
 
         stream.on('data', (chunk) => {
           data += chunk;
@@ -107,18 +107,6 @@ class SignatureUtils implements SignatureUtil {
     }
   }
 
-  async getName(offset: Offset): Promise<SignatureName | null> {
-    offset =
-      typeof offset === 'number'
-        ? offset.toString()
-        : parseInt(offset).toString();
-    const match: RegExpExecArray | null = new RegExp(
-      `"Address": ${offset},\n\\s+"Name": "(.*)"`,
-      'g',
-    ).exec(await this.content);
-    return match && match[1] ? match[1] : null;
-  }
-
   public async getSigOffset(
     signature: MethodSignature,
     previousSignature?: MethodSignature,
@@ -158,6 +146,18 @@ class SignatureUtils implements SignatureUtil {
           regex,
         }
       : null;
+  }
+
+  async getName(offset: Offset): Promise<SignatureName | null> {
+    offset =
+      typeof offset === 'number'
+        ? offset.toString()
+        : parseInt(offset).toString();
+    const match: RegExpExecArray | null = new RegExp(
+      `"Address": ${offset},\n\\s+"Name": "(.*)"`,
+      'g',
+    ).exec(await this.content);
+    return match && match[1] ? match[1] : null;
   }
 }
 export { SignatureUtils };

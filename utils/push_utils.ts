@@ -7,6 +7,7 @@ import {
   type OffsetType,
   type PushFieldInfo,
   type PushOffsetInfo,
+  type PushSignatureOffsetInfo,
 } from './';
 
 async function pushField(
@@ -31,6 +32,57 @@ async function pushField(
     });
   } catch (error: unknown) {
     console.error('An error occurred in pushField:', error);
+  }
+}
+
+/*
+[{
+	"resource": "/storage/emulated/0/Download/projects/judsn_updater/utils/push_utils.ts",
+	"owner": "typescript",
+	"code": "18047",
+	"severity": 8,
+	"message": "'signatureUtil' is possibly 'null'.",
+	"source": "ts",
+	"startLineNumber": 55,
+	"startColumn": 15,
+	"endLineNumber": 55,
+	"endColumn": 28
+}]
+*/
+async function pushSignatureOffset(
+  pattern: OffsetPattern,
+  index: Index,
+  fileInfo: PushSignatureOffsetInfo,
+): Promise<void> {
+  const {
+    oldFile,
+    newFile,
+    signatureContent,
+    offsetInfo,
+    offsetNames,
+    newOffsets,
+  }: PushSignatureOffsetInfo = fileInfo;
+  if (update_offsets && offsetInfo && offsetNames) {
+    const match: RegExpExecArray | null = pattern.exec(
+      await signatureContent,
+    ) as OffsetMatch | null;
+
+    const oldType: OffsetType | null = oldFile
+      ? await oldFile.findMethodType(
+          offsetInfo.offsets[offsetNames.indexOf(offsetNames[index])],
+        )
+      : null;
+
+    const newType: OffsetType = newFile
+      ? await newFile.findMethodType(match ? match[1] : '')
+      : null;
+
+    newOffsets.push({
+      offset: match ? match[1] : 'Failed, please update the RegExp',
+      name: offsetNames[index],
+      typeStatus:
+        oldType && newType && oldType === newType ? 'Passed' : 'Failed',
+    });
   }
 }
 
