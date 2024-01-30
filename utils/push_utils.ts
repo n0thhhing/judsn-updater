@@ -35,20 +35,6 @@ async function pushField(
   }
 }
 
-/*
-[{
-	"resource": "/storage/emulated/0/Download/projects/judsn_updater/utils/push_utils.ts",
-	"owner": "typescript",
-	"code": "18047",
-	"severity": 8,
-	"message": "'signatureUtil' is possibly 'null'.",
-	"source": "ts",
-	"startLineNumber": 55,
-	"startColumn": 15,
-	"endLineNumber": 55,
-	"endColumn": 28
-}]
-*/
 async function pushSignatureOffset(
   pattern: OffsetPattern,
   index: Index,
