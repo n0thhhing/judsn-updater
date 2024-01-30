@@ -1,5 +1,6 @@
 import { expect, test } from 'bun:test';
 import fs from 'fs/promises';
+
 import {
   SignatureUtils,
   SigniturePatterns,
@@ -10,7 +11,7 @@ import {
 const readOffsetsFromFile = async (filePath: string) =>
   (await fs.readFile(filePath, 'utf8'))
     .split('\n')
-    .map((line) => parseInt(line.split(' -- ')[0]));
+    .map((line: string) => parseInt(line.split(' -- ')[0]));
 
 try {
   const [offsets, oldOffsets]: number[][] = await Promise.all([

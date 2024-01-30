@@ -16,9 +16,6 @@ export { FieldPatterns, OffsetPatterns, SigniturePatterns } from './patterns';
 export { pushField, pushOffset } from './push_utils';
 export { ClassUtils } from './structures/class_utils';
 export { SignatureUtils } from './structures/signature.ts';
-export { writeOffsets } from './write_offsets';
-export { writeRegex } from './write_regex';
-
 export type {
   ClassUtil,
   Count,
@@ -47,3 +44,5 @@ export type {
   Time,
   UpdaterConfig,
 } from './types.d';
+export { writeOffsets } from './write_offsets';
+export { writeRegex } from './write_regex';

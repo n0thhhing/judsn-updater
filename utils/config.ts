@@ -1,4 +1,5 @@
 import config from '../config/config.json';
+
 import type { UpdaterConfig } from './types';
 
 const {

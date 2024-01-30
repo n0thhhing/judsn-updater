@@ -3,9 +3,11 @@ import type { OffsetPattern } from './';
 const OffsetPatterns: OffsetPattern[] = [
   /\/\/ RVA: (0x4[0-9A-F]+).*\n\s+internal int \S+\(int \S+\).*\n\n\s+\/\/ RVA.*\n\s+internal float get_Health/, // clan parts
   /\/\/ RVA: (0x4[0-9A-F]+).*\n\s+public int \S+\(int \S+\).*\n\n.*\n\s+public int \S+.*\n\n.*\n\s+public void \.ctor/, // clan parts
-  /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal int get_Energy/, // clan energy
+  /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal int get_Energy/, // clan
+  // energy
   /\/\/ RVA.*\n\s+internal void .ctor\(\S+ \S+\).*\n\n.*\n\s+internal void \.ctor\(string \S+.*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int/g, // free lottery
-  /get_BaseCount.*\n\n\s+\/\/ RVA: (0x3[A-F0-9]+)/g, // lottery currence
+  /get_BaseCount.*\n\n\s+\/\/ RVA: (0x3[A-F0-9]+)/g, // lottery
+  // currence
   /\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int \S+.*\n\n\s+.*\n\s+private void \S+\(int \S+\).*\n\n.*\n\s+internal int \S+\(\)/g, // collectibles
   /\s+\/\/ RVA: 0x3[A-F0-9]+.*\n\s+public bool \S+\(Nullable<.*FreeSpin.*\n\n\s+\/\/ RVA: (0x3[A-F0-9]+)/g, // free chest count
   /(0x2[A-F0-9]+).*\n\s+internal static bool \S+ \S+.*\n\n.*\n.*\n.*\n.*\n.*\n\n.*\n\s+internal static void.*bool.*= True.*\n\n.*\n.*\n\n.*\n\s+internal static Offer/g, // gem clicker
@@ -74,7 +76,7 @@ const OffsetPatterns: OffsetPattern[] = [
   /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+private void \.ctor/g, // collectibles v2
   /internal static bool \S+CategoryNames \S+.*\n\n\s+\/\/ RVA: 0x3[A-F0-9]+.*\s+internal static bool \S+CategoryNames \S+.*\n\n.*\n\s+internal static bool \S+CategoryNames.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+CategoryNames.*\n\n.*\n\s+internal static bool/g, // unreleased royal
   /public void \.ctor\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(ItemRecord x\).*\n\n.*\n\s+internal bool \S+\(\S+ x.*\n\n.*\n\s+internal bool/g, // unrelleased royal
-  /internal void .ctor\(int \S+ string \S+\).*\n\n.*\n\s+internal void \.ctor.*\n\n.*\n\s+internal void .ctor\(string \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, //armory price
+  /internal void .ctor\(int \S+ string \S+\).*\n\n.*\n\s+internal void \.ctor.*\n\n.*\n\s+internal void .ctor\(string \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/g, // armory price
 ];
 
 const FieldPatterns: OffsetPattern[] = [
@@ -155,9 +157,12 @@ const FieldPatterns: OffsetPattern[] = [
   /public bool bleedingImmunity; \/\/ (0x\S+)/g, // effect immunity
   /public bool toxicImmunity; \/\/ (0x\S+)/g, // effect immunity
   /public bool isKilledTargetExplode; \/\/ (0x\S+)/g, // explode die
-  /public float killedTargetExplosionDamageMultiplier; \/\/ (0x\S+)/g, // explode die
-  /public float killedTargetExplosionRadiusDamage; \/\/ (0x\S+)/g, // explode die
-  /public float killedTargetExplosionRadiusDamageSelf; \/\/ (0x\S+)/g, // explode die
+  /public float killedTargetExplosionDamageMultiplier; \/\/ (0x\S+)/g, // explode
+  // die
+  /public float killedTargetExplosionRadiusDamage; \/\/ (0x\S+)/g, // explode
+  // die
+  /public float killedTargetExplosionRadiusDamageSelf; \/\/ (0x\S+)/g, // explode
+  // die
   /public bool isCharm; \/\/ (0x\S+)/g, // charm
   /public float charmTime; \/\/ (0x\S+)/g, // charm
   /public bool isWeaknessEffect; \/\/ (0x\S+)/g, // weak

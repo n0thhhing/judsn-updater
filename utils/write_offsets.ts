@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+
 import type { FilePath, OffsetInfo, Time } from './types';
 
 async function writeOffsets(
