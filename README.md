@@ -52,7 +52,7 @@ Feel free to customize and expand upon this based on your specific requirements.
 
 ## Extras
 
-- [<kbd>`bench.test.ts`</kbd>](tests/bench.test.ts) - for updating offsets other than the judsn one (you can update any offset)
+- [<kbd>`bench.test.ts`</kbd>](tests/bench.test.ts) - for updating offsets other than the judsn ones (you can update any offset)
 - [<kbd>`match.test.ts`</kbd>](tests/match.test.ts) - a slighly faster updater for judsn
 
 ---

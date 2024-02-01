@@ -1,12 +1,12 @@
 {
   "name": "judsn_updater",
   "description": "The script is designed to update offsets in judsn",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.ts",
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "format": "prettier -w **/*{.js,.ts,.json,.svg}",
+    "format": "prettier -w **/*{.js,.ts,.json,.svg,.md}",
     "lint": "eslint ."
   },
   "dependencies": {
