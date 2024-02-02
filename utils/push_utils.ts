@@ -90,7 +90,6 @@ async function pushOffset(
     const match: RegExpExecArray | null = pattern.exec(
       newContent,
     ) as OffsetMatch | null;
-
     const oldType: OffsetType | null = oldFile
       ? await oldFile.findMethodType(
           offsetInfo.offsets[offsetNames.indexOf(offsetNames[index])],
