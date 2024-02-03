@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import {
   update_offsets,
   type FieldMatch,
@@ -87,9 +88,16 @@ async function pushOffset(
   }: PushOffsetInfo = fileInfo;
 
   if (update_offsets && offsetInfo && offsetNames) {
+    const startTime = Bun.nanoseconds();
     const match: RegExpExecArray | null = pattern.exec(
       newContent,
     ) as OffsetMatch | null;
+    const endTime = Bun.nanoseconds();
+    const elapsedTime = (endTime - startTime) / 1_000_000;
+
+    console.log(
+      chalk.grey(`${offsetNames[index]}: ${chalk.blue(elapsedTime)}ms`),
+    );
     const oldType: OffsetType | null = oldFile
       ? await oldFile.findMethodType(
           offsetInfo.offsets[offsetNames.indexOf(offsetNames[index])],
