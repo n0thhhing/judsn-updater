@@ -1,5 +1,3 @@
-import type { OffsetPattern } from './';
-
 const OffsetPatterns: OffsetPattern[] = [
   /internal int get_NextNextUpRewardPoints\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal [^A-Za-z| ]+ get_UpgradeCards\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int get_UpgradeTime\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int [^A-Za-z| ]+\(int [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal float get_HealthMonster\(\) \{ \}/, // clan parts
   /public int get_NextUpPower\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // clan parts

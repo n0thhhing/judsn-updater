@@ -21,6 +21,6 @@
     
     /* Declarations */
     "declaration": true,
-    "outDir": "./dist",
+    "typeRoots": ["./node_modules/@types", "utils/types/global.d.ts"],
   }
 }

@@ -1,7 +1,5 @@
 import * as fs from 'fs';
 
-import type { FilePath, OffsetPattern } from './';
-
 function writeRegex(regexArray: OffsetPattern[], filePath: FilePath): void {
   fs.writeFileSync(
     filePath,

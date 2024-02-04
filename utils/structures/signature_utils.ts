@@ -2,22 +2,7 @@ import chalk from 'chalk';
 import fs from 'fs';
 import { performance } from 'perf_hooks';
 
-import type {
-  Count,
-  Data,
-  FilePath,
-  MethodSignature,
-  Offset,
-  OffsetPattern,
-  ReturnedSignature,
-  Signature,
-  SignatureName,
-  SignatureOutput,
-  SignatureUtil,
-  Time,
-} from '..';
-
-class SignatureUtils implements SignatureUtil {
+class SignatureUtils {
   public path: FilePath;
   public readonly content: Data | Promise<Data>;
 
@@ -109,8 +94,8 @@ class SignatureUtils implements SignatureUtil {
 
   public async getSigOffset(
     signature: MethodSignature,
-    previousSignature?: MethodSignature,
-    signatures?: MethodSignature[],
+    previousSignature: MethodSignature,
+    signatures: MethodSignature[],
   ): Promise<SignatureOutput | null> {
     const dataContent: Data = await this.content;
     const sigArray: Signature[] =

@@ -2,17 +2,7 @@ import chalk from 'chalk';
 import {
   debug,
   type_check,
-  update_offsets,
-  type FieldMatch,
-  type Index,
-  type OffsetMatch,
-  type OffsetPattern,
-  type OffsetType,
-  type PushFieldInfo,
-  type PushOffsetInfo,
-  type PushSignatureOffsetInfo,
-  type Time,
-  type CompiledPattern,
+  update_offsets
 } from './';
 
 const compiledPattern: CompiledPattern = new Map<OffsetPattern, RegExp>();

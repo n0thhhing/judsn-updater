@@ -1,7 +1,5 @@
 import chalk from 'chalk';
 
-import type { FileOffsets, FilePath, Offset, OffsetEntry, Time } from './';
-
 async function getOffsets(filePath: FilePath): Promise<FileOffsets> {
   const startTime: Time = performance.now();
   const fileContent: string = await Bun.file(filePath).text();

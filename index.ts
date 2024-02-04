@@ -17,10 +17,6 @@ import {
   update_fields,
   update_offsets,
   writeOffsets,
-  type FileContent,
-  type FileOffsets,
-  type OffsetInfo,
-  type Time,
 } from './utils';
 
 async function main() {

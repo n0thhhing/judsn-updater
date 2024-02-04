@@ -1,5 +1,3 @@
-import type { UpdaterConfig } from './types';
-
 const {
   update_offsets,
   update_fields,

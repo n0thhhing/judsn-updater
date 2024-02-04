@@ -1,17 +1,7 @@
 import chalk from 'chalk';
 import * as fs from 'fs';
 
-import type {
-  ClassUtil,
-  CsContent,
-  FilePath,
-  Offset,
-  OffsetPattern,
-  OffsetType,
-  Time,
-} from '../';
-
-class ClassUtils implements ClassUtil {
+class ClassUtils {
   public path: FilePath;
   public readonly content: CsContent | Promise<CsContent>;
 
