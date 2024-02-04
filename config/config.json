@@ -1,8 +1,10 @@
 {
   "update_offsets": true,
-  "update_fields": false,
+  "update_fields": true,
   "log_offsets": false,
   "output_signature": false,
+  "type_check": false,
+  "debug": false,
   "paths": {
     "regex_out": "dist/regex.ts",
     "old_dump": "datasets/dump/old.cs",

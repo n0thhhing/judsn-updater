@@ -1,5 +1,3 @@
-import config from '../config/config.json';
-
 import type { UpdaterConfig } from './types';
 
 const {
@@ -7,6 +5,8 @@ const {
   update_fields,
   log_offsets,
   output_signature,
+  type_check,
+  debug,
   paths: {
     regex_out,
     old_dump,
@@ -16,10 +16,11 @@ const {
     field_output,
     offset_output,
   },
-}: UpdaterConfig = config;
+}: UpdaterConfig = await import("../tests/test.config.json" || "../config/config.json")
 
 export {
-  config,
+  debug,
+  type_check,
   field_file,
   field_output,
   log_offsets,

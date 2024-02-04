@@ -15,7 +15,7 @@ import type {
   SignatureOutput,
   SignatureUtil,
   Time,
-} from '../';
+} from '..';
 
 class SignatureUtils implements SignatureUtil {
   public path: FilePath;

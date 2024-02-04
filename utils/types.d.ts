@@ -1,6 +1,6 @@
-type FileContent = string;
-type OffsetType = string | null;
-type Time = number;
+declare type FileContent = string;
+declare type OffsetType = string | null;
+declare type Time = number;
 type FilePath = string;
 type Data = string | Promise<string>;
 type MethodSignature = string;
@@ -12,6 +12,7 @@ type ReturnedSignature = EvaluatedSignatures | null;
 type OffsetPattern = RegExp;
 type SignatureName = string;
 type Signature = string;
+type CompiledPattern = Map<OffsetPattern, RegExp>;
 
 interface ClassUtil {
   getContent(): Promise<CsContent>;
@@ -55,6 +56,8 @@ interface UpdaterConfig {
   update_offsets: boolean;
   update_fields: boolean;
   output_signature: boolean;
+  type_check: boolean;
+  debug: boolean;
   paths: configPaths;
 }
 
@@ -137,4 +140,5 @@ export {
   SignatureUtil,
   Time,
   UpdaterConfig,
+  CompiledPattern,
 };
