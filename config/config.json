@@ -1,6 +1,6 @@
 {
   "update_offsets": true,
-  "update_fields": true,
+  "update_fields": false,
   "log_offsets": false,
   "output_signature": false,
   "paths": {

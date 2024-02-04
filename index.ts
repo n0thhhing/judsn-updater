@@ -68,7 +68,10 @@ async function main() {
       console.log(
         chalk.grey(
           `Total processing time: ${chalk.blue(totalElapsedTime.toFixed(3))}ms`,
-        ),
+        ) +
+          chalk.grey(
+            `\nAverage processing time: ${chalk.blue((totalElapsedTime / newOffsets.length).toFixed(3))}ms`,
+          ),
       );
       writeOffsets(offset_output, newOffsets);
     }

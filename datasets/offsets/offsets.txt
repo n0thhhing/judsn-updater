@@ -51,8 +51,8 @@
 0x207CD58 -- set custom level
 0x37F083C -- Show all Deleted/Exclusive Gadgets [1]
 0x40F6A2C -- Show all Deleted/Exclusive Gadgets [2]
-0x37F083C -- unlock hidden/exclusive gadgets [true]
-0x40FD8BC -- unlock hidden/exclusive gadgets 2
+0x37F083C -- unlock hidden/exclusive gadgets [1] [true]
+0x40FD8BC -- unlock hidden/exclusive gadgets [2]
 0x2EC55DC -- emperor
 0x2735C04 -- inf 2x rew
 0x2151640 -- max pass[temp]

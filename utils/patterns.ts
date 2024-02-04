@@ -1,17 +1,17 @@
 import type { OffsetPattern } from './';
 
 const OffsetPatterns: OffsetPattern[] = [
-  /internal int get_UpgradeTime\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: \S+ VA: \S+\n\s+internal int [^A-Fa-f| ]+\(int [^A-F]+\) \{ \}\n\n\s+\/\/ RVA: \S+ Offset: \S+ VA: \S+\n\s+internal float get_healthMonster\(\) \{ \}/, // clan parts
+  /internal int get_NextNextUpRewardPoints\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal [^A-Za-z| ]+ get_UpgradeCards\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int get_UpgradeTime\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int [^A-Za-z| ]+\(int [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal float get_HealthMonster\(\) \{ \}/, // clan parts
   /public int get_NextUpPower\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // clan parts
   /\/\/ RVA: (0x[A-F0-9]+) Offset: \S+ VA: \S+\n\s+internal int get_Energy/, // clan energy
   /\/\/ RVA.*\n\s+internal void .ctor\(\S+ \S+\).*\n\n.*\n\s+internal void \.ctor\(string \S+.*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int/, // free lottery
   /get_BaseCount.*\n\n\s+\/\/ RVA: (0x3[A-F0-9]+)/, // lottery currency
-  /\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int \S+.*\n\n\s+.*\n\s+private void \S+\(int \S+\).*\n\n.*\n\s+internal int \S+\(\)/, // collectibles
-  /\s+\/\/ RVA: 0x3[A-F0-9]+.*\n\s+public bool \S+\(Nullable<.*FreeSpin.*\n\n\s+\/\/ RVA: (0x3[A-F0-9]+)/, // free chest count
+  /internal int [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private void [^A-Za-z| ]+\(int [^A-Za-z| ]+\) \{ \}/, // collectibles
+  /public bool [^A-Za-z| ]+\(Nullable<[^A-Za-z| ]+\.FreeSpin\.[^A-Za-z| ]+> [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+public int [^A-Za-z| ]+\(Nullable<[^A-Za-z| ]+\.FreeSpin\.[^A-Za-z| ]+ [^A-Za-z| ]+\) \{ \}/, // free chest count
   /(0x2[A-F0-9]+).*\n\s+internal static bool \S+ \S+.*\n\n.*\n.*\n.*\n.*\n.*\n\n.*\n\s+internal static void.*bool.*= True.*\n\n.*\n.*\n\n.*\n\s+internal static Offer/, // gem clicker
   /internal int \S+\(\).*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+internal void \S+\(int \S+.*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal bool \S+.*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal bool \S+.*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal bool \S+/, // task clicker
   /internal void \.ctor\(Dictionary<string\, object> \S+.*\n\n.*\n\s+internal Dictionary<string, object> \S+\(\).*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal bool/, // pixel clicker
-  /\[CompilerGenerated\]\n\s+\/\/ RVA: 0x5.*\n\s+internal int \S+\(\).*\n\n\s+\[CompilerGenerated\]\n.*\n\s+private void \S+\(int \S+\).*\n\n\s+\/\/ RVA: (0x5[A-F0-9]+).*\n\s+internal bool/, // black market clicker
+  /private void [^A-Za-z| ]+\(int [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal bool [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal [^A-Za-z| ]+ [^A-Za-z| ]+\(\) \{ \}/, // black market clicker
   /\[CompilerGenerated\]\n.*\n\s+internal static void \S+\(Action<string> \S+.*\n\n\s+\/\/ RVA: 0x2.*\n\s+internal static GameOb.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // gadget unlocker
   /internal ModuleData\.ModuleType \S+\(\).*\n\n\s+\/\/ RVA: 0x2.*\n\s+internal ModuleData\.ModuleCategory \S+\(\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // module %
   /internal void \.ctor\(int \S+ ModuleData.ModuleRarity .*\n\n.*\n\s+internal bool.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // max modules
@@ -29,49 +29,49 @@ const OffsetPatterns: OffsetPattern[] = [
   /internal void \S+\(WeaponSounds\.\S+ \S+ = 0.*\n\n.*\n.*\n\n\s+\/\/ RVA: (0x4[A-F0-9]+)/, // god
   /private void \S+\(ref float.*\n\n.*\n.*\n\n\s+\/\/ RVA: (0x4[A-F0-9]+)/, // god
   /private void OnDestroy\(\).*\n\n\s+\/\/ RVA: (0x5[A-F0-9]+).*\n\s+private void OnTriggerEnter\(/, // god
-  /\/\/ RVA: (0x[A-F0-9]+).*\n\s+private void OnController.*\n\n.*\n\s+private void OnDestroy\(\).*\n\n\s+\/\/ RVA: 0x5[A-F0-9]+.*\n\s+private void OnTriggerEnter\(/, // god
+  /private bool [^A-Za-z| ]+\(GameObject [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private void OnControllerColliderHit\(ControllerColliderHit [^A-Za-z| ]+\) \{ \}/, // god
   /internal static void \S+\(int \S+\).*\n\n\s+\/\/ RVA: (0x3[A-F0-9]+).*\n\s+internal static int \S+\(\).*\n\n.*\n\s+internal static void \S+\(int \S+\).*\n\n.*\n\s+internal static int \S+\(\).*\n\n.*\n\s+internal static void \S+\(int \S+\).*\n\n.*\s+internal static int.*\n\n.*\n\s+public void \.ctor/, // arena score
   /\/\/ RVA: (0x[A-F0-9]+).*\n\s+public int GetFreeCheckpointsCount\(\)/, // free checkpoint count
-  /\/\/ RVA: 0x[A-F0-9]+.*\s+internal virtual ItemRarity get_Rarity.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // rarity
-  /\/\/ RVA: (0x[A-F0-9]+).*\s+internal virtual ItemRarity get_Rarity.*\n\n\s+\/\/ RVA: 0x[A-F0-9]+/, //, rarity
-  /\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int \S+\(\S+ \S+\).*\n\n.*\n\s+private void \S+\(Nullable/, // rewards multiplier
-  /\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal static int [^A-Fa-f| ]+ \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal static [^A-Fa-f| ]+ [^A-Fa-f| ]+\([^A-Fa-f| ]+ [^A-Fa-f| ]+, [^A-Fa-f| ]+ [^A-Fa-f| ]+\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal static ValueTuple</, // super chests
+  /internal int get_SurvivalDropProbability\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+ Slot: \d\n\s+internal virtual ItemRarity get_Rarity\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private ItemRarity [^A-Za-z| ]+\(\) \{ \}/, // rarity
+  /internal int get_SurvivalDropProbability\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+ Slot: \d\n\s+internal virtual ItemRarity get_Rarity\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private ItemRarity [^A-Za-z| ]+\(\) \{ \}+/, //, rarity
+  /\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int [^A-Za-z| ]+\([^A-Za-z| ]+ [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private void [^A-Za-z| ]+\(Nullable<DateTime> [^A-Za-z| ]+\) \{ \}/, // rewards multiplier
+  /internal static [^A-Za-z| ]+ [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal static int [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal static [^A-Za-z| ]+ [^A-Za-z| ]+\([^A-Za-z| ]+ [^A-Za-z| ]+ [^A-Za-z| ]+ [^A-Za-z| ]+\) \{ \}/, // super chests
   /\[Extension\]\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int \S+\(\S+ \S+, \S+ \S+ \S+ \S+\).*\n\n\s+\[/, // clan chests
   /internal static \S+ \S+\(\S+ \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int \S+\(\S+ \S+\, \S+ \S+\).*\n\n.*\n\s+internal static int.*\n\n.*\n\s+internal static string/, // clan chests
   /\[Extension\]\n\s+\/\/ RVA: 0x[A-F0-9]+.*\n\s+internal static int \S+\(\S+ \S+, \S+ \S+ \S+ \S+\).*\n\n\s+\[.*\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // clan super chest points
   /internal List<EggIncubatorProgress> \S+\(\).*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int/, // egg rewards
   /internal Dictionary<string, int> \S+\(Egg.*\n\n.*(0x[A-F0-9]+)/, // egg rewards
-  /\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private bool [^A-Fa-f| ]+\(int [^A-Fa-f| ]+, int [^A-Fa-f| ]+, int [^A-Fa-f| ]+\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal bool/, // give wear
-  /internal int [^A-Fa-f| ]+\(int [^A-Fa-f| ]+.*\n\n.*\n\s+internal int \S+\(\S+ \S+\).*\n\n.*(0x[A-F0-9]+).*\n\s+internal int \S+\(int \S+\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal int \S+\(int \S+\).*\n\n.*\n\s+internal int.*int.*\n\n.*\n\s+internal int.*int.*\n\n.*\n\s+internal/, // give wear
+  /\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private bool [^A-Za-z| ]+\(int [^A-Za-z| ]+, int [^A-Za-z| ]+, int [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal bool/, // give wear
+  /internal int [^A-Za-z| ]+\(int [^A-Za-z| ]+.*\n\n.*\n\s+internal int \S+\(\S+ \S+\).*\n\n.*(0x[A-F0-9]+).*\n\s+internal int \S+\(int \S+\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal int \S+\(int \S+\).*\n\n.*\n\s+internal int.*int.*\n\n.*\n\s+internal int.*int.*\n\n.*\n\s+internal/, // give wear
   /internal static string \S+\(string \S+\).*\n\n\s+\/\/ RVA: (0x5[A-F0-9]+).*\n\s+private static bool \S+\(string \S+\).*\n\n.*\n\s+internal static bool \S+\(int/, // campaign
   /internal static bool \S+\(\S+ \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+private static void \S+\(int \S+\)/, // guns
   /private static void \S+\(string \S+, int \S+ int\[\].*\b\b.*\n\n.*\n\s+private static void \S+\(object.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // guns
   /private static void \S+\(string \S+, int \S+ int\[\].*\b\b.*\n\n.*\n\s+private static void \S+\(object.*\n\n\s+\/\/ RVA: 0x[A-F0-9]+.*\n.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // royal
-  /\s+\/\/ RVA: (0x3[A-F0-9]+).*\n\s+public static bool \S+\(CategoryNames \S+, ItemRecord \S+, bool/, // royal
+  /public static bool [^A-Za-z| ]+\(CategoryNames [^A-Za-z| ]+ ItemRecord [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+public static bool [^A-Za-z| ]+\(CategoryNames [^A-Za-z| ]+ ItemRecord [^A-Za-z| ]+ bool [^A-Za-z| ]+ = True\)/, // royal
   /internal static void \S+\(\S+ \S+, CategoryNames \S+, FilterMaps \S+, ClanStoreTab \S+ = 0\).*\n\n.*\n\s+internal static List<ItemRecord>.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, //  wep skins
   /internal static void \S+\(string \S+, int \S+, bool \S+ = True, \S+ \S+\).*\n\n.*\n\s+internal static void .*string.*int.*bool.*= True.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // wep skins
   /internal static bool \S+CategoryNames \S+.*\n\n\s+\/\/ RVA: 0x3[A-F0-9]+.*\s+internal static bool \S+CategoryNames \S+.*\n\n.*\n\s+internal static bool \S+CategoryNames.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+CategoryNames.*\n\n.*\n\s+internal static bool/, // just armor
-  /.*\n\s+internal static void \S+Action \S+\).*\n\n.*\n\s+internal static void \S+\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int \S+\(\)/, // custom level
+  /internal static void [^A-Za-z| ]+\(Action [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal static void [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal static int/, // custom level
   /internal \S+ \S+string itemId.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool/, // deleted gadgets
-  /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+ \S+\).*\n\n.*\n\s+private static bool \S+.*\n\n.*\n\s+internal void \S+string \S+, string \S+,/, // deleted gadgets
+  /(0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal static bool [^A-Za-z| ]+\([^A-Za-z| ]+ [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private static bool [^A-Za-z| ]+\(\)/, // deleted gadgets
   /internal \S+ \S+string itemId.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool/, // hidden gadgets
-  /(0x[A-F0-9]+).*\n\s+private bool.*\n\n\s+\/\/ RVA: 0x[A-F0-9]+.*\n\s+internal static bool \S+ \S+\).*\n\n.*\n\s+private static bool \S+.*\n\n.*\n\s+internal void \S+string \S+, string \S+,/, // hidden gadgets
+  /private bool [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal void [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private bool [^A-Za-z| ]+\(\) \{ \}/, // hidden gadgets
   /private static \S+<List<\S+>> .*\{ get; }\n\n.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // emperor
   /internal Nullable<DateTime> \S+ \S+.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+ \S+.*\n\n.*\n\s+internal bool \S+ \S+, DateTime \S+/, // inf 2x rew
   /internal bool .*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal int \S+\(\).*\n\n.*\n\s+internal bool \S+\(\).*\n\n.*\n\s+internal bool.*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+internal int .*\n\n.*\n\s+internal int/, // max pass
   /internal int \S+\(\).*\n\n\s+\/\/ RVA: (0x2[A-F0-9]+).*\n\s+internal bool.*\n\n.*\n\s+internal int \S+.*\n\n.*\n\s+internal bool.*\n\n.*\n\s+internal bool/, // premium pass
   /internal DateTime \S+\(\).*\n\n.*\n\s+internal int \S+\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal DateTime \S+\(\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal int/, // reset pass
-  /\/\/ RVA: (0x[A-F0-9]+).*\n\s+private long.*\n\n.*\n\s+private int.*\n\n.*\n\s+private void/, // pet egg cd
+  /\[CompilerGenerated\]\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private static void [^A-Za-z| ]+Nest [^A-Za-z| ]+\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // pet egg cd
   /internal GameObject\[\].*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static int/, // mobs per wave
   /internal static GameObject \S+string \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool/, // clan gadgets
   /internal bool \S+\(\S+ x\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+KeyValuePair<string, \S+> kvp\).*\n\n.*\n\s+internal bool \S+KeyValuePair<string/, // unreleased royal
   /internal static void \S+\(string \S+, int \S+, bool \S+ = True, \S+ \S+\).*\n\n.*\n\s+internal static void .*string.*int.*bool.*= True.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // wear parts
   /internal static bool \S+CategoryNames \S+.*\n\n\s+\/\/ RVA: 0x3[A-F0-9]+.*\s+internal static bool \S+CategoryNames \S+.*\n\n.*\n\s+internal static bool \S+CategoryNames.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+CategoryNames.*\n\n.*\n\s+internal static bool/, // wear true
-  /0x.*\n\s+internal string \S+\(\).*\n\n.*0x.*\n\s+internal string \S+\(\).*\n\n.*0x.*\n\s+internal string \S+\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool.*\n\n.*\n\s+internal bool.*\n\n.*\n\s+internal int/, // gift pass
+  /internal string [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal string [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal string [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal bool [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal bool [^A-Za-z| ]+\(\) \{ \}/, // gift pass
   /internal string \S+\(\).*\n\n.*\n\s+internal bool \S+\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool .*\n\n.*\n\s+internal int/, // gift pass
-  /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool.*\n\n.*\n\s+internal StorePromotionConfig \S+\(\).*\n\n.*\n\s+internal void .ctor/, // gift pass
+  /\internal int [^A-Za-z| ]+\(\) \{ \}\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal bool [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal StorePromotionConfig [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal void \.ctor\([^A-Za-z| ]+ [^A-Za-z| ]+, [^A-Za-z| ]+ [^A-Za-z| ]+\)/, // gift pass
   /internal void \S+List<WeaponSounds\.\S+\> \S+.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(\).*\n\n/, // clan wear
-  /\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(\).*\n\n.*\n\s+internal int.*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+internal int \S+\(\).*\n\n.*\n\s+private void \.ctor/, // collectibles v2
+  /internal int [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal bool [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: (0x[A-F0-9]+) Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal bool [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+internal int [^A-Za-z| ]+\(\) \{ \}\n\n\s+\/\/ RVA: 0x[A-F0-9]+ Offset: 0x[A-F0-9]+ VA: 0x[A-F0-9]+\n\s+private void \.ctor\(\)/, // collectibles v2
   /internal static bool \S+CategoryNames \S+.*\n\n\s+\/\/ RVA: 0x3[A-F0-9]+.*\s+internal static bool \S+CategoryNames \S+.*\n\n.*\n\s+internal static bool \S+CategoryNames.*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal static bool \S+CategoryNames.*\n\n.*\n\s+internal static bool/, // unreleased royal
   /public void \.ctor\(\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+).*\n\s+internal bool \S+\(ItemRecord x\).*\n\n.*\n\s+internal bool \S+\(\S+ x.*\n\n.*\n\s+internal bool/, // unrelleased royal
   /internal void .ctor\(int \S+ string \S+\).*\n\n.*\n\s+internal void \.ctor.*\n\n.*\n\s+internal void .ctor\(string \S+\).*\n\n\s+\/\/ RVA: (0x[A-F0-9]+)/, // armory price
