@@ -18,7 +18,7 @@ declare global {
   const OffsetPatterns: OffsetPattern[];
   const FieldPatterns: OffsetPattern[];
   const SigniturePatterns: OffsetPattern[];
-  
+
   class ClassUtils {
     path: FilePath;
     readonly content: CsContent | Promise<CsContent>;
@@ -135,16 +135,10 @@ declare global {
     fileInfo: PushOffsetInfo,
   ): Promise<void>;
 
-  function writeOffsets(
-    filePath: FilePath,
-    info: OffsetInfo[],
-  ): Promise<void>;
+  function writeOffsets(filePath: FilePath, info: OffsetInfo[]): Promise<void>;
   function getOffsets(filePath: FilePath): Promise<FileOffsets>;
 
-  function writeRegex(
-    regexArray: OffsetPattern[],
-    filePath: FilePath,
-  ): void;
+  function writeRegex(regexArray: OffsetPattern[], filePath: FilePath): void;
 }
 
 export {};

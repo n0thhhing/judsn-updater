@@ -18,9 +18,9 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    
+
     /* Declarations */
     "declaration": true,
-    "typeRoots": ["./node_modules/@types", "utils/types/global.d.ts"],
+    "typeRoots": ["./node_modules/@types", "utils/types/globals.d.ts"]
   }
 }

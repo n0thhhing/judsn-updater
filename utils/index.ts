@@ -9,8 +9,8 @@ export {
   old_dump,
   output_signature,
   regex_out,
-  update_fields,
   type_check,
+  update_fields,
   update_offsets,
 } from './config';
 export { getOffsets } from './get_offsets';

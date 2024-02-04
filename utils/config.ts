@@ -14,11 +14,12 @@ const {
     field_output,
     offset_output,
   },
-}: UpdaterConfig = await import("../tests/test.config.json" || "../config/config.json")
+}: UpdaterConfig = await import(
+  '../tests/test.config.json' || '../config/config.json'
+);
 
 export {
   debug,
-  type_check,
   field_file,
   field_output,
   log_offsets,
@@ -28,6 +29,7 @@ export {
   old_dump,
   output_signature,
   regex_out,
+  type_check,
   update_fields,
   update_offsets,
 };

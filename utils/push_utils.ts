@@ -1,9 +1,5 @@
 import chalk from 'chalk';
-import {
-  debug,
-  type_check,
-  update_offsets
-} from './';
+import { debug, type_check, update_offsets } from './';
 
 const compiledPattern: CompiledPattern = new Map<OffsetPattern, RegExp>();
 
@@ -110,7 +106,7 @@ async function pushOffset(
   if (debug) {
     console.log(
       chalk.grey(
-        `${chalk.red('[Debug] - ')} ${offsetNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow(`exec time`)})${type_check ? ` | ${chalk.blue(infoTime)}ms (${chalk.yellow(`info time`)})` : ""}`,
+        `${chalk.red('[Debug] - ')} ${offsetNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow(`exec time`)})${type_check ? ` | ${chalk.blue(infoTime)}ms (${chalk.yellow(`info time`)})` : ''}`,
       ),
     );
   }

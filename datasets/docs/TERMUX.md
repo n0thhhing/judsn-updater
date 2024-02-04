@@ -1,7 +1,7 @@
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
 
-# <img src="../assets/wordmark.svg" alt="Bun" width="75" height="35" style="translate: -4px; vertical-align: -3px;"/>on Termux <img src="../assets/Termux.svg" alt="Bun on Termux" class="termux" style="border-radius: 20px; padding: 10px; vertical-align: -15px; translate: -4px; width: 30px; height: 30px;"/>
+# <img src="../datasets/assets/wordmark.svg" alt="Bun" width="75" height="35" style="translate: -4px; vertical-align: -3px;"/>on Termux <img src="../datasets/assets/Termux.svg" alt="Bun on Termux" class="termux" style="border-radius: 20px; padding: 10px; vertical-align: -15px; translate: -4px; width: 30px; height: 30px;"/>
 
 Installing Bun on Termux might seem unconventional due to its x64 architecture challenges, but there are workarounds. heres my solution:
 
@@ -49,7 +49,7 @@ Now, your environment is properly configured for executing scripts from this rep
 <br>
 <br>
 
-[<kbd> <br> Go Back <img src="../assets/icon.svg" alt="Bun on Termux" class="termux" style="border-radius: 20px; padding: 10px; vertical-align: -15px; translate: -4px; width: 20px; height: 20px;"/><br> </kbd>][KBD]
+[<kbd> <br> Go Back <img src="../datasets/assets/icon.svg" alt="Bun on Termux" class="termux" style="border-radius: 20px; padding: 10px; vertical-align: -15px; translate: -4px; width: 20px; height: 20px;"/><br> </kbd>][KBD]
 
 </div>
 

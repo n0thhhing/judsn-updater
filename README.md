@@ -24,11 +24,11 @@ The script is designed to update offsets for judsn, the bun framework was used t
    bun install
    ```
 
-### Installing Bun <img src="assets/logo.svg" alt="Bun" class="logo" style="border-radius: 20px; padding: 10px; vertical-align: -15px; translate: -4px; width: 20px; height: 20px;"/>
+### Installing Bun <img src="datasets/assets/logo.svg" alt="Bun" class="logo" style="border-radius: 20px; padding: 10px; vertical-align: -15px; translate: -4px; width: 20px; height: 20px;"/>
 
 - The simplest way to install is found in the official [<kbd>`docs`</kbd>](https://bun.sh/docs/installation)
 
-- For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>`TERMUX.md` </kbd>](docs/TERMUX.md)</span>
+- For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>`TERMUX.md` </kbd>](datasets/docs/TERMUX.md)</span>
 
 ## Usage
 
