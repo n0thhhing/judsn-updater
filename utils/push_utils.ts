@@ -106,7 +106,7 @@ async function pushOffset(
   if (debug) {
     console.log(
       chalk.grey(
-        `${chalk.red('[Debug] - ')} ${offsetNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow(`exec time`)})${type_check ? ` | ${chalk.blue(infoTime)}ms (${chalk.yellow(`info time`)})` : ''}`,
+        `${chalk.red('[Debug] - ')}${offsetNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow(`exec time`)})${type_check ? ` | ${chalk.blue(infoTime)}ms (${chalk.yellow(`info time`)})` : ''}`,
       ),
     );
   }
