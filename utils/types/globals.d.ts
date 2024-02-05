@@ -14,6 +14,7 @@ declare global {
   type SignatureName = string;
   type Signature = string;
   type CompiledPattern = Map<OffsetPattern, RegExp>;
+  type FormatType = 'default' | 'judsn'
 
   const OffsetPatterns: OffsetPattern[];
   const FieldPatterns: OffsetPattern[];
@@ -69,6 +70,7 @@ declare global {
     output_signature: boolean;
     type_check: boolean;
     debug: boolean;
+    format_type: FormatType;
     paths: configPaths;
   }
 

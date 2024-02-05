@@ -5,6 +5,7 @@
   "output_signature": false,
   "type_check": false, // Specifies type verification and if the offsets should be type checked after being updated ( the regex itself would probably fail before you need this )
   "debug": false, // Adds extra time shemas
+  "format_type": "default", // The output format, options: judsn, default
   "paths": {
     "regex_out": "dist/regex.ts",
     "old_dump": "data/dump/old.cs", // The path to update from

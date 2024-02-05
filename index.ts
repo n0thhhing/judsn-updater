@@ -17,6 +17,7 @@ import {
   update_fields,
   update_offsets,
   writeOffsets,
+  format_type,
 } from './utils';
 
 async function main() {
@@ -69,7 +70,7 @@ async function main() {
             `\nAverage processing time: ${chalk.blue((totalElapsedTime / newOffsets.length).toFixed(3))}ms`,
           ),
       );
-      writeOffsets(offset_output, newOffsets);
+      writeOffsets(offset_output, newOffsets, format_type);
     }
 
     if (update_fields && fieldInfo) {
@@ -97,7 +98,7 @@ async function main() {
           `Average field exec time: ${chalk.blue(averageTime.toFixed(3))}ms`,
         ),
       );
-      writeOffsets(field_output, newFields);
+      writeOffsets(field_output, newFields, format_type);
     }
 
     if (log_offsets && update_offsets) console.log(newOffsets);

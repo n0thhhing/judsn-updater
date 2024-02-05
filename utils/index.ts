@@ -12,6 +12,7 @@ export {
   type_check,
   update_fields,
   update_offsets,
+  format_type,
 } from './config';
 export { getOffsets } from './get_offsets';
 export { FieldPatterns, OffsetPatterns, SigniturePatterns } from './patterns';

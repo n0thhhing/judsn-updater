@@ -1,12 +1,12 @@
 import chalk from 'chalk';
 
-// TODO: add output format options
+// TODO: add format options
 async function writeOffsets(
   filePath: FilePath,
   info: OffsetInfo[],
+  formatType: FormatType,
 ): Promise<void> {
   const startTime: Time = performance.now();
-
   const lines: string[] = [];
 
   for (const offsetInfo of info) {

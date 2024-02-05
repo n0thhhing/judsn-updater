@@ -12,6 +12,7 @@ const {
   output_signature,
   type_check,
   debug,
+  format_type,
   paths: {
     regex_out,
     old_dump,
@@ -39,4 +40,5 @@ export {
   type_check,
   update_fields,
   update_offsets,
+  format_type,
 };
