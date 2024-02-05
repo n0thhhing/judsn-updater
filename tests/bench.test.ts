@@ -16,7 +16,7 @@ const readOffsetsFromFile = async (filePath: string): Promise<number[]> => {
   return data.split('\n').map((line) => parseInt(line.split(' -- ')[0]));
 };
 
-const sig: SignatureUtils = new SignatureUtils('./datasets/dump/data.json');
+const sig: SignatureUtils = new SignatureUtils('./data/dump/data.json');
 const offsets: Offset[] = await readOffsetsFromFile('./dist/offsets.txt');
 const regexArray: OffsetPattern[] = [];
 let iterationCount = 0;

@@ -1,3 +1,10 @@
+import { existsSync } from 'fs';
+
+const doesExist: boolean = existsSync(`${__dirname}/../tests/test.config.json`);
+const configPath: FilePath = doesExist
+  ? `${__dirname}/../tests/test.config.json`
+  : `${__dirname}/../config/config.json`;
+
 const {
   update_offsets,
   update_fields,
@@ -14,9 +21,9 @@ const {
     field_output,
     offset_output,
   },
-}: UpdaterConfig = await import(
-  '../tests/test.config.json' || '../config/config.json'
-);
+}: UpdaterConfig = doesExist
+  ? await import(configPath)
+  : require('require-json5').requireJSON5(configPath);
 
 export {
   debug,

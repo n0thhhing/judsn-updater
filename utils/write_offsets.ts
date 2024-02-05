@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 
+// TODO: add output format options
 async function writeOffsets(
   filePath: FilePath,
   info: OffsetInfo[],

@@ -16,10 +16,10 @@ const readOffsetsFromFile = async (filePath: string) =>
 try {
   const [offsets, oldOffsets]: number[][] = await Promise.all([
     readOffsetsFromFile('./dist/offsets.txt'),
-    readOffsetsFromFile('./datasets/offsets/offsets.txt'),
+    readOffsetsFromFile('./data/offsets/offsets.txt'),
   ]);
 
-  const sig: SignatureUtils = new SignatureUtils('./datasets/dump/data.json');
+  const sig: SignatureUtils = new SignatureUtils('./data/dump/data.json');
 
   for (let i = 0; i < SigniturePatterns.length; i++) {
     test(`offset ${i}`, async () => {

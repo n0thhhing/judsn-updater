@@ -16,7 +16,7 @@ export {
 export { getOffsets } from './get_offsets';
 export { FieldPatterns, OffsetPatterns, SigniturePatterns } from './patterns';
 export { pushField, pushOffset } from './push_utils';
-export { ClassUtils } from './structures/class_utils';
-export { SignatureUtils } from './structures/signature_utils';
+export { ClassUtils } from './classes/class_utils';
+export { SignatureUtils } from './classes/signature_utils';
 export { writeOffsets } from './write_offsets';
 export { writeRegex } from './write_regex';
