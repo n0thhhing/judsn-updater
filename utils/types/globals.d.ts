@@ -14,7 +14,8 @@ declare global {
   type SignatureName = string;
   type Signature = string;
   type CompiledPattern = Map<OffsetPattern, RegExp>;
-  type FormatType = 'default' | 'judsn'
+  type FormatType = 'default' | 'judsn';
+  type Names = string
 
   const OffsetPatterns: OffsetPattern[];
   const FieldPatterns: OffsetPattern[];

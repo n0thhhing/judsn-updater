@@ -6,6 +6,7 @@ import {
   OffsetPatterns,
   field_file,
   field_output,
+  format_type,
   getOffsets,
   log_offsets,
   new_dump,
@@ -17,7 +18,6 @@ import {
   update_fields,
   update_offsets,
   writeOffsets,
-  format_type,
 } from './utils';
 
 async function main() {
@@ -33,8 +33,8 @@ async function main() {
     const fieldInfo: FileOffsets | undefined = update_fields
       ? await getOffsets(field_file)
       : undefined;
-    const fieldNames: string[] = fieldInfo?.names || [];
-    const offsetNames: string[] = offsetInfo?.names || [];
+    const fieldNames: Names[] = fieldInfo?.names || [];
+    const offsetNames: Names[] = offsetInfo?.names || [];
     const newOffsets: OffsetInfo[] = [];
     const newFields: OffsetInfo[] = [];
     const newContent: FileContent = newFile ? await newFile.content : '';
