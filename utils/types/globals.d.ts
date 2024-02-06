@@ -95,10 +95,12 @@ declare global {
   }
 
   interface FieldMatch extends RegExpExecArray {
+    0: string; // whole match
     1: string; // offset
   }
 
   interface OffsetMatch extends RegExpExecArray {
+    0: string; // whole match
     1: string; // Offset
     2: string; // Matched content before EventHandler/Action/Tuple/etc.
     3: string; // Matched content after EventHandler/Action/Tuple/etc.
@@ -138,10 +140,13 @@ declare global {
     index: Index,
     fileInfo: PushOffsetInfo,
   ): Promise<void>;
-
-  function writeOffsets(filePath: FilePath, info: OffsetInfo[]): Promise<void>;
+  function writeOffsets(
+    filePath: FilePath,
+    info: OffsetInfo[],
+    inputType: inputType,
+    formatType: FormatType,
+  ): Promise<void>;
   function getOffsets(filePath: FilePath): Promise<FileOffsets>;
-
   function writeRegex(regexArray: OffsetPattern[], filePath: FilePath): void;
 }
 

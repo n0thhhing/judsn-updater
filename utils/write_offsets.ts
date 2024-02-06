@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 
+// TODO: make this not dumb
 async function writeOffsets(
  filePath: FilePath,
  info: OffsetInfo[],
@@ -16,7 +17,7 @@ async function writeOffsets(
    lines.push(line);
   }
  } else {
-  let i = 1;
+  let i: Index = 1;
   let line: string = '';
   if (inputType === 'offset') {
    for (const offsetInfo of info) {
@@ -55,7 +56,7 @@ async function writeOffsets(
     }
     lines.push(line);
    }
-  } else if (inputType === 'field') {
+  } else {
    for (const offsetInfo of info) {
     line = `Field[${i}] = ${offsetInfo.offset} -- ${offsetInfo.name}`;
     lines.push(line);
