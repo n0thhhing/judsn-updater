@@ -31,7 +31,7 @@ async function writeOffsets(
      i++;
      line = `Offset[${i}] = ${offsetInfo.offset} -- ${offsetInfo.name}`;
      i++;
-    } else if (offsetInfo.name.includes('rarity [2]' || 'unlock hidden/exclusiv')) {
+    } else if (offsetInfo.name.includes('rarity [2]') || offsetInfo.name.includes('unlock hidden/exclusive gadgets')) {
      continue;
     } else if (i === 40 || i === 22) {
      lines.push(`Offset[${i}] = 0x2602920 -- broken`);
