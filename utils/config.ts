@@ -30,6 +30,7 @@ export {
   debug,
   field_file,
   field_output,
+  format_type,
   log_offsets,
   new_dump,
   offset_file,
@@ -40,5 +41,4 @@ export {
   type_check,
   update_fields,
   update_offsets,
-  format_type,
 };
