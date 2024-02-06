@@ -56,7 +56,7 @@ async function main() {
       );
 
       const totalElapsedTime: Time = performance.now() - startTime;
-     
+
       console.log(
         chalk.grey(`Total offsets updated: ${chalk.green(newOffsets.length)}`),
       );
