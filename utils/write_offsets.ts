@@ -1,47 +1,49 @@
 import chalk from 'chalk';
 
 async function writeOffsets(
- filePath: FilePath,
- info: OffsetInfo[],
- inputType: inputType,
- formatType: FormatType,
+  filePath,
+  info,
+  inputType,
+  formatType,
 ) {
- const startTime = performance.now();
- const lines = [];
- let i = 1;
+  const startTime = performance.now();
+  const lines = [];
 
- for (const offsetInfo of info) {
-  let line = '';
+  for (let i = 0; i < info.length; i++) {
+    const offsetInfo = info[i];
+    let line;
 
-  if (inputType === 'offset' && formatType === 'judsn') {
-   if ([22, 28, 33, 40, 70].includes(i)) {
-    for (let j = 0; j < 2; j++) {
-     lines.push(`Offset[${i}] = 0x2602920 -- broken`);
-     i++;
+    if (formatType !== 'judsn') {
+      line = `${offsetInfo.offset} -- ${offsetInfo.name}`;
+    } else {
+      if (inputType === 'offset') {
+        switch (i) {
+          case 21:
+          case 27:
+          case 32:
+          case 39:
+          case 69:
+            line = `Offset[${i + 1}] = 0x2602920 -- broken`;
+            break;
+          default:
+            if (offsetInfo.name.includes("rarity [2]")) continue;
+            line = `Offset[${i + 1}] = ${offsetInfo.offset} -- ${offsetInfo.name}`;
+        }
+      } else {
+        line = `Field[${i + 1}] = ${offsetInfo.offset} -- ${offsetInfo.name}`;
+      }
     }
-   }
 
-   if (i === 33) {
-    for (let j = 0; j < 4; j++) {
-     lines.push(`Offset[${i}] = 0x2602920 -- broken`);
-     i++;
-    }
-   }
-
-   if (offsetInfo.name.includes("rarity [2]")) {
-    i++;
-    continue;
-   }
+    lines.push(line);
   }
 
-  line = `${inputType === 'offset' ? 'Offset' : 'Field'}[${i}] = ${offsetInfo.offset} -- ${offsetInfo.name}`;
-  lines.push(line);
-  i++;
- }
-
- Bun.write(Bun.file(filePath), lines.join('\n'));
- const elapsedTime = performance.now() - startTime;
- console.log(`writeOffsets(${filePath}): ${chalk.blue(elapsedTime.toFixed(3))}ms`);
+  Bun.write(Bun.file(filePath), lines.join('\n'));
+  const elapsedTime = performance.now() - startTime;
+  console.log(
+    chalk.grey(
+      `writeOffsets(${filePath}): ${chalk.blue(elapsedTime.toFixed(3))}ms`,
+    ),
+  );
 }
 
 export { writeOffsets };
