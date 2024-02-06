@@ -56,8 +56,7 @@ async function main() {
       );
 
       const totalElapsedTime: Time = performance.now() - startTime;
-      const averageTime: Time = totalElapsedTime / OffsetPatterns.length;
-
+     
       console.log(
         chalk.grey(`Total offsets updated: ${chalk.green(newOffsets.length)}`),
       );
@@ -70,7 +69,7 @@ async function main() {
             `\nAverage processing time: ${chalk.blue((totalElapsedTime / newOffsets.length).toFixed(3))}ms`,
           ),
       );
-      writeOffsets(offset_output, newOffsets, format_type);
+      writeOffsets(offset_output, newOffsets, 'offset', format_type);
     }
 
     if (update_fields && fieldInfo) {
@@ -98,7 +97,7 @@ async function main() {
           `Average field exec time: ${chalk.blue(averageTime.toFixed(3))}ms`,
         ),
       );
-      writeOffsets(field_output, newFields, format_type);
+      writeOffsets(field_output, newFields, 'field', format_type);
     }
 
     if (log_offsets && update_offsets) console.log(newOffsets);

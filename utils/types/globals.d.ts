@@ -16,6 +16,7 @@ declare global {
   type CompiledPattern = Map<OffsetPattern, RegExp>;
   type FormatType = 'default' | 'judsn';
   type Names = string;
+  type inputType = 'offset' | 'field';
 
   const OffsetPatterns: OffsetPattern[];
   const FieldPatterns: OffsetPattern[];

@@ -181,3 +181,6 @@ out
 # bak
 *bak
 backup/
+
+.replit
+replit.nix
