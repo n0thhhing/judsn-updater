@@ -106,7 +106,7 @@ async function pushOffset(
   if (debug) {
     console.log(
       chalk.grey(
-        `${chalk.red('[Debug] - ')}${offsetNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow(`exec time`)})${type_check ? ` | ${chalk.blue(infoTime)}ms (${chalk.yellow(`info time`)})` : ''} ${chalk.blue(offsetInfo.offsets[index])} => ${chalk.blue(match[1])}`,
+        `${chalk.red('[Debug] - ')}${offsetNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow(`exec time`)})${type_check ? ` | ${chalk.blue(infoTime)}ms (${chalk.yellow(`info time`)})` : ''} ${chalk.blue(offsetInfo.offsets[index])} => ${chalk.blue(match && match[1] ? match[1] : "failed")}`,
       ),
     );
   }
