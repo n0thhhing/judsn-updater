@@ -17,6 +17,8 @@ declare global {
   type FormatType = 'default' | 'judsn';
   type Names = string;
   type inputType = 'offset' | 'field';
+  type LibData = Buffer;
+  type SignatureLength = number;
 
   const OffsetPatterns: OffsetPattern[];
   const FieldPatterns: OffsetPattern[];
@@ -44,6 +46,10 @@ declare global {
     getName(offset: Offset): Promise<SignatureName | null>;
   }
 
+  interface FileStats {
+    size: number;
+  }
+
   interface EvaluatedSignatures {
     sig1: string;
     signature: string;
@@ -56,18 +62,20 @@ declare global {
   }
 
   interface configPaths {
-    regex_out: string;
-    old_dump: string;
-    new_dump: string;
-    offset_file: string;
-    field_file: string;
-    offset_output: string;
-    field_output: string;
+    lib_path: FilePath;
+    regex_out: FilePath;
+    old_dump: FilePath;
+    new_dump: FilePath;
+    offset_file: FilePath;
+    field_file: FilePath;
+    offset_output: FilePath;
+    field_output: FilePath;
   }
 
   interface UpdaterConfig {
     log_offsets: boolean;
     update_offsets: boolean;
+    get_hex: boolean;
     update_fields: boolean;
     output_signature: boolean;
     type_check: boolean;
@@ -78,19 +86,19 @@ declare global {
 
   interface OffsetInfo {
     offset: Offset;
-    name: string;
+    name: Names;
     typeStatus?: string;
   }
 
   interface OffsetEntry {
     offset: Offset;
-    name: string;
+    name: Names;
     description: string;
   }
 
   interface FileOffsets {
     offsets: Offset[];
-    names: string[];
+    names: Names[];
     entries: OffsetEntry[];
   }
 
@@ -111,13 +119,13 @@ declare global {
     newFile: ClassUtil | null;
     signatureContent: Data;
     offsetInfo?: FileOffsets;
-    offsetNames?: string[] | null;
+    offsetNames?: Names[] | null;
     newOffsets: OffsetInfo[];
   }
 
   interface PushFieldInfo {
     newContent: FileContent;
-    FieldNames: string[];
+    FieldNames: Names[];
     newFields: OffsetInfo[];
   }
 
@@ -126,7 +134,7 @@ declare global {
     newFile: ClassUtil | null;
     offsetInfo?: FileOffsets;
     newContent: FileContent;
-    offsetNames?: string[];
+    offsetNames?: Names[];
     newOffsets: OffsetInfo[];
   }
 

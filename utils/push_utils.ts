@@ -9,14 +9,28 @@ async function pushField(
   fileInfo: PushFieldInfo,
 ): Promise<void> {
   try {
+    const startExecTime: Time = debug ? Bun.nanoseconds() : NaN;
+
     const match: RegExpExecArray | null = pattern.exec(
       fileInfo.newContent,
     ) as FieldMatch | null;
+
+    const execTime: Time = debug
+      ? (Bun.nanoseconds() - startExecTime) / 1_000_000
+      : NaN;
 
     if (!match) {
       console.error(`No match found for pattern at index ${index}`);
 
       return;
+    }
+
+    if (debug) {
+      console.log(
+        chalk.grey(
+          `${chalk.red('[Debug] - ')}${fileInfo.FieldNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow('exec time')})`,
+        ),
+      );
     }
 
     fileInfo.newFields.push({
@@ -25,43 +39,6 @@ async function pushField(
     });
   } catch (error: unknown) {
     console.error('An error occurred in pushField:', error);
-  }
-}
-
-async function pushSignatureOffset(
-  pattern: OffsetPattern,
-  index: Index,
-  fileInfo: PushSignatureOffsetInfo,
-): Promise<void> {
-  const {
-    oldFile,
-    newFile,
-    signatureContent,
-    offsetInfo,
-    offsetNames,
-    newOffsets,
-  }: PushSignatureOffsetInfo = fileInfo;
-  if (update_offsets && offsetInfo && offsetNames) {
-    const match: RegExpExecArray | null = pattern.exec(
-      await signatureContent,
-    ) as OffsetMatch | null;
-
-    const oldType: OffsetType | null = oldFile
-      ? await oldFile.findMethodType(
-          offsetInfo.offsets[offsetNames.indexOf(offsetNames[index])],
-        )
-      : null;
-
-    const newType: OffsetType = newFile
-      ? await newFile.findMethodType(match ? match[1] : '')
-      : null;
-
-    newOffsets.push({
-      offset: match ? match[1] : 'Failed, please update the RegExp',
-      name: offsetNames[index],
-      typeStatus:
-        oldType && newType && oldType === newType ? 'Passed' : 'Failed',
-    });
   }
 }
 
@@ -106,7 +83,7 @@ async function pushOffset(
   if (debug) {
     console.log(
       chalk.grey(
-        `${chalk.red('[Debug] - ')}${offsetNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow(`exec time`)})${type_check ? ` | ${chalk.blue(infoTime)}ms (${chalk.yellow(`info time`)})` : ''} ${chalk.blue(offsetInfo.offsets[index])} => ${chalk.blue(match && match[1] ? match[1] : "failed")}`,
+        `${chalk.red('[Debug] - ')}${offsetNames[index]}: ${chalk.blue(execTime)}ms (${chalk.yellow(`exec time`)})${type_check ? ` | ${chalk.blue(infoTime)}ms (${chalk.yellow(`info time`)})` : ''} ${chalk.blue(offsetInfo.offsets[index])} => ${chalk.blue(match && match[1] ? match[1] : 'failed')}`,
       ),
     );
   }

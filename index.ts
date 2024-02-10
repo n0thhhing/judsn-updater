@@ -8,6 +8,7 @@ import {
   field_output,
   format_type,
   getOffsets,
+  lib_path,
   log_offsets,
   new_dump,
   offset_file,
@@ -17,6 +18,7 @@ import {
   pushOffset,
   update_fields,
   update_offsets,
+  writeHex,
   writeOffsets,
 } from './utils';
 
@@ -69,7 +71,11 @@ async function main() {
             `\nAverage processing time: ${chalk.blue((totalElapsedTime / newOffsets.length).toFixed(3))}ms`,
           ),
       );
-      writeOffsets(offset_output, newOffsets, 'offset', format_type);
+
+      await Promise.all([
+        writeHex('./dist/hex.lua', lib_path, newOffsets),
+        writeOffsets(offset_output, newOffsets, 'offset', format_type),
+      ]);
     }
 
     if (update_fields && fieldInfo) {

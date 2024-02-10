@@ -8,12 +8,14 @@ const configPath: FilePath = doesExist
 const {
   update_offsets,
   update_fields,
+  get_hex,
   log_offsets,
   output_signature,
   type_check,
   debug,
   format_type,
   paths: {
+    lib_path,
     regex_out,
     old_dump,
     new_dump,
@@ -31,6 +33,8 @@ export {
   field_file,
   field_output,
   format_type,
+  get_hex,
+  lib_path,
   log_offsets,
   new_dump,
   offset_file,
