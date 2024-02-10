@@ -7,6 +7,7 @@
   "type_check": false, // Specifies type verification and if the offsets should be type checked after being updated ( the regex itself would probably fail before you need this )
   "debug": false, // Adds extra time shemas
   "format_type": "default", // The output format, options: judsn, default
+  "signature_length": 64, // The length of the ouput hex
   "paths": {
     "lib_path": "./data/libs/libil2cpp.so", // The lib to get the hex from
     "regex_out": "dist/regex.ts",
@@ -14,6 +15,7 @@
     "new_dump": "data/dump/new.cs", // The path to update to
     "offset_output": "dist/offsets.txt", // where the resulting offsets will be put
     "field_output": "dist/fields.txt", // Where the resulting fields will be put
+    "hex_output": "dist/hex.txt", // Where the hex will go
     "offset_file": "data/offsets/offsets.txt", // The offset input file
     "field_file": "data/offsets/fields.txt" // The offset ouput file
   }

@@ -8,6 +8,8 @@ import {
   field_output,
   format_type,
   getOffsets,
+  get_hex,
+  hex_output,
   lib_path,
   log_offsets,
   new_dump,
@@ -73,7 +75,9 @@ async function main() {
       );
 
       await Promise.all([
-        writeHex('./dist/hex.lua', lib_path, newOffsets),
+        get_hex
+          ? writeHex(hex_output, lib_path, newOffsets)
+          : Promise.resolve(),
         writeOffsets(offset_output, newOffsets, 'offset', format_type),
       ]);
     }

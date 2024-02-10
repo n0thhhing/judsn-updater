@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { getHex, readLibraryFile } from './';
+import { getHex, readLibraryFile, signature_length } from './';
 
 // TODO: make this not dumb... again
 async function writeHex(
@@ -23,7 +23,7 @@ async function writeHex(
       i++;
       lines.push(`Hex[${i}] = "broken"`);
       i++;
-      line = `Offset[${i}] = "${getHex(libData, offsetInfo.offset, 64)}" -- ${offsetInfo.name}`;
+      line = `Offset[${i}] = "${getHex(libData, offsetInfo.offset, signature_length)}" -- ${offsetInfo.name}`;
       i++;
     } else if (
       offsetInfo.name.includes('rarity [2]') ||
@@ -35,19 +35,19 @@ async function writeHex(
       i++;
       lines.push(`Hex[${i}] = "broken"`);
       i++;
-      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, 64)}" -- ${offsetInfo.name}`;
+      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, signature_length)}" -- ${offsetInfo.name}`;
       i++;
     } else if (i === 70 || i === 28) {
       lines.push(`Hex[${i}] = "broken"`);
       i++;
-      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, 64)}" -- ${offsetInfo.name}`;
+      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, signature_length)}" -- ${offsetInfo.name}`;
       i++;
     } else if (i === 74) {
       i += 2;
-      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, 64)}" -- ${offsetInfo.name}`;
+      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, signature_length)}" -- ${offsetInfo.name}`;
       i++;
     } else {
-      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, 64)}" -- ${offsetInfo.name}`;
+      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, signature_length)}" -- ${offsetInfo.name}`;
       i++;
     }
     lines.push(line);

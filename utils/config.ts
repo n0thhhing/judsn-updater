@@ -14,15 +14,17 @@ const {
   type_check,
   debug,
   format_type,
+  signature_length,
   paths: {
     lib_path,
     regex_out,
     old_dump,
     new_dump,
-    offset_file,
-    field_file,
     field_output,
     offset_output,
+    hex_output,
+    offset_file,
+    field_file,
   },
 }: UpdaterConfig = doesExist
   ? await import(configPath)
@@ -42,7 +44,9 @@ export {
   old_dump,
   output_signature,
   regex_out,
+  signature_length,
   type_check,
   update_fields,
   update_offsets,
+  hex_output,
 };

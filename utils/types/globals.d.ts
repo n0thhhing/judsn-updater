@@ -66,10 +66,11 @@ declare global {
     regex_out: FilePath;
     old_dump: FilePath;
     new_dump: FilePath;
-    offset_file: FilePath;
-    field_file: FilePath;
     offset_output: FilePath;
     field_output: FilePath;
+    hex_output: FilePath;
+    offset_file: FilePath;
+    field_file: FilePath;
   }
 
   interface UpdaterConfig {
@@ -81,6 +82,7 @@ declare global {
     type_check: boolean;
     debug: boolean;
     format_type: FormatType;
+    signature_length: SignatureLength;
     paths: configPaths;
   }
 

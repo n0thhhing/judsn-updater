@@ -17,6 +17,8 @@ export {
   type_check,
   update_fields,
   update_offsets,
+  signature_length,
+  hex_output,
 } from './config';
 export { getHex } from './get_hex';
 export { getOffsets } from './get_offsets';
