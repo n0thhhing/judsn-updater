@@ -61,7 +61,7 @@ async function writeOffsets(
       }
     } else {
       for (const offsetInfo of info) {
-        line = `Field[${i}] = ${offsetInfo.offset} -- ${offsetInfo.name}`;
+        line = `Field[${i}] = "${offsetInfo.offset}" -- ${offsetInfo.name}`;
         lines.push(line);
         i++;
       }

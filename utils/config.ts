@@ -26,9 +26,7 @@ const {
     offset_file,
     field_file,
   },
-}: UpdaterConfig = doesExist
-  ? await import(configPath)
-  : require('require-json5').requireJSON5(configPath);
+}: UpdaterConfig = await import(configPath)
 
 export {
   debug,
@@ -36,6 +34,7 @@ export {
   field_output,
   format_type,
   get_hex,
+  hex_output,
   lib_path,
   log_offsets,
   new_dump,
@@ -48,5 +47,4 @@ export {
   type_check,
   update_fields,
   update_offsets,
-  hex_output,
 };

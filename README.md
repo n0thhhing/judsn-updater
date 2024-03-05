@@ -30,6 +30,32 @@ The script is designed to update offsets for judsn, the bun framework was used t
 
 - For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>`TERMUX.md` </kbd>](data/docs/TERMUX.md)</span>
 
+##Config
+
+### Configuration Options README
+
+The config file is in <span style="margin-right: 5px;">[<kbd>`config/config.json` </kbd>](config/config.json)</span> and each are used as follows:
+- **update_offsets**: Specifies if the offsets in `data/offsets/offsets.txt` should be updated.
+- **update_fields**: Specifies if the fields in `data/offsets/fields.txt` should be updated.
+- **get_hex**: Specifies if all the hex to the offsets will have an output.
+- **log_offsets**: Specifies if the resulting offsets are logged to console.
+- **output_signature**: Specifies if there is an output signature.
+- **type_check**: Specifies type verification and if the offsets should be type checked after being updated (the regex itself would probably fail before you need this).
+- **debug**: Adds extra time schemas.
+- **format_type**: The output format, options: `judsn`, `default`.
+- **signature_length**: The length of the output hex.
+  
+#### Paths:
+- **lib_path**: Path to the `libil2cpp.so` file to extract hex from.
+- **regex_out**: Path to the output file for regex.
+- **old_dump**: Path to update from.
+- **new_dump**: Path to update to.
+- **offset_output**: Path where the resulting offsets will be stored.
+- **field_output**: Path where the resulting fields will be stored.
+- **hex_output**: Path where the hex will be stored.
+- **offset_file**: The offset input file.
+- **field_file**: The offset output file.
+
 ## Usage
 
 1. Open the `config.json` file in the `config` directory and configure the necessary parameters (`old_dump`, `new_dump`, `offset_file`).

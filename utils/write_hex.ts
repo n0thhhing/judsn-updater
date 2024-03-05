@@ -23,7 +23,7 @@ async function writeHex(
       i++;
       lines.push(`Hex[${i}] = "broken"`);
       i++;
-      line = `Offset[${i}] = "${getHex(libData, offsetInfo.offset, signature_length)}" -- ${offsetInfo.name}`;
+      line = `Hex[${i}] = "${getHex(libData, offsetInfo.offset, signature_length)}" -- ${offsetInfo.name}`;
       i++;
     } else if (
       offsetInfo.name.includes('rarity [2]') ||

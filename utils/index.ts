@@ -6,6 +6,7 @@ export {
   field_output,
   format_type,
   get_hex,
+  hex_output,
   lib_path,
   log_offsets,
   new_dump,
@@ -14,11 +15,10 @@ export {
   old_dump,
   output_signature,
   regex_out,
+  signature_length,
   type_check,
   update_fields,
   update_offsets,
-  signature_length,
-  hex_output,
 } from './config';
 export { getHex } from './get_hex';
 export { getOffsets } from './get_offsets';
