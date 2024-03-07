@@ -1,27 +1,56 @@
-import * as fs from 'fs';
+import chalk from 'chalk';
 import * as crypto from 'crypto';
-import chalk from "chalk"
+import * as fs from 'fs';
 
-async function hashFile(filePath: string): Promise<string> {
-  const start = Bun.nanoseconds()
+const algorithm = 'aes-256-cbc';
+const key = 'abcdef0123456789';
+
+function encryptFile(inputFilePath: string): Promise<string> {
+  const start = Bun.nanoseconds();
   return new Promise((resolve, reject) => {
-    const hash = crypto.createHash('sha256');
-    const stream = fs.createReadStream(filePath);
+    const input = fs.createReadStream(inputFilePath);
+    const cipher = crypto.createCipher(algorithm, key);
+    let encryptedData = '';
 
-    stream.on('error', (error) => {
+    input.on('data', (chunk) => {
+      encryptedData += cipher.update(chunk, 'utf8', 'hex');
+    });
+
+    input.on('end', () => {
+      encryptedData += cipher.final('hex');
+      console.log(
+        chalk.grey(
+          `encryptFile(${inputFilePath}): ${chalk.blue((Bun.nanoseconds() - start) / 1_000_000)}ms`,
+        ),
+      );
+      resolve(encryptedData);
+    });
+
+    input.on('error', (error) => {
       reject(error);
     });
-
-    hash.setEncoding('hex');
-
-    stream.on('end', () => {
-      hash.end();
-      console.log(chalk.grey(`hashFile(${filePath}): ${chalk.blue((Bun.nanoseconds() - start) / 1_000_000)}ms`))
-      resolve(hash.read());
-    });
-
-    stream.pipe(hash);
   });
 }
 
-export { hashFile }
+function decryptFile(encryptedData: string): Promise<string> {
+  const start = Bun.nanoseconds();
+  return new Promise((resolve, reject) => {
+    const decipher = crypto.createDecipher(algorithm, key);
+    let decryptedData = '';
+
+    try {
+      decryptedData += decipher.update(encryptedData, 'hex', 'utf8');
+      decryptedData += decipher.final('utf8');
+      console.log(
+        chalk.grey(
+          `encryptFile(): ${chalk.blue((Bun.nanoseconds() - start) / 1_000_000)}ms`,
+        ),
+      );
+      resolve(decryptedData);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+export { decryptFile, encryptFile };

@@ -2,6 +2,7 @@ export { ClassUtils } from './classes/class_utils';
 export { SignatureUtils } from './classes/signature_utils';
 export {
   debug,
+  dev,
   field_file,
   field_output,
   format_type,
@@ -22,10 +23,10 @@ export {
 } from './config';
 export { getHex } from './get_hex';
 export { getOffsets } from './get_offsets';
+export { decryptFile, encryptFile } from './hash';
 export { FieldPatterns, OffsetPatterns, SigniturePatterns } from './patterns';
 export { pushField, pushOffset } from './push_utils';
 export { readLibraryFile } from './read_lib';
 export { writeHex } from './write_hex';
 export { writeOffsets } from './write_offsets';
 export { writeRegex } from './write_regex';
-export { hashFile } from "./hash"

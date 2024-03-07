@@ -83,6 +83,7 @@ declare global {
     debug: boolean;
     format_type: FormatType;
     signature_length: SignatureLength;
+    dev: boolean;
     paths: configPaths;
   }
 

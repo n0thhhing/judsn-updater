@@ -15,6 +15,7 @@ const {
   debug,
   format_type,
   signature_length,
+  dev,
   paths: {
     lib_path,
     regex_out,
@@ -26,10 +27,11 @@ const {
     offset_file,
     field_file,
   },
-}: UpdaterConfig = await import(configPath)
+}: UpdaterConfig = await import(configPath);
 
 export {
   debug,
+  dev,
   field_file,
   field_output,
   format_type,

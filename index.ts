@@ -1,9 +1,12 @@
 import chalk from 'chalk';
-
+import fs from 'fs';
 import {
   ClassUtils,
   FieldPatterns,
   OffsetPatterns,
+  decryptFile,
+  dev,
+  encryptFile,
   field_file,
   field_output,
   format_type,
@@ -22,17 +25,18 @@ import {
   update_offsets,
   writeHex,
   writeOffsets,
-  hashFile,
 } from './utils';
 
-const offsetHash: string = "a83f5f9e4e7d9a6e1a32510b60c072b52a4519b310e2257690737066cd3ec3ee"
+const offsetHash: string = fs.readFileSync('data/offsets/hash.txt', 'utf8');
 
 async function main() {
   try {
-  if (await hashFile(offset_file) !== offsetHash) {
-    console.log(chalk.red("Please do not edit the offset file"))
-    process.exit(1)
+    if ((await encryptFile(offset_file)) !== offsetHash) {
+      console.log(chalk.red(`Dont edit the offset file, reseting now...`));
+      fs.writeFileSync(offset_file, await decryptFile(offsetHash));
+      process.exit(1);
     }
+
     const oldFile: ClassUtils | null = update_offsets
       ? new ClassUtils(old_dump)
       : null;

@@ -8,6 +8,7 @@
   "debug": false,
   "format_type": "default",
   "signature_length": 64,
+  "dev": false,
   "paths": {
     "lib_path": "./data/libs/libil2cpp.so",
     "regex_out": "dist/regex.ts",

@@ -35,6 +35,7 @@ The script is designed to update offsets for judsn, the bun framework was used t
 ### Configuration Options README
 
 The config file is in <span style="margin-right: 5px;">[<kbd>`config/config.json` </kbd>](config/config.json)</span> and each are used as follows:
+
 - **update_offsets**: Specifies if the offsets in `data/offsets/offsets.txt` should be updated.
 - **update_fields**: Specifies if the fields in `data/offsets/fields.txt` should be updated.
 - **get_hex**: Specifies if all the hex to the offsets will have an output.
@@ -44,8 +45,9 @@ The config file is in <span style="margin-right: 5px;">[<kbd>`config/config.json
 - **debug**: Adds extra time schemas.
 - **format_type**: The output format, options: `judsn`, `default`.
 - **signature_length**: The length of the output hex.
-  
+
 #### Paths:
+
 - **lib_path**: Path to the `libil2cpp.so` file to extract hex from.
 - **regex_out**: Path to the output file for regex.
 - **old_dump**: Path to update from.
