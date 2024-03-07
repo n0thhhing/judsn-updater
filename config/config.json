@@ -12,7 +12,7 @@
   "paths": {
     "lib_path": "./data/libs/libil2cpp.so",
     "regex_out": "dist/regex.ts",
-    "old_dump": "data/dump/old.cs",
+    "old_dump": "data/dump/old.txt",
     "new_dump": "data/dump/new.cs",
     "offset_output": "dist/offsets.txt",
     "field_output": "dist/fields.txt",
