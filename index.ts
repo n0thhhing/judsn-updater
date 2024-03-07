@@ -22,10 +22,17 @@ import {
   update_offsets,
   writeHex,
   writeOffsets,
+  hashFile,
 } from './utils';
+
+const offsetHash: string = "a83f5f9e4e7d9a6e1a32510b60c072b52a4519b310e2257690737066cd3ec3ee"
 
 async function main() {
   try {
+  if (await hashFile(offset_file) !== offsetHash) {
+    console.log(chalk.red("Please do not edit the offset file"))
+    process.exit(1)
+    }
     const oldFile: ClassUtils | null = update_offsets
       ? new ClassUtils(old_dump)
       : null;

@@ -28,3 +28,4 @@ export { readLibraryFile } from './read_lib';
 export { writeHex } from './write_hex';
 export { writeOffsets } from './write_offsets';
 export { writeRegex } from './write_regex';
+export { hashFile } from "./hash"
