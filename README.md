@@ -30,9 +30,7 @@ The script is designed to update offsets for judsn, the bun framework was used t
 
 - For special cases like Termux, see <span style="margin-right: 5px;">[<kbd>`TERMUX.md` </kbd>](data/docs/TERMUX.md)</span>
 
-##Config
-
-### Configuration Options README
+### Configuration Options
 
 The config file is in <span style="margin-right: 5px;">[<kbd>`config/config.json` </kbd>](config/config.json)</span> and each are used as follows:
 
@@ -77,11 +75,6 @@ The config file is in <span style="margin-right: 5px;">[<kbd>`config/config.json
 In case of errors or unexpected behavior, check the error messages logged in the console or submit an issue.
 
 Feel free to customize and expand upon this based on your specific requirements.
-
-## Extras
-
-- [<kbd>`bench.test.ts`</kbd>](tests/bench.test.ts) - for updating offsets other than the judsn ones (you can update any offset)
-- [<kbd>`match.test.ts`</kbd>](tests/match.test.ts) - a slighly faster updater for judsn
 
 ---
 
